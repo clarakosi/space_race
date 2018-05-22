@@ -10,7 +10,7 @@ class BillingInfo extends Component {
             </button>
             <p>Subscription Expires on:</p>
             </div>
-            // Need to add user info about when subscription will expire
+            // Need to add infro about when users subscription will expire
         );
     }
 

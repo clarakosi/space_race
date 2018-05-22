@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import BillingInfo from './BillingInfo';
 
 class SettingsForm extends Component {
 
@@ -17,6 +18,8 @@ render() {
                 New Password:
                 <input type="text"/>
             </label>
+            <BillingInfo/>
+            <button onSumbit={this.handleSumbmit}> Save </button>
         </form>
     )
 }

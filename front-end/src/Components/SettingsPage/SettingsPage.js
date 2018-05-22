@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import BillingInfo from './BillingInfo';
 import SettingsForm from './SettingsForm';
 
 class SettingsPage extends Component {
@@ -9,7 +8,6 @@ render() {
 //SideBar
     <div>
     <SettingsForm/>
-    <BillingInfo/>
     </div>
         );
     }
