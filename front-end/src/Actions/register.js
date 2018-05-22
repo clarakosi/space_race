@@ -21,7 +21,7 @@ function register(user) {
                 }
             );
     };
-
+   /*these functions will need to have routes/endpoints on the back end */
     function request(user) { return { type: REGISTER_REQUEST, user } }
     function success(user) { return { type: REGISTER_SUCCESS, user } }
     function failure(error) { return { type: REGISTER_FAILURE, error } }
