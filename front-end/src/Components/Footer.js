@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Col, Container, Row, Nav, NavItem, NavLink } from 'reactstrap';
 import FontAwesome from 'react-fontawesome';
-
+import {Button} from 'reactstrap';
 import './Footer.css';
 
 class Footer extends Component {
@@ -20,17 +20,16 @@ class Footer extends Component {
           <Row>
             <Col sm="2" xs="3">
               <Nav className="footer-nav">
-{/*-----------<optional social icons/links we can add here
+
                 <NavItem>
                   <NavLink href="" target="_blank">
                     <FontAwesome name="" className="social-icon" size="3x" />
                   </NavLink>
-                </NavItem>------------->*/}
+                </NavItem>
                 <NavItem>                                            
-                  <NavLink href="" target="_blank">
-                    {/*we can add a logo here*/}
-                    <img src=""className="footer-badge" alt="badge" />
-                  </NavLink>
+                
+                    <Button >BUY NOW</Button>
+                
                 </NavItem>
               </Nav>
             </Col>
