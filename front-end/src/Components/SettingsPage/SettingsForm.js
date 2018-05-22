@@ -19,8 +19,9 @@ render() {
                 <input type="text"/>
             </label>
             <BillingInfo/>
-            <button onSumbit={this.handleSumbmit}> Save </button>
+            <button > Save </button>
         </form>
+        // Need to handleSumbit on the Save button
     )
 }
 }
