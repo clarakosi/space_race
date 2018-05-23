@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-// import './App.css';
 
+
+import './App.css';
 class App extends Component {
   state = {
     teams: []
@@ -20,6 +21,8 @@ class App extends Component {
   }
   render() {
     return (
+
+  
       <div>
         {this.state.teams.map(item => (
           <div key={item.id}>
@@ -27,6 +30,7 @@ class App extends Component {
           </div>
         ))}
       </div>
+
     );
   }
 }
