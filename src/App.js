@@ -8,7 +8,8 @@ class App extends Component {
 
   async componentDidMount() {
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/');
+      // for deployment in local change to http://127.0.0.1:8000/api/
+      const res = await fetch('/api/');
       const teams = await res.json();
       this.setState({
         teams
