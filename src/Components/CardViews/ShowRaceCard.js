@@ -10,17 +10,14 @@ class ShowRaceCard extends Component {
     constructor (props) {
         super(props);
         this.state = {
-
-            color: '',
-
-            teams : [
-                'Slytherin', 
-                'Griffyndor',
-                'Hufflepuff',
-                'Ravenclaw'
-            ],
-
+            checked: false
         };
+        this.toggleCheck =  this.toggleCheck.bind(this);
+    }
+    toggleCheck() {
+      this.setState({
+        checked: !this.state.checked
+      });
     }
     render() {
       return (
@@ -44,10 +41,10 @@ class ShowRaceCard extends Component {
             <div className="col-auto"><input type="text" placeholder="Race Name" /></div>
             <h5 className="text-left bg-info" style={{margin: 10}}>Add a Team</h5>
             <div className="row my-auto visible" style={{margin: '-4px'}}>
-              <div className="col-auto m-auto"><select><optgroup label="Select Team"><option value="Slytherin">Team 1</option><option value="Griffyndor">Team2</option><option value="Hufflepuff">Team 3</option><option value="Ravenclaw">Team 4</option></optgroup></select></div>
+              <div className="col-auto m-auto"><select><optgroup label="Select Team"><option value="Slytherin">Slytherin</option><option value="Griffyndor">Griffyndor</option><option value="Hufflepuff">Hufflepuff</option><option value="Ravenclaw">RavenClaw</option></optgroup></select></div>
               <div className="col-auto m-auto"><input type="color" /></div>
               <div className="col-auto m-auto"><select><optgroup label="Select Spaceship"><option value={12} selected>This is item 1</option><option value={13}>This is item 2</option><option value={14}>This is item 3</option></optgroup></select></div>
-              <div className="col"><button className="btn btn-primary btn-lg float-right" type="submit" style={{fontSize: 10, padding: 0, width: 55, margin: '15px 12px', height: 25}}>ADD</button></div>
+              <div className="col"><button className="btn btn-primary btn-lg float-right" type="submit" style={{fontSize: 10, padding: 0, width: 55, margin: '15px 12px', height: 25}} onClick={()=>this.handleClick}>ADD</button></div>
             </div>
             <div className="row no-gutters" style={{width: 1000, margin: 0}}>
               <div className="col" style={{margin: 10}}>

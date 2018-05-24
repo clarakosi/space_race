@@ -4,6 +4,7 @@ import './index.css';
 
 import registerServiceWorker from './registerServiceWorker';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route } from 'react-router-dom';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
@@ -12,6 +13,7 @@ import logger from 'redux-logger';
 import reducers  from './Reducers';
 import ReduxPromise from 'redux-promise';
 import App from './App';
+import ScoreBoard from './Components/ScoreBoardPage/index'
 
 const store = createStore(
     reducers,
@@ -24,7 +26,8 @@ ReactDOM.render(
         <BrowserRouter>
             <div>
             
-                    <Route path='/' component={App} />
+                    <Route path='/' exact component={App} />
+                    <Route path='/scoreboard' component={ScoreBoard} />
                
             </div>
         </BrowserRouter>
