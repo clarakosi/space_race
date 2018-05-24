@@ -3,7 +3,7 @@ export const REGISTER_REQUEST = 'register_request';
 export const REGISTER_FAILURE = 'register_falure';
 export const REGISTER_SUCCESS = 'register_success;'
 
-/***NOTE we will need backend functions for theach action type */
+/***NOTE we will need backend functions for each action type */
 function register(user) {
     return dispatch => {
         dispatch(request(user));
