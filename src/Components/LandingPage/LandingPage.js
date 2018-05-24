@@ -10,7 +10,11 @@ class LandingPage extends Component {
         return (
           <div>
             <Header />
-     
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <Footer />
           </div>
         );

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import ShuffleReducer from './ShuffleArrayReducer';
 
-const RootReducers = combinReducers({
+const RootReducers = combineReducers({
     teamsArray: ShuffleReducer
 })
 
