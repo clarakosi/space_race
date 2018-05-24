@@ -1,5 +1,5 @@
 import { SHUFFLE_ARRAY } from '../Actions';
-
+/** this is to be used for choosing random order of teams in the race card view */
 const initialState = [];
 export default (state = initialState, action) => {
     switch (action.type) {

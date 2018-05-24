@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.css';
 
 
@@ -73,6 +74,10 @@ class ShowRaceCard extends Component {
       );
     }
   }
+ function mapStateToProps(state) {
+  return {
+    teamsArray : state.teamsArray
+  }
+}
 
-
-  export default ShowRaceCard;
+  export default connect(mapStateToProps, { shuffleArray })(ShowRaceCard);
