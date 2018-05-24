@@ -25,15 +25,17 @@ class TeamSerializer(serializers.ModelSerializer):
         model = Team
         fields = ('id', 'name', 'quiz')
 
-class QuestionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Question
-        fields = ('id', 'quiz', 'question')
-
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
         fields = ('id', 'question', 'answer', 'is_correct')
+
+class QuestionSerializer(serializers.ModelSerializer):
+    answers = AnswerSerializer(many=True, read_only=True, required=False)
+    class Meta:
+        model = Question
+        fields = ('id', 'quiz', 'question', 'answers')
+
 
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
