@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
 import { withRouter, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 
-=======
-// import './App.css';
->>>>>>> 8f2cb37cd609cec8d33473acf186bb6c4fc62fd0
 
 import { LandingPage } from './Components/LandingPage';
 
@@ -30,15 +26,6 @@ class App extends Component {
   }
   render() {
     return (
-<<<<<<< HEAD
-      <Router >
-        <Switch>
-          <Route path="/" component={LandingPage} exact />
-         
-      
-        </Switch>
-      </Router>
-=======
       <div>
         {this.state.teams.map(item => (
           <div key={item.id}>
@@ -46,7 +33,6 @@ class App extends Component {
           </div>
         ))}
       </div>
->>>>>>> 8f2cb37cd609cec8d33473acf186bb6c4fc62fd0
     );
   }
 }

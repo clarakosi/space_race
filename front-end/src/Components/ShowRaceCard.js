@@ -1,17 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 
 
-const ShowRaceCard = React.createClass({
+
+
+/******administrative view of event/race card, which will allow for setup race******* */
+class ShowRaceCard extends Component {
+    constructor (props) {
+        super(props);
+        this.state = {
+
+            color: '',
+
+            teams : [
+                'Slytherin', 
+                'Griffyndor',
+                'Hufflepuff',
+                'Ravenclaw'
+            ],
+
+        };
+    }
     render() {
       return (
         <div>
           <meta charSet="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
           <title>showRaceCard</title>
-          <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
-          <link rel="stylesheet" href="assets/fonts/font-awesome.min.css" />
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
-          <link rel="stylesheet" href="assets/css/styles.css" />
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"/>
+         
           <div className="card border-dark" style={{backgroundColor: 'rgba(189,245,252,0.2)'}}>
             <div className="card-header" style={{height: 55}}>
               <div className="col-auto">
@@ -38,7 +56,7 @@ const ShowRaceCard = React.createClass({
             <div className="row m-auto" style={{width: 1000, margin: 0}}>
               <div className="col-auto justify-content-center align-content-center" style={{margin: 10}}><input className="form-control-plaintext order-1" type="text" defaultValue="team name" readOnly style={{fontSize: 20}} /></div>
               <div className="col-auto" style={{margin: 10}}><input className="form-control-plaintext order-1" type="text" defaultValue="Color(chosen from above)" readOnly style={{fontSize: 15, padding: 0, margin: 10}} /></div>
-              <div className="col-auto align-items-center align-self-center"><i className="fa fa-pencil" data-bs-hover-animate="bounce" /></div>
+              <div className="col-auto align-items-center align-self-center"><i className="fa fa-pencil" data-bs-hover-animate="bounce"/></div>
               <div className="col-auto justify-content-center align-items-center align-self-center" style={{margin: 10}}><i className="fa fa-trash-o" /></div>
               <div className="col-auto align-self-center"><i className="fa fa-star d-table-cell d-inline-flex justify-content-center align-items-center m-auto" /></div>
             </div>
@@ -54,4 +72,7 @@ const ShowRaceCard = React.createClass({
         </div>
       );
     }
-  });
+  }
+
+
+  export default ShowRaceCard;
