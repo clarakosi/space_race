@@ -1,4 +1,4 @@
-  """backend URL Configuration
+"""backend URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
@@ -24,7 +24,7 @@ urlpatterns = [
     path('api/', include('teams.urls')),
   # url(r'^users/', include('accounts.urls')),
     url(r'^/', include('accounts.urls')),
-    url('.*', TemplateView.as_view(template_name='index.html')),
+    path('.*', TemplateView.as_view(template_name='index.html')),
 ]
 """
 from django.conf.urls import include, url
