@@ -1,4 +1,5 @@
 import React, { Componenet } from 'react';
+import userSignupRequest from './Actions/SignupActions';
 import{ Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 class SignUp extends Component {
@@ -7,11 +8,21 @@ class SignUp extends Component {
         this.state = {
             email: '',
             username: '',
-            password: ''
+            password: '',
+            passwordRepeat: '',
         };
+
+        this.onChange =this.onChange.bind(this);
+        this.handleSubmit= this.handleSubmit.bind(this);
     }
 
-    handleSubmit(){
+    onChange(e) {
+        this.setState({ [e.target.name]: e.target.value});
+    }
+
+    handleSubmit(e){
+        e.preventDefault();
+        this.props.userSignupRequest(this.state);
         
     }
     
@@ -20,16 +31,36 @@ class SignUp extends Component {
             <Form>
                 <h2> Create a Space Race Account</h2>
                 <FormGroup>
-                    <Input  type="email" name="email" placeholder="Enter your Email"/>
+                    <Input 
+                    value={this.state.email}
+                    onChange={this.onChange} 
+                    type="email"
+                    name="email"
+                    placeholder="Enter your Email"/>
                 </FormGroup>
                 <FormGroup>
-                    <Input type="username" name="username" placeholder="Pick a UserName"/>
+                    <Input 
+                    value={this.state.username}
+                    onChange={this.onChange} 
+                    type="username" 
+                    name="username" 
+                    placeholder="Pick a Username"/>
                 </FormGroup>
                 <FormGroup>
-                    <Input type="password" name="password" placeholder="Password"/>
+                    <Input 
+                    value={this.state.password}
+                    onChange={this.onChange} 
+                    type="password" 
+                    name="password" 
+                    placeholder="Password"/>
                 </FormGroup>
                 <FormGroup>
-                    <Input type="password" name="password" placeholder="Password(repeat)"/>
+                    <Input 
+                    value={this.state.passwordRepeat}
+                    onChange={this.onChange} 
+                    type="password" 
+                    name="password(repeat)" 
+                    placeholder="Verify Password"/>
                 </FormGroup>
                 <FormGroup tag="fieldset">
                     <legend>Account Type</legend>
@@ -54,4 +85,4 @@ class SignUp extends Component {
         );
     }
 }
-export default SignUp;
+export default connect(null, { userSignupRequest }) SignUp;
