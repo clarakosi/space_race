@@ -6,6 +6,7 @@ class SignUp extends Component {
         super(props);
         this.state = {
             email: '',
+            username: '',
             password: ''
         };
     }
@@ -19,7 +20,10 @@ class SignUp extends Component {
             <Form>
                 <h2> Create a Space Race Account</h2>
                 <FormGroup>
-                    <Input  type="email" name="email" placeholder="Email"/>
+                    <Input  type="email" name="email" placeholder="Enter your Email"/>
+                </FormGroup>
+                <FormGroup>
+                    <Input type="username" name="username" placeholder="Pick a UserName"/>
                 </FormGroup>
                 <FormGroup>
                     <Input type="password" name="password" placeholder="Password"/>
