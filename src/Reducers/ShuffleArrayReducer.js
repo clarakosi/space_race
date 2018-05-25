@@ -3,6 +3,7 @@ import { SHUFFLE_ARRAY } from '../Actions';
 const initialState = [];
 export default (state = initialState, action) => {
     switch (action.type) {
+        
         case SHUFFLE_ARRAY: 
             const array = action.payload
             if (array.length > 0) {
