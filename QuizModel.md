@@ -11,7 +11,7 @@ Assuming you do not have any merge conflicts and have the latest pull request
   1. Run `./manage.py migrate` to create the tables in the database
   1. Run `./manage.py createsuperuser` to create a user. You must be a registered user in the database to create a quiz.
   1. To run the server type `./manage.py runserver`
-  1. Go to `http://127.0.0.1:8000/` and login
+  1. Go to `http://127.0.0.1:8000/admin` and login
 
 ## `GET` and `POST`
   * Go to `http://127.0.0.1:8000/api` to create a new Quiz. Remember you must be a logged in user.
