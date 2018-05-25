@@ -54,5 +54,5 @@ Assuming you do not have any merge conflicts and have the latest pull request
     * To better understand the fields please go to `teams/models.py`
 
 ## `PUT` and `DELETE`
-  * Go to `http://127.0.0.1:8000/api/:id` if it is your first quiz the id will be 1. So simply go to `http://127.0.0.1:8000/api/1/`
+  * Go to `http://127.0.0.1:8000/api/:id` if it is your first quiz the `id` will be 1. So simply go to `http://127.0.0.1:8000/api/1/`
   * Once again scroll to the bottom to the `Raw Data` section and alter any fields of your choosing and press `PUT`. The page should reload with the updated information.
