@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler,
   NavItem, NavLink } from 'reactstrap';
-import './Header.css';
+import './Header.scss';
 
 class Header extends Component {
   constructor(props) {

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from rest_framework import serializers, viewsets
 from .models import Team, Quiz, Question, Answer, Student
 
@@ -41,3 +42,16 @@ class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
         fields = ('id', 'team', 'name')
+=======
+from rest_framework import serializers
+from . import models
+
+class TeamSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = (
+            'id',
+            'title',
+        )
+        model = models.Team
+        
+>>>>>>> 6dd9e7f68282f1c00d1989c599658b39fc7e72e9
