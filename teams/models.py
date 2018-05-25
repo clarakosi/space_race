@@ -25,6 +25,7 @@ class Team(models.Model):
 class Question(models.Model):
     quiz = models.ForeignKey(Quiz, related_name='questions', on_delete=models.CASCADE)
     question = models.TextField()
+    shuffle_answers = models.BooleanField(default=False)
 
 
 class Answer(models.Model):

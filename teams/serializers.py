@@ -1,15 +1,6 @@
 from rest_framework import serializers, viewsets
 from .models import Team, Quiz, Question, Answer, Student
 
-# class TeamSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         fields = (
-#             'id',
-#             'title',
-#         )
-#         model = models.Team
-
-
 
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,7 +11,7 @@ class QuestionSerializer(serializers.ModelSerializer):
     answers = AnswerSerializer(many=True)
     class Meta:
         model = Question
-        fields = ('id', 'question', 'answers')
+        fields = ('id', 'question', 'shuffle_answers', 'answers')
 
 class TeamSerializer(serializers.ModelSerializer):
     class Meta:
@@ -80,6 +71,7 @@ class QuizSerializer(serializers.HyperlinkedModelSerializer):
             answers_list = list(answers_list)
 
             question.question = question_data.get('question', question.question)
+            question.shuffle_answers = question_data.get('shuffle_answers', question.shuffle_answers)
             question.save()
 
             for answer_data in answers_data:
@@ -87,10 +79,6 @@ class QuizSerializer(serializers.HyperlinkedModelSerializer):
                 answer.answer  = answer_data.get('answer', answer.answer)
                 answer.is_correct = answer_data.get('is_correct', answer.is_correct)
                 answer.save()
-
-            # for answer_data, answer_list in zip(answers_data, answers_list):
-            #     answer_list.answer = answer_data.get('answer', answer_list.answer)
-            #     answer_list.is_correct = answer_data.get('is_correct', answer_list.is_correct) 
 
         return instance
 
