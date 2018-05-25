@@ -3,20 +3,19 @@
 }
 
 .progress {
-  height: 40px;
+  height: 40px !important;
   margin-bottom: 10px;
 }
 
 .Question_Board {
   margin-top: 10%;
   height: 100%;
-  /* width: 100px; */
   border: 1.5px solid;
 }
 
 
 h5{
-  margin-top: -10px;
+  margin-top: -10px !important;
   display: table;
   margin-left: 5px;
   background: white;
