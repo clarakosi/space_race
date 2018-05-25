@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { shuffleArray } from '../../Actions/'
 import 'bootstrap/dist/css/bootstrap.css';
-
+import TeamsField from './TeamsField';   /*custom drop down menu that will have team with team crest/avatar next to it.*/
 
 
 

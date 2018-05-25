@@ -3,10 +3,10 @@ import createClass from 'create-react-class';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import Avatar from 'react-avatar';
-/*******
+/*******/
+/* 
  * 
- * 
- * Note to self: react-avatar has reac-addons-shallow-compare and propt-ty peer dependencies maksure the 
+ * Note to self: react-avatar has react-addons-shallow-compare and propt-ty peer dependencies maksure the 
  * correct version is installed for the installed version of react.
  * 
  * This module is borrowed from the custom components example that uses Gravatar images.  I will attempt to do the same thing
@@ -16,7 +16,7 @@ import Avatar from 'react-avatar';
  * It also demonstrates rendering HTML elements as the placeholder. 
  * 
  */
-/
+
 const TEAMS = require('../data/teams');
 const AVATAR_SIZE = 20;
 
