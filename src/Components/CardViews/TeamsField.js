@@ -3,6 +3,7 @@ import createClass from 'create-react-class';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import Avatar from 'react-avatar';
+import { connect } from 'react-redux';
 /*******/
 /* 
  * 
@@ -15,6 +16,8 @@ import Avatar from 'react-avatar';
  * This  implements custom Option and Value components to render a Gravatar image for each user based on their email.
  * It also demonstrates rendering HTML elements as the placeholder. 
  * 
+ * 
+ * THIS COMPONENT WILL REPLACE THE TEAM DROPDOWN MENU THAT IS CURRENTLY IN THE ShowRaceCard view.
  */
 
 const TEAMS = require('../data/teams');
@@ -102,7 +105,12 @@ const TeamsField = createClass({
 		label: PropTypes.string,
 	},
 	getInitialState () {
-		return {};
+		return {
+			removeSelected: true,
+			disabled: false,
+			stayOpen: true,
+			value: []
+		};
 	},
 	setValue (value) {
 		this.setState({ value });
@@ -133,5 +141,10 @@ function arrowRenderer () {
 		<span>+</span>
 	);
 }
-
+function mapStateToProps(state) {
+	return {
+		teamsArray: state.teamsArray
+	}
+}
 module.exports = TeamsField;
+export default connect(mapStateToProps, {})(TeamsField);
