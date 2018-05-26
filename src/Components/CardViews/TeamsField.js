@@ -17,7 +17,7 @@ import { connect } from 'react-redux';
  * It also demonstrates rendering HTML elements as the placeholder. Basically, slytherin will have a snake, ravenclaw will have the raven and so on.
  * 
  * 
- * THIS COMPONENT WILL REPLACE THE TEAM DROPDOWN MENU THAT IS CURRENTLY IN THE ShowRaceCard view.
+ * THIS COMPONENT WILL REPLACE THE TEAM DROPDOWN MENU THAT IS CURRENTLY IN THE ShowRaceCard view. 
  */
 
 const TEAMS = require('../data/teams');
@@ -113,7 +113,11 @@ const TeamsField = createClass({
 		};
 	},
 	setValue (value) {
-		this.setState({ value });
+		
+		this.setState({ 
+			value,
+			teamsArray: value 
+		});
 	},
 	render () {
 		var placeholder = <span>&#9786; Select Team</span>;
