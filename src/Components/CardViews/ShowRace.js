@@ -8,15 +8,15 @@ import TeamsField from './TeamsField';   /*custom drop down menu that will have 
 
 
 class ShowRaceCard extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         this.state = {
             checked: false,
             teams:[]
         };
         this.toggleCheck =  this.toggleCheck.bind(this);
-        this.handleClick= this.handleClick.bind(this);
-        this.handleSubmit=this.handleSubmit.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(changeEvent) {
@@ -36,8 +36,7 @@ class ShowRaceCard extends Component {
     render() {
       return (
         <div>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-         
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>      
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"/>
         <div className="card border-dark" style={{backgroundColor: 'rgba(189,245,252,0.2)'}}>
           <div className="card-header" style={{height: 55}}>
@@ -49,7 +48,6 @@ class ShowRaceCard extends Component {
               </div>
             </div>
           </div>
-      
           <form onSubmit={this.handleSubmit}>
             <div className="col-auto"><input type="text" placeholder="Race Name" onChange={this.handleChange}/></div>
             <h5 className="text-left bg-info" style={{margin: 10}}>Add a Team</h5>
@@ -77,7 +75,7 @@ class ShowRaceCard extends Component {
                 <div className="col-auto"><a className="btn btn-outline-primary" role="button" href="#Questions" style={{width: 225}}>On To Questions &nbsp;<i className="fa fa-space-shuttle"/></a></div>
                 <div className="col-auto">
                   <div className="form-check"><Label check>
-                  <Input type="radio" name="radio1" />{' '}
+                  <Input type="radio" name="radio1" onChange={()=>this.shuffleArray(teamsArray)}/>{' '}
                     Random Teams
                   </Label></div>
                 </div>

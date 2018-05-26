@@ -13,8 +13,8 @@ import { connect } from 'react-redux';
  * This module is borrowed from the custom components example that uses Gravatar images.  I will attempt to do the same thing
  * but instead of using the Gravatar package, I will use Avatar.  the intent is to have a custom little avatar show up next 
  * to each the choice in the menu for each team.  
- * This  implements custom Option and Value components to render a Gravatar image for each user based on their email.
- * It also demonstrates rendering HTML elements as the placeholder. 
+ * This  implements custom Option and Value components to render a Avatar image for each user based on their email.
+ * It also demonstrates rendering HTML elements as the placeholder. Basically, slytherin will have a snake, ravenclaw will have the raven and so on.
  * 
  * 
  * THIS COMPONENT WILL REPLACE THE TEAM DROPDOWN MENU THAT IS CURRENTLY IN THE ShowRaceCard view.
