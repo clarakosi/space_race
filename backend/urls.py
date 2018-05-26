@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^/', include('accounts.urls')),
     path('.*', TemplateView.as_view(template_name='index.html')),
 ]
+
 """
 from django.conf.urls import include, url
 from django.contrib import admin
