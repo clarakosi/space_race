@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import InlineEdit from 'react-ions/lib/components/InlineEdit'
-import Button from 'react-ions/lib/components/Button'
+import React, { Component } from 'react';
+import InlineEdit from 'react-ions/lib/components/InlineEdit';
+import 'bootstrap/dist/css/bootstrap.css';
 /****
  * 
  * 
@@ -30,10 +30,11 @@ class InlineEditTrigger extends Component {
 
   render = () => {
     return (
-      <div>
+      <div className="col-auto align-items-center align-self-center">
         <InlineEdit name='test' value={this.state.value} isEditing={this.state.isEditing} changeCallback={this.handleCallback} />
-        <Button onClick={this.buttonCallback} optClass={styles['button-callback']}>Edit</Button>
+        <i className="fa fa-pencil" data-bs-hover-animate="bounce" onClick={this.buttonCallback} optClass={styles['button-callback']}/>
       </div>
+        
     )
   }
 }

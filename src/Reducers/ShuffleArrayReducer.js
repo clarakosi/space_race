@@ -7,7 +7,7 @@ export default (state = initialState, action) => {
         case SHUFFLE_ARRAY: 
             const array = action.payload
             if (array.length > 0) {
-            let i = array.length - 1;
+                let i = array.length - 1;
                 for (; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
                     const temp = array[i];
