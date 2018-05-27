@@ -10,6 +10,7 @@ class SignUp extends Component {
             username: '',
             password: '',
             passwordRepeat: '',
+            accountType:'',
         };
 
         this.onChange =this.onChange.bind(this);
