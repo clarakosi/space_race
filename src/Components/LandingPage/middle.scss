@@ -1,0 +1,30 @@
+.hero-image {
+    /* The image used */
+    background-image: url("./cockpit.png");
+ 
+    /* Set a specific height */ 
+   height: 350px;
+ 
+   /* Position and center the image to scale nicely on all screens */
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: contain;
+   position: relative; 
+ }
+ 
+ /* Place text in the middle of the image */
+ .hero-text {
+   
+   text-align: center;
+   text-shadow:
+   -.5px -.5px 0 rgb(238, 169, 40),
+  .5px .5px 0 rgb(243, 217, 100),  
+   -0px 1px 0 rgb(107, 62, 231),
+  -.5px -.5px 0 rgb(235, 20, 48),
+   1px 1px 0 rgb(238, 169, 40);
+   position: absolute;
+   top: 16%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   color: rgb(63, 82, 248);
+ }
