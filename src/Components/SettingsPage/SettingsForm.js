@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
+import{ Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import BillingInfo from './BillingInfo';
 
 class SettingsForm extends Component {
 
 render() {
     return (
-        <form>
-            <label>
-                Email:
-                <input type="text"/>
-            </label>
-            <label>
-                Old Password:
-                <input type="text"/>
-            </label>
-            <label>
-                New Password:
-                <input type="text"/>
-            </label>
+        <Form>
+            <FormText> 
+                Update User Setting 
+            </FormText>
+            <FormGroup>
+                <Label> Email:</Label>
+                <Input type="emial" placeholder="Youremail@something.com"/>
+            </FormGroup>
+            <FormGroup>
+                <Label> Old-Password:</Label>
+                <Input type="password" placeholder="********"/>
+            </FormGroup>
+            <FormGroup>
+                <Label> New-Password:</Label>
+                <Input type="password" placeholder="********"/>
+            </FormGroup>
             <BillingInfo/>
-            <button > Save </button>
-        </form>
+            <Button > Save </Button>
+        </Form>
         // Need to handleSumbit on the Save button
     )
 }
