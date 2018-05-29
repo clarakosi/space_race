@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Questions } from '../ScoreBoardPage/questionboard';
+import './AdminDeliverPage.css';
+
 
 
 /* Admin Delivery Page, to see the current question, answer choices, correct answer(initially hidden) */
@@ -45,9 +47,71 @@ class GameBoard extends Component {
 
         this.state = {
             currentIndex: 0,
-            correct: 0,
+            activeGame: true,
+            questionsAnswer: [
+                // TODO: Connect created questions to gameboard
+            ]
         }
+        // this.resetGame();
+    };
+
+    processGuess(e) {
+        if (this.state.currentIndex + 1 === this.state.questionsAnswer.length) {
+            this.setState( { activeGame: false } );
+
+            return;
+        }
+        let answer = parseInt(e.target.textContent);
+        let correctAnswer =
+            parseInt(
+                this.state.questionsAnswer[this.state.currentIndex]['answer']
+            );
+        if ( answer === correctAnswer ) {
+            this.setState( { correct: this.state.correct + 1 } );
+        } else {
+            this.setState( { incorrect: this.state.incorrect + 1 } );
+        }
+        this.setState( { currentIndex: this.state.currentIndex + 1 } );
+    }
+
+    render() {
+        let options = [];
+
+        if (this.state.activeGame) {
+            options = this.state.questionsAnswer[this.state.currentIndex].options.map(option => (
+                <Option optionValue={ option }
+                        triggerProcess={ this.processGuess }
+                        activeGame={ this.state.activeGame } />
+            ));
+        }
+        return (  <div>
+            <div className="row">
+              <div className="offset-lg-2 col-lg-7 col-md-12">
+                  <QuestionPanel activeGame={ this.state.activeGame } 
+                                 question={
+                                    this
+                                      .state
+                                      .questionsAnswer[this.state.currentIndex]
+                                      .question }
+                                 resetGame = { this.resetGame } />
+                  <div className={ this.state.activeGame 
+                                    ? 'visible'
+                                    : 'hidden' } >
+                     { options }
+                  </div>
+              </div>
+              <div className="col-lg-3 col-md-12">
+                  <StatusDisplay 
+                    correct={ this.state.correct } 
+                    incorrect={ this.state.incorrect } />
+              </div>
+          </div>
+        </div> );
     }
 }
 
 export default connect(mapStateToProps)(QuestionPanel);
+
+/* ReactDom.render( <GameBoard className="game-board" />,
+                    document.getElementById('board') );
+                    */
