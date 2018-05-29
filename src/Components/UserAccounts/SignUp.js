@@ -1,5 +1,8 @@
-import React, { Componenet } from 'react';
+import React, { Component } from 'react';
+import './UserAccounts.css';
+// import userSignupRequest from './Actions/SignupActions';
 import{ Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Link } from'react-router-dom';
 
 class SignUp extends Component {
     constructor(props) {
@@ -7,42 +10,85 @@ class SignUp extends Component {
         this.state = {
             email: '',
             username: '',
-            password: ''
+            password: '',
+            passwordRepeat: '',
+            accountType:'',
+            
         };
+
+        this.onChange =this.onChange.bind(this);
+        this.handleSubmit= this.handleSubmit.bind(this);
+        
     }
 
-    handleSubmit(){
+    onChange(e) {
+        this.setState({ [e.target.name]: e.target.value});
+    }
+
+    handleSubmit(e){
+        e.preventDefault();
+        this.props.userSignupRequest(this.state);
         
     }
     
     render() {
         return(
+            <div className="container">
             <Form>
-                <h2> Create a Space Race Account</h2>
+                <h2 className="header"> Create a Space Race Account</h2>
                 <FormGroup>
-                    <Input  type="email" name="email" placeholder="Enter your Email"/>
+                    <Input 
+                    value={this.state.email}
+                    onChange={this.onChange} 
+                    type="email"
+                    name="email"
+                    placeholder="Enter your Email"
+                     />
                 </FormGroup>
                 <FormGroup>
-                    <Input type="username" name="username" placeholder="Pick a UserName"/>
+                    <Input 
+                    value={this.state.username}
+                    onChange={this.onChange} 
+                    type="username" 
+                    name="username" 
+                    placeholder="Pick a Username"/>
                 </FormGroup>
                 <FormGroup>
-                    <Input type="password" name="password" placeholder="Password"/>
+                    <Input 
+                    value={this.state.password}
+                    onChange={this.onChange} 
+                    type="password" 
+                    name="password" 
+                    placeholder="Password"/>
                 </FormGroup>
                 <FormGroup>
-                    <Input type="password" name="password" placeholder="Password(repeat)"/>
+                    <Input 
+                    value={this.state.passwordRepeat}
+                    onChange={this.onChange} 
+                    type="password" 
+                    name="passwordRepeat" 
+                    placeholder="Verify Password"/>
                 </FormGroup>
                 <FormGroup tag="fieldset">
                     <legend>Account Type</legend>
                     <FormGroup check>
                     <Label check>
-                        <Input type="radio" name="radio1" />{' '}
-                        I'm Signing Up for a Teacher Account
+                        <Input 
+                        onChange={this.onChange}
+                        type="radio" 
+                        name="radio1" 
+                        value= {this.state.accountType} />{' '}
+                        Teacher 
                     </Label>
                 </FormGroup>
                 <FormGroup check>
                 <Label check>
-                  <Input type="radio" name="radio1" />{' '}
-                        I'm Signing Up for a Student Account
+                  <Input 
+                  onChange= {this.onChange}
+                  type="radio" 
+                  name="radio1" 
+                  value= {this.state.accountType} />{' '}
+                         Student 
                 </Label>
                 </FormGroup>
                 </FormGroup>
@@ -50,6 +96,7 @@ class SignUp extends Component {
                     <h6> Already have an Account?</h6>
                     <Link to="/SignIn"> Sign In </Link>
             </Form>
+            </div>
     
         );
     }
