@@ -85,10 +85,4 @@ class ShowRaceCard extends Component {
       );
     }
 }
- function mapStateToProps(state) {
-  return {
-    teamsArray : state.teamsArray
-  }
-}
-
-  export default connect(mapStateToProps, { shuffleArray })(ShowRaceCard);
+ 
