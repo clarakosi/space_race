@@ -1,6 +1,8 @@
-import React, { Componenet } from 'react';
-import userSignupRequest from './Actions/SignupActions';
+import React, { Component } from 'react';
+import './UserAccounts.css';
+// import userSignupRequest from './Actions/SignupActions';
 import{ Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Link } from'react-router-dom';
 
 class SignUp extends Component {
     constructor(props) {
@@ -11,10 +13,12 @@ class SignUp extends Component {
             password: '',
             passwordRepeat: '',
             accountType:'',
+            
         };
 
         this.onChange =this.onChange.bind(this);
         this.handleSubmit= this.handleSubmit.bind(this);
+        
     }
 
     onChange(e) {
@@ -29,15 +33,17 @@ class SignUp extends Component {
     
     render() {
         return(
+            <div className="container">
             <Form>
-                <h2> Create a Space Race Account</h2>
+                <h2 className="header"> Create a Space Race Account</h2>
                 <FormGroup>
                     <Input 
                     value={this.state.email}
                     onChange={this.onChange} 
                     type="email"
                     name="email"
-                    placeholder="Enter your Email"/>
+                    placeholder="Enter your Email"
+                     />
                 </FormGroup>
                 <FormGroup>
                     <Input 
@@ -60,21 +66,29 @@ class SignUp extends Component {
                     value={this.state.passwordRepeat}
                     onChange={this.onChange} 
                     type="password" 
-                    name="password(repeat)" 
+                    name="passwordRepeat" 
                     placeholder="Verify Password"/>
                 </FormGroup>
                 <FormGroup tag="fieldset">
                     <legend>Account Type</legend>
                     <FormGroup check>
                     <Label check>
-                        <Input type="radio" name="radio1" />{' '}
-                        I'm Signing Up for a Teacher Account
+                        <Input 
+                        onChange={this.onChange}
+                        type="radio" 
+                        name="radio1" 
+                        value= {this.state.accountType} />{' '}
+                        Teacher 
                     </Label>
                 </FormGroup>
                 <FormGroup check>
                 <Label check>
-                  <Input type="radio" name="radio1" />{' '}
-                        I'm Signing Up for a Student Account
+                  <Input 
+                  onChange= {this.onChange}
+                  type="radio" 
+                  name="radio1" 
+                  value= {this.state.accountType} />{' '}
+                         Student 
                 </Label>
                 </FormGroup>
                 </FormGroup>
@@ -82,8 +96,9 @@ class SignUp extends Component {
                     <h6> Already have an Account?</h6>
                     <Link to="/SignIn"> Sign In </Link>
             </Form>
+            </div>
     
         );
     }
 }
-export default connect(null, { userSignupRequest }) SignUp;
+export default SignUp;
