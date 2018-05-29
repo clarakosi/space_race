@@ -19,7 +19,7 @@ class SignIn extends Component {
             <Form>
                 <h2> Sign-In to your Space Race Account</h2>
                 <FormGroup>
-                    <Input type="email" name="email" placeholder="Email"/>
+                    <Input type="username" name="username" placeholder="username"/>
                 </FormGroup>
                 <FormGroup>
                     <Input type="password" name="password" placeholder="Password"/>

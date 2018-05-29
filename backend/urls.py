@@ -25,6 +25,9 @@ urlpatterns = [
   # I think this is what was causing the NoReverseMatch error?  
   # url(r'^users/', include('accounts.urls')),
     url(r'^/', include('accounts.urls')),
+
+    path('.*', TemplateView.as_view(template_name='index.html')),
+
 ]
 
 
@@ -45,6 +48,7 @@ urlpatterns = [
   # I think this is what was causing the NoReverseMatch error?  
   # url(r'^users/', include('accounts.urls')),
     url(r'^/', include('accounts.urls')),
+
     url('.*', TemplateView.as_view(template_name='index.html')),
 ]
 """

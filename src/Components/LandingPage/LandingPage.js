@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Header from './Header';
+import Middle from './Middle';
 import Footer from './Footer';
 
 class LandingPage extends Component {
@@ -12,7 +13,7 @@ class LandingPage extends Component {
             <Header />
             <br />
             <br />
-            <br />
+            <Middle/>
             <br />
             <br />
             <Footer />
