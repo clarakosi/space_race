@@ -18,6 +18,8 @@ class StudentJoinCard extends Component {
 
         };
         this.handleClick = this.handleClick.bind(this);
+        this.select =this.select.bind(this);
+        this.onChange=this.onChange.bind(this);
         this.toggleDropDown = this.toggleDropDown.bind(this);
     }
 
@@ -31,8 +33,12 @@ class StudentJoinCard extends Component {
         this.setState({ [e.target.name]: e.target.value});
     }
 
-    handleClick(){
-        // somehting needs to happen when the button is clicked
+    select(e) {
+        this.setState({ [e.target.team]: e.target.value})
+    }
+    handleClick(e){
+        e.preventDefault();
+        //this.props.studentJoinRace(this.state);
     }
 
     render() {
@@ -59,29 +65,38 @@ class StudentJoinCard extends Component {
                                 value={this.state.team}
                                 onChange={this.onChange}
                                 type="team" 
+                                name="team"
                                 placeholder="Pick a team from the dropdown menu"
                                 />
-                                <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
+                                <InputGroupButtonDropdown 
+                                addonType="append" 
+                                isOpen={this.state.dropdownOpen} 
+                                toggle={this.toggleDropDown}>
                                 <DropdownToggle caret>
                                     Pick A Team
                                 </DropdownToggle>
                                     <DropdownMenu>
                                         <DropdownItem header>Teams</DropdownItem>
-                                        <DropdownItem >Team1</DropdownItem>
+                                        <DropdownItem onClick={this.select} >Team1</DropdownItem>
                                         <DropdownItem>Team2</DropdownItem>
                                         <DropdownItem>Team3</DropdownItem>
                                     </DropdownMenu>
                                 </InputGroupButtonDropdown>
                                 </InputGroup>
                             </FormGroup>
-                                <Button className="Btn_Sub" onClick ={this.handleClick}> Join the Race! </Button>
+                                <Button onClick ={this.handleClick}> Join the Race! </Button>
                         </Form>
                     </div> ) : (
                     <div className="Join_Card">
                         <Form className="Join_Form">
                             <FormGroup>
                             <Label> First Name :</Label>
-                            <Input type="text" placeholder="Enter your First Name" />
+                            <Input 
+                                onChange={this.onChange}
+                                name="name"
+                                value={this.state.name}
+                                type="text" 
+                                placeholder="Enter your First Name" />
                             </FormGroup>
                                 <Button onClick ={this.handleClick}> Join the Race! </Button>
                         </Form>
