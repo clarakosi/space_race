@@ -15,6 +15,7 @@ import ReduxPromise from "redux-promise";
 import App from "./App";
 import ScoreBoard from "./Components/ScoreBoardPage/index";
 import LandingPage from "./Components/LandingPage/LandingPage";
+import StudentJoinRacePage from "./Components/StudentJoinRacePage/StudentJoinRacePage";
 import AdminRaceCreate from "./Components/CardViews/ShowRaceCard";
 import Settings from "./Components/SettingsPage/SettingsPage";
 import SignUp from "./Components/UserAccounts/SignUp";
@@ -31,10 +32,12 @@ ReactDOM.render(
       <div>
         <Route path="/" exact component={LandingPage} />
         <Route path="/api" component={App} />
+        <Route path="/joinrace" component={StudentJoinRacePage} />
         <Route path="/race" component={AdminRaceCreate} />
         <Route path="/scoreboard" component={ScoreBoard} />
         <Route path="/settings" component={Settings} />
         <Route path="/signup" component={SignUp} />
+        
       </div>
     </BrowserRouter>
   </Provider>,

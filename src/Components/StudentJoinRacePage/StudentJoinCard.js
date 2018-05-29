@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './JoinRace.css';
 import { Button, Form, FormGroup, Input, InputGroup, InputGroupButtonDropdown, DropdownToggle, DropdownItem, DropdownMenu, Label } from 'reactstrap';
 
 // still need to add functionality
@@ -7,10 +8,12 @@ import { Button, Form, FormGroup, Input, InputGroup, InputGroupButtonDropdown, D
 class StudentJoinCard extends Component {
     constructor(props){
         super(props);
-        this.state ={
-            teams: [],
-            raceName: '',
-            randomTeams:'',
+        this.state = {
+            name: '',
+            team:'',
+            teams: this.props.teams,
+            raceName: this.props.raceName,
+            randomTeams:this.props.randomTeams,
             dropdownOpen: false,
 
         };
@@ -24,6 +27,10 @@ class StudentJoinCard extends Component {
         });
       }
 
+    onChange(e) {
+        this.setState({ [e.target.name]: e.target.value});
+    }
+
     handleClick(){
         // somehting needs to happen when the button is clicked
     }
@@ -33,17 +40,27 @@ class StudentJoinCard extends Component {
         return(
             <div>
                 {!randomTeams ? (
-                    <div>
-                        <h4>Join {this.props.racename}</h4>
-                        <Form>
+                    <div className="Join_Card">
+                        <h5>Join {this.state.raceName}</h5>
+                        <Form className="Join_Form">
                             <FormGroup>
                                 <Label> First Name :</Label>
-                                <Input type="text" placeholder="Enter your First Name" />
+                                <Input 
+                                onChange={this.onChange}
+                                name="name"
+                                value={this.state.name}
+                                type="text" 
+                                placeholder="Enter your First Name" />
                             </FormGroup>
                             <FormGroup>
+                                <Label>Team: </Label>
                                 <InputGroup>
-                                <Input />
-                                <Label> Team </Label>
+                                <Input
+                                value={this.state.team}
+                                onChange={this.onChange}
+                                type="team" 
+                                placeholder="Pick a team from the dropdown menu"
+                                />
                                 <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
                                 <DropdownToggle caret>
                                     Pick A Team
@@ -57,11 +74,11 @@ class StudentJoinCard extends Component {
                                 </InputGroupButtonDropdown>
                                 </InputGroup>
                             </FormGroup>
-                                <Button onClick ={this.handleClick}> Join the Race! </Button>
+                                <Button className="Btn_Sub" onClick ={this.handleClick}> Join the Race! </Button>
                         </Form>
                     </div> ) : (
-                    <div>
-                        <Form>
+                    <div className="Join_Card">
+                        <Form className="Join_Form">
                             <FormGroup>
                             <Label> First Name :</Label>
                             <Input type="text" placeholder="Enter your First Name" />
