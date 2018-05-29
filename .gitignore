@@ -124,3 +124,7 @@ ENV/
 
 # SQLite database
 db.sqlite3
+
+#front end node_modules
+front-end/node_modules
+.node_modules/
