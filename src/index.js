@@ -15,7 +15,7 @@ import ReduxPromise from "redux-promise";
 import App from "./App";
 import ScoreBoard from "./Components/ScoreBoardPage/index";
 import LandingPage from "./Components/LandingPage/LandingPage";
-import AdminRaceCreate from "./Components/CardViews/ShowRaceCard";
+import AdminRaceCreate from "./Components/CardViews/CreateRaceCard";
 import Settings from "./Components/SettingsPage/SettingsPage";
 import SignUp from "./Components/UserAccounts/SignUp";
 import SignIn from "./Components/UserAccounts/SignIn";
