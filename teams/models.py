@@ -37,3 +37,13 @@ class Answer(models.Model):
 class Student(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
+
+class Quiz_link(models.Model):
+    label = models.SlugField(unique=True)
+
+class Student_Response(models.Model):
+    quiz_link = models.ForeignKey(Quiz_link, related_name='students_responses', on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    response = models.ForeignKey(Answer, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now=True)
+

@@ -5,13 +5,13 @@ from .models import Team, Quiz, Question, Answer, Student
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
-        fields = ('id', 'answer', 'is_correct')
+        fields = ('question_id', 'id', 'answer', 'is_correct', )
 
 class QuestionSerializer(serializers.ModelSerializer):
     answers = AnswerSerializer(many=True)
     class Meta:
         model = Question
-        fields = ('id', 'question', 'shuffle_answers', 'answers')
+        fields = ('quiz_id','id', 'question', 'shuffle_answers', 'answers')
 
 class TeamSerializer(serializers.ModelSerializer):
     class Meta:
