@@ -5,22 +5,24 @@ import TeamColorPicker from './TeamColorPicker';
 import ToggleRandom from './ToggleRandom';
 import { connect } from 'react-redux';
 import { shuffleArray } from '../../Actions/';
+import  InlineEditTrigger  from './InlineEditTrigger';
  export default class DynamicForm extends Component {
 
     constructor( props ) {
       super( props );
       this.state = {
-          data:[]
+        inlineValue:''
+          // data:[]
       };
     }
-    onEdit = (id) => {
-        let record = this.state.find((d) => {
-          return d.id == id;
-        });
-        this.setState({
-          current: record
-        })
-      }
+    // onEdit = (id) => {
+    //     let record = this.state.find((d) => {
+    //       return d.id == id;
+    //     });
+    //     this.setState({
+    //       current: record
+    //     })
+    //   }
     render() {   
       return (
         <div className="card border-dark" style={{backgroundColor: 'rgba(189,245,252,0.2)'}}>
@@ -39,7 +41,8 @@ import { shuffleArray } from '../../Actions/';
               <div style={{margin:'5px'}}>
                 <form onSubmit={formApi.submitForm} id="dynamic-form">
                   <label  htmlFor="dynamic-first">Race Name</label>
-                  <Text placeholder="name this race" field="firstName" id="dynamic-first" />
+                  <InlineEditTrigger value={this.props.inlineValue}/>
+
                   <button
                   onClick={() => formApi.addValue('siblings', '')}
                   type="button"
