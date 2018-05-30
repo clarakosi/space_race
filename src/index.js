@@ -18,6 +18,7 @@ import LandingPage from "./Components/LandingPage/LandingPage";
 import AdminRaceCreate from "./Components/CardViews/ShowRaceCard";
 import Settings from "./Components/SettingsPage/SettingsPage";
 import SignUp from "./Components/UserAccounts/SignUp";
+import SignIn from "./Components/UserAccounts/SignIn";
 
 const store = createStore(
   reducers,
@@ -34,6 +35,7 @@ ReactDOM.render(
         <Route path="/race" component={AdminRaceCreate} />
         <Route path="/scoreboard" component={ScoreBoard} />
         <Route path="/settings" component={Settings} />
+        <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
       </div>
     </BrowserRouter>

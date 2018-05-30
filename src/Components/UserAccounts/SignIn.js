@@ -1,28 +1,47 @@
-import React, { Componenet } from 'react';
+import React, { Component } from 'react';
 import{ Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 class SignIn extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
+            username: '',
             password: ''
+            
         };
+        this.onChange =this.onChange.bind(this);
+        this.handleSubmit= this.handleSubmit.bind(this);
+
     }
 
-    handleSubmit(){
+    onChange(e) {
+        this.setState({ [e.target.name]: e.target.value});
+    }
 
+    handleSubmit(e){
+        e.preventDefault();
     }
     
     render() {
         return(
-            <Form>
-                <h2> Sign-In to your Space Race Account</h2>
+            <Form className="container">
+                <h5> Sign-In to your Space Race Account</h5>
                 <FormGroup>
-                    <Input type="username" name="username" placeholder="username"/>
+                    <Input 
+                    value={this.state.username}
+                    onChange={this.onChange}
+                    type="username" 
+                    name="username" 
+                    placeholder="Username"/>
                 </FormGroup>
                 <FormGroup>
-                    <Input type="password" name="password" placeholder="Password"/>
+                    <Input 
+                    value={this.state.password}
+                    onChange={this.onChange}
+                    type="password" 
+                    name="password" 
+                    placeholder="Password"/>
                 </FormGroup>
                 <Button onClick={this.handleSubmit}>Sign In </Button>
                     <h6> Don't Already have an Account?</h6>
