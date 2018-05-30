@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './UserAccounts.css';
 // import userSignupRequest from './Actions/SignupActions';
-import{ Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import{ Button, Form, FormGroup, Label, Input, FormText, FormFeedback } from 'reactstrap';
 import { Link } from'react-router-dom';
 
 class SignUp extends Component {
@@ -43,7 +43,8 @@ class SignUp extends Component {
                     type="email"
                     name="email"
                     placeholder="Enter your Email"
-                     />
+                     invalid={!this.state.email.match(/.+@.+/) && this.state.email.length > 0}/>
+                     <FormFeedback>Please enter a valid email address</FormFeedback>
                 </FormGroup>
                 <FormGroup>
                     <Input 
@@ -51,7 +52,9 @@ class SignUp extends Component {
                     onChange={this.onChange} 
                     type="username" 
                     name="username" 
-                    placeholder="Pick a Username"/>
+                    placeholder="Pick a Username"
+                    invalid={this.state.username.length>32}/>
+                    <FormFeedback>Username must be less than 33 characters</FormFeedback>
                 </FormGroup>
                 <FormGroup>
                     <Input 
@@ -59,7 +62,11 @@ class SignUp extends Component {
                     onChange={this.onChange} 
                     type="password" 
                     name="password" 
-                    placeholder="Password"/>
+                    placeholder="Password"
+                    invalid={this.state.password.length < 8 && this.state.password.length > 0}
+                    valid={this.state.password.length >= 8 && this.state.password.length > 0}/>
+                    <FormFeedback valid>Password is a valid length</FormFeedback>
+                    <FormFeedback>Password must be at least 8 characters</FormFeedback>
                 </FormGroup>
                 <FormGroup>
                     <Input 
@@ -67,7 +74,12 @@ class SignUp extends Component {
                     onChange={this.onChange} 
                     type="password" 
                     name="passwordRepeat" 
-                    placeholder="Verify Password"/>
+                    placeholder="Verify Password"
+                    invalid={this.state.passwordRepeat != this.state.password && this.state.password.length > 0 && this.state.passwordRepeat.length > 0}
+                    valid={this.state.passwordRepeat === this.state.password&& this.state.password.length > 0 }
+                    />
+                    <FormFeedback valid>Passwords Match!</FormFeedback>
+                    <FormFeedback>Passwords MUST Match</FormFeedback>
                 </FormGroup>
                 <FormGroup tag="fieldset">
                     <legend>Account Type</legend>
