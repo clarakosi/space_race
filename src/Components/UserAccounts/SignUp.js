@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './UserAccounts.css';
 // import userSignupRequest from './Actions/SignupActions';
-import{ Button, Form, FormGroup, Label, Input, FormText, FormFeedback } from 'reactstrap';
+import{ Button, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 import { Link } from'react-router-dom';
 
 class SignUp extends Component {
@@ -18,6 +18,7 @@ class SignUp extends Component {
 
         this.onChange =this.onChange.bind(this);
         this.handleSubmit= this.handleSubmit.bind(this);
+        this.validateForm =this.validateForm.bind(this);
         
     }
 
@@ -29,6 +30,16 @@ class SignUp extends Component {
         e.preventDefault();
         this.props.userSignupRequest(this.state);
         
+    }
+
+    validateForm(email, username, password, passwordRepeat, accountType) {
+        return 
+        this.state.email.length > 0 &&
+        this.state.username.length > 0 &&
+        this.state.password.length > 0 &&
+        this.state.passwordRepeat.length > 0 &&
+        this.state.accountType.length > 0 ?
+        false : true
     }
     
     render() {
@@ -88,7 +99,7 @@ class SignUp extends Component {
                         <Input 
                         onChange={this.onChange}
                         type="radio" 
-                        name="radio1" 
+                        name="accountType" 
                         value= {this.state.accountType} />{' '}
                         Teacher 
                     </Label>
@@ -98,13 +109,13 @@ class SignUp extends Component {
                   <Input 
                   onChange= {this.onChange}
                   type="radio" 
-                  name="radio1" 
+                  name="accountType" 
                   value= {this.state.accountType} />{' '}
                          Student 
                 </Label>
                 </FormGroup>
                 </FormGroup>
-                    <Button onClick={this.handleSubmit}>Sign Up </Button>
+                    <Button disable={this.validateForm()} onClick={this.handleSubmit}>Sign Up </Button>
                     <h6> Already have an Account?</h6>
                     <Link to="/SignIn"> Sign In </Link>
             </Form>
