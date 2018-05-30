@@ -1,8 +1,15 @@
 {
   "main.css": "static/css/main.213bb1d4.css",
   "main.css.map": "static/css/main.213bb1d4.css.map",
+<<<<<<< HEAD
+  "main.js": "static/js/main.f1231e58.js",
+  "main.js.map": "static/js/main.f1231e58.js.map",
+  "static\\media\\Footer.scss": "static/media/Footer.5a3d27d7.scss",
+  "static\\media\\Header.scss": "static/media/Header.31c15b65.scss"
+=======
   "main.js": "static/js/main.95482e89.js",
   "main.js.map": "static/js/main.95482e89.js.map",
   "static/media/Footer.scss": "static/media/Footer.e228e8d0.scss",
   "static/media/Header.scss": "static/media/Header.b76b68f3.scss"
+>>>>>>> 17bf82f438181e0a9a448ab08a34f53aad8d8840
 }
