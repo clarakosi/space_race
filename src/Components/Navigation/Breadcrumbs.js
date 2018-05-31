@@ -1,5 +1,6 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import './navigation.css';
 //Breadcrumbs are set up and working for Settings page
 //TODO: update the includes statments based on pages urls-
 //lines 9,18,& 27 will need to be updated
@@ -35,7 +36,7 @@ const Breadcrumbs = (props) => {
 
     } else if(url.includes('/settings')) {
         return (
-            <div>
+            <div className="Breadcrumb">
                 <Breadcrumb tag="nav">
                     <BreadcrumbItem tag="a" href="/">Home</BreadcrumbItem>
                     <BreadcrumbItem active tag="span">Settings</BreadcrumbItem>

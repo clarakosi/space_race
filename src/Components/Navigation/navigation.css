@@ -1,0 +1,14 @@
+.Menu {
+    border : 3px solid black;
+    margin-left: 5%;
+    padding-bottom: 170%;
+    padding-top: 1%;
+    padding-right: 2%;
+}
+
+
+
+.SignOut {
+    float: auto;
+    padding-left:90%;
+}

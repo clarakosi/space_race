@@ -9,11 +9,13 @@ import './navigation.css';
 class SignOutButton extends Component {
     render() {
         return(
-            <Nav>
+            <div className="SignOut">
+            <Nav navbar>
             <NavItem>
                 <NavLink href="/"> Sign Out </NavLink> 
             </NavItem>
             </Nav>
+            </div>
         );
     }
 }

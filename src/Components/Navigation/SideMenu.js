@@ -41,7 +41,7 @@ const SideMenu = (props) => {
 
     } else if(url.includes('/settings')) {
         return (
-            <div>
+            <div className="Menu" >
         <Nav vertical>
           <NavLink href="/races">Races</NavLink> 
           <NavLink href="/scoreboard">Scoreboard</NavLink> 
