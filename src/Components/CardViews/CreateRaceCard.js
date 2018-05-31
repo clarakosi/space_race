@@ -6,23 +6,20 @@ import ToggleRandom from './ToggleRandom';
 import { connect } from 'react-redux';
 import { shuffleArray } from '../../Actions/';
 import  InlineEditTrigger  from './InlineEditTrigger';
- export default class DynamicForm extends Component {
+ export default class CreateRaceCard extends Component {
 
     constructor( props ) {
       super( props );
-      this.state = {
-        inlineValue:''
-          // data:[]
-      };
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleRandom = this.handleRandom.bind(this)
     }
-    // onEdit = (id) => {
-    //     let record = this.state.find((d) => {
-    //       return d.id == id;
-    //     });
-    //     this.setState({
-    //       current: record
-    //     })
-    //   }
+    handleSubmit(event) {
+      event.preventDefault();
+      const data = new FormData(event.target);
+      //sends the FormData object containing the form inputs to the api endpoint for the db to store.
+      this.createRace(data); 
+    }
+    
     render() {   
       return (
         <div className="card border-dark" style={{backgroundColor: 'rgba(189,245,252,0.2)'}}>
@@ -36,7 +33,7 @@ import  InlineEditTrigger  from './InlineEditTrigger';
           </div>
         </div>
           <Form
-            onSubmit={submittedValues => this.setState( { submittedValues } )}>
+            onSubmit={this.handleSubmit}>
             { formApi => (
               <div style={{margin:'5px'}}>
                 <form onSubmit={formApi.submitForm} id="dynamic-form">
@@ -69,7 +66,7 @@ import  InlineEditTrigger  from './InlineEditTrigger';
                   )
                 )
               }
-                <div style={{margin: '10px'}} className="form-check"><label className="form-check-label" htmlFor="formCheck-1">Random Teams</label><input className="form-check-input" type="radio" id="formCheck-1" /></div>
+                <div style={{margin: '10px'}} className="form-check"><label className="form-check-label" htmlFor="formCheck-1">Random Teams</label><input className="form-check-input" type="radio" id="formCheck-1" onClick={this.handleRandom} /></div>
                   <div className="col-auto"><a className="btn btn-outline-primary" role="button" href="#Questions" style={{width: 225, margin: '10px'}}>On To Questions &nbsp;<i className="fa fa-space-shuttle" /></a></div>
                 </div>  
             )
@@ -82,8 +79,9 @@ import  InlineEditTrigger  from './InlineEditTrigger';
 
   function mapStateToProps(state) {
     return {
-      teamsArray : state.teamsArray
+      TeamsArray : state.teamsArray,
+      FormData: state.FormData
     }
   }
   
-    export default connect(mapStateToProps, { shuffleArray })(CreateRaceCard);
+    export default connect(mapStateToProps, { shuffleArray,  createRace})(CreateRaceCard);

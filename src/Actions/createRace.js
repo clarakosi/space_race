@@ -7,7 +7,7 @@ export const SEND_FORMDATA_FAILURE = 'send_formdata_failure';
  * we will use redux thunk and built in fetch function to POST to the server
  */
 
-export function sendFormData(data) {
+export function createRace(data) {
     return function(dispatch)  {
         dispatch({ type: SEND_FORMDATA, payload: data });
                         /**please make sure this is the proper endpoint for the backend */
