@@ -42,7 +42,7 @@ class QuizSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'name', 'randomize_team', 'number_of_participants', 'teams', 'questions')
 
     def create(self, validated_data):
-        """Override create to associate current user with Quiz creator and add teams"""
+        """Override create to associate current user with Quiz creator and add fields"""
 
         user = self.context['request'].user
         teams_data = validated_data.pop('teams')
@@ -97,9 +97,3 @@ class QuizSerializer(serializers.HyperlinkedModelSerializer):
                 answer.save()
 
         return instance
-
-
-# class StudentSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Student
-#         fields = ('id', 'team', 'name')
