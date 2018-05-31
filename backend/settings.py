@@ -153,12 +153,13 @@ CORS_ORIGIN_WHITELIST = (
 if not DEBUG:
     django_heroku.settings(locals())
     
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "asgi_redis.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
-        },
-        "ROUTING": "chat.routing.channel_routing",
-    },
-}
+ASGI_APPLICATION = "backend.routing.application"
+
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels_redis.core.RedisChannelLayer",
+#         "CONFIG": {
+#             "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+#         },
+#     },
+# }

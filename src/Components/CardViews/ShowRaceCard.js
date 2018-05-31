@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { shuffleArray } from '../../Actions/'
-import { Input } from './reactstrap';
+import { shuffleArray, teamsArray } from '../../Actions/'
+import { Input, Label } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 

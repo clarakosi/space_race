@@ -12,5 +12,5 @@ class DetailQuiz(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = QuizSerializer
 
 def Quiz_link(request, label):
-    quiz_link, created = Quiz_link.objects.get_or_create(label=label)
-    
+    return render(request, 'public/index.html')
+
