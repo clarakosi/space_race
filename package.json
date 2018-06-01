@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "ajv": "^6.5.0",
     "axios": "^0.18.0",
     "bootstrap": "^4.1.1",
     "django-channels": "^1.1.6",
@@ -10,6 +11,7 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-fontawesome": "^1.6.1",
+    "react-form": "^3.5.5",
     "react-ions": "^5.0.5",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
