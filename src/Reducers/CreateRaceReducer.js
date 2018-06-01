@@ -1,4 +1,22 @@
 import { SEND_FORMDATA, SEND_FORMDATA_SUCCESS, SEND_FORMDATA_FAILURE }  from '../Actions';
+/**
+ * 
+ * data that is submitted from create Race card will be sent as an object like this:
+ *           
+ * 
+ *          FormData {
+                "raceName" : 
+                "team ": {
+                    "teamName" : 
+                    "mascott": 
+                }
+ * 
+ * 
+ *
+ */
+
+
+
 let FormData = {};
 export default (state = FormData, action) => {
     switch (action.type) {

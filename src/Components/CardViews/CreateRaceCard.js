@@ -5,8 +5,9 @@ import TeamColorPicker from './TeamColorPicker';
 import ToggleRandom from './ToggleRandom';
 import { connect } from 'react-redux';
 import { shuffleArray } from '../../Actions/';
+import { createRace } from '../../Actions/createRace'
 import  InlineEditTrigger  from './InlineEditTrigger';
- export default class CreateRaceCard extends Component {
+  class CreateRaceCard extends Component {
 
     constructor( props ) {
       super( props );
@@ -49,10 +50,10 @@ import  InlineEditTrigger  from './InlineEditTrigger';
                   { formApi.values.siblings && formApi.values.siblings.map(( sibling, i ) => (
                     <div style={{margin: '5px'}} key={`sibling${i}`}>
                       <label htmlFor={`sibling-name-${i}`}>
-                        <select field={['siblings', i]} id={`sibling-name-${i}`}><optgroup label="Select Team"><option value="Slytherin">Slytherin</option><option value="Griffyndor">Griffyndor</option><option value="Hufflepuff">Hufflepuff</option><option value="Ravenclaw">Ravenclaw</option></optgroup></select> </label>
+                        <select field={['siblings', i]} id={`sibling-name-${i}`}><optgroup label="Select Team"><option value="team1">Slytherin</option><option value="team2">Griffyndor</option><option value="team3">Hufflepuff</option><option value="team4">Ravenclaw</option></optgroup></select> </label>
                       <label htmlFor={`sibling-name-${i}`}>
                         <TeamColorPicker field={['siblings', i]} id={`sibling-name-${i}`} /></label>
-                      <select><optgroup placeholder= "select mascott" label="Select Mascott"><option value={12} selected>This is item 1</option><option value={13}>This is item 2</option><option value={14}>This is item 3</option></optgroup></select>
+                        <select><optgroup placeholder= "select mascott" label="Select Mascott"><option value={12} >🐷</option><option value={13}>🍄</option><option value={14}>🧀</option></optgroup><option value={15}>🐓</option><option value={16}>🍍</option><option value={17}>🥑</option><option value={18}>🏁</option></select>
                         <button style={{margin: '6px'}}className="mb-4 btn btn-primary"><i className="fa fa-pencil" data-bs-hover-animate="bounce"/></button>
                         <button
                           style={{margin: '6px'}}

@@ -32,7 +32,7 @@ class InlineEditTrigger extends Component {
     return (
       <div className="col-auto align-items-center align-self-center">
         <InlineEdit name='test' value={this.state.value} isEditing={this.state.isEditing} changeCallback={this.handleCallback} />
-        <i className="fa fa-pencil" data-bs-hover-animate="bounce" onClick={this.buttonCallback} optClass={styles['button-callback']}/>
+        <i className="fa fa-pencil" data-bs-hover-animate="bounce" onClick={this.buttonCallback} />
       </div>
         
     )

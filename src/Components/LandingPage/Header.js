@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler,
   NavItem, NavLink } from 'reactstrap';
-import './Header.scss';
 
+  import './LandingPage.css';
 class Header extends Component {
   constructor(props) {
     super(props);
