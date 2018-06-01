@@ -9,7 +9,7 @@ class SelectFieldHide extends Component {
             { value: '0', display: 'Slytherin', notShowing: false, icon: 'icons.slytherin.svg' },
             { value: '1', display: 'Hufflepuff', notShowing: false, icon: 'icons.hugglepuff.svg' },
             { value: '2', display: 'Ravenclaw', notShowing: false, icon: 'icons.ravenclaw.svg' },
-            { value: '3', display: 'Gryffindor', notShowing: false, icon: 'icons. gryffindor.svg' }
+            { value: '3', display: 'Gryffindor', notShowing: false, icon: 'icons.gryffindor.svg'}
           ],
           value: '1',
           status: ''
