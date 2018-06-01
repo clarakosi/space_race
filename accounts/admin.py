@@ -1,4 +1,25 @@
 from django.contrib import admin
-from rest_framework.authtoken.admin import TokenAdmin
+from django.contrib.auth import get_user_model
+from django.contrib.auth.admin import UserAdmin
 
-TokenAdmin.raw_id_fields = ('user',)
+from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .models import CustomUser
+
+class CustomUserAdmin(UserAdmin):
+    add_form = CustomUserCreationForm
+    form = CustomUserChangeForm
+    model = CustomUser
+    list_display = ['email', 'username', 'name']
+
+admin.site.register(CustomUser, CustomUserAdmin)
+
+
+
+""" from django.contrib import admin
+from rest_framework.authtoken.admin import TokenAdmin
+from .models import create_auth_token
+from .tests import AccountsTest
+
+admin.site.register(AccountsTest)
+
+TokenAdmin.raw_id_fields = ('user',) """

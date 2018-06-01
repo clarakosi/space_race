@@ -58,31 +58,18 @@ class StudentJoinCard extends Component {
                                 type="text" 
                                 placeholder="Enter your First Name" />
                             </FormGroup>
-                            <FormGroup>
-                                <Label>Team: </Label>
-                                <InputGroup>
-                                <Input
-                                value={this.state.team}
-                                onChange={this.onChange}
-                                type="team" 
-                                name="team"
-                                placeholder="Pick a team from the dropdown menu"
-                                />
-                                <InputGroupButtonDropdown 
-                                addonType="append" 
-                                isOpen={this.state.dropdownOpen} 
-                                toggle={this.toggleDropDown}>
-                                <DropdownToggle caret>
-                                    Pick A Team
-                                </DropdownToggle>
-                                    <DropdownMenu>
-                                        <DropdownItem header>Teams</DropdownItem>
-                                        <DropdownItem onClick={this.select} >Team1</DropdownItem>
-                                        <DropdownItem>Team2</DropdownItem>
-                                        <DropdownItem>Team3</DropdownItem>
-                                    </DropdownMenu>
-                                </InputGroupButtonDropdown>
-                                </InputGroup>
+                            <FormGroup >
+                                <Label for="selectTeam"> Team: </Label>
+                                 <Input 
+                                 type="select"
+                                 name='team'
+                                 id ="selectTeam">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                </Input>
                             </FormGroup>
                                 <Button onClick ={this.handleClick}> Join the Race! </Button>
                         </Form>
