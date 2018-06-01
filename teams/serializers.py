@@ -1,7 +1,12 @@
 from rest_framework import serializers, viewsets
-from .models import Team, Quiz, Question, Answer, Student
+
+from .models import Team, Quiz, Question, Answer, Student, CustomUser
 from django.contrib.auth import login
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ('email', 'username', )
 
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -97,3 +102,11 @@ class QuizSerializer(serializers.HyperlinkedModelSerializer):
                 answer.save()
 
         return instance
+
+
+
+
+class StudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = ('id', 'team', 'name')

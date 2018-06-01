@@ -13,8 +13,14 @@ dj-database-url = "*"
 python-decouple = "*"
 whitenoise = "*"
 django-heroku = "*"
+
+django-rest-auth = "*"
+djangorestframework-jwt = "*"
+django-allauth = "*"
+
 channels = "*"
 channels-redis = "*"
+
 
 [dev-packages]
 

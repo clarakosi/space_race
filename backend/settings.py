@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import datetime
 from decouple import config
 import dj_database_url
 import django_heroku
@@ -42,14 +43,26 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 3rd party apps
     'rest_framework',
+    'rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
     'rest_framework.authtoken',
     'corsheaders',
     # Our apps
+    'api',
     'teams',
     'accounts',
     # django channels/websockets
     'channels',
 ]
+
+AUTH_USER_MODEL = 'accounts.CustomUser' 
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -64,7 +77,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'backend.urls'
-
+"""
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -82,17 +95,43 @@ TEMPLATES = [
         },
     },
 ]
+"""
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': dj_database_url.config(
         default=config('DATABASE_URL')
     )
+}
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
 
 
@@ -114,6 +153,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = (
+    #Needed to login by username in Django admin, regardless if online
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
@@ -128,8 +172,17 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Application definition
 
-# Static files (CSS, JavaScript, Images)
+
+CORS_ORIGIN_WHITELIST = (
+    config('CORS')
+)
+
+if not DEBUG:
+    django_heroku.settings(locals())
+
+    # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -141,6 +194,27 @@ STATICFILES_DIRS = (
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+""" Ignore this for now. May need it later.
+
+# Configure the JWTs to expire after 1 hour, and allow users to refresh near-expiration tokens
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
+    'JWT_ALLOW_REFRESH': True,
+}
+
+# Make JWT Auth the default authentication mechanism for Django
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
+}
+
+# Enables django-rest-auth to use JWT tokens instead of regular tokens.
+REST_USE_JWT = True
+
+
+
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -151,16 +225,15 @@ REST_FRAMEWORK = {
     )
 }
 
-""" REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
-        'rest_framework.authentication.TokenAuthentication',
-    ]
-} """
-
-CORS_ORIGIN_WHITELIST = (
-    config('CORS')
-)
+# REST_FRAMEWORK = {
+#    'DEFAULT_PERMISSION_CLASSES': [
+ #       'rest_framework.permissions.AllowAny',
+ #       'rest_framework.authentication.TokenAuthentication',
+ #   ]
+# }
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
+"""
 
 if not DEBUG:
     django_heroku.settings(locals())
@@ -175,3 +248,4 @@ CHANNEL_LAYERS = {
         },
     },
 }
+

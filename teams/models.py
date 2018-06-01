@@ -1,6 +1,7 @@
 from uuid import uuid4
 from django.contrib.auth.models import User
 from django.db import models
+from django.conf import settings
 
 # class Team(models.Model):
 #     title = models.CharField(max_length=20)
@@ -8,7 +9,7 @@ from django.db import models
 #     def __str__(self):
 #         return self.title
 
-
+User = settings.AUTH_USER_MODEL
 
 class Quiz(models.Model):
     name = models.CharField(max_length=200)
