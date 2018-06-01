@@ -25,6 +25,8 @@ import SignUp from "./Components/UserAccounts/SignUp";
 import StudentJoinRace from './Components/StudentJoinRacePage/StudentJoinRacePage'
 import SignIn from "./Components/UserAccounts/SignIn";
 
+import AdminDelivery from './Components/AdminDeliveryPage/AdminDeliveryPage'
+
 const store = createStore(
   reducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
@@ -36,8 +38,8 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Route path="/" exact component={LandingPage} />
-        {/* <Route path="/admindelivery component={AdminDelivery} /> */}
-        {/* <Route path="/adminrace component={AdminRace} /> */}
+        <Route path="/admindelivery" component={AdminDelivery} />
+        {/* <Route path="/adminrace" component={AdminRace} /> */}
         <Route path="/api" component={App} />
         <Route path="/createrace" component={CreateRaceCard} />
         <Route path="/joinrace" component={StudentJoinRacePage} />
