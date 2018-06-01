@@ -68,3 +68,5 @@ class QuestionCard extends Component {
 }
 
 //TODO add websocket to see how many students answered question
+
+export default QuestionCard;

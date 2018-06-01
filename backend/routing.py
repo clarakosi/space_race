@@ -8,6 +8,5 @@ application = ProtocolTypeRouter({
     URLRouter(
       teams.routing.websocket_urlpatterns
     )
-  ),
-
+  )
 })
