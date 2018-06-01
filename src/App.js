@@ -15,6 +15,9 @@ const webSocketBridge = new WebSocketBridge();
 //   var message = data['message'];
 //   console.log(message)
 // };
+webSocketBridge.onclose = function(e) {
+  console.log(e)
+}
 class App extends Component {
   state = {
     teams: [], 
@@ -36,7 +39,6 @@ class App extends Component {
 
   async componentDidMount() {
     try {
-      // for deployment in local change to http://127.0.0.1:8000/api/
       webSocketBridge.connect('ws://127.0.0.1:8000/ws/quiz/testing1/');
       webSocketBridge.listen(function(action, stream) {
         console.log(action, stream);

@@ -1,44 +1,63 @@
-from channels.generic.websocket import AsyncWebsocketConsumer
+from asgiref.sync import async_to_sync
+from channels.generic.websocket import WebsocketConsumer
+from django.core.serializers import serialize
 import json
+from .models import *
+from .serializers import *
 
-class QuizConsumer(AsyncWebsocketConsumer):
-  async def connect(self):
+# from channels.generic.websocket import WebsocketConsumer
+# import json
+
+class QuizConsumer(WebsocketConsumer):
+  def connect(self):
     self.quiz_name = self.scope['url_route']['kwargs']['slug']
-    self.quiz_group_name = 'quiz_%s' % self.quiz_name
+    self.quiz_group_name = 'chat_%s' % self.quiz_name
 
     # Join quiz group
-    await self.channel_layer.group_add(
+    async_to_sync(self.channel_layer.group_add)(
       self.quiz_group_name,
       self.channel_name
     )
 
-    await self.accept()
+    self.accept()
 
-  async def disconnect(self, close_code):
-      # Leave quiz group
-    await self.channel_layer.group_discard(
+  def disconnect(self, close_code):
+    # Leave quiz group
+    async_to_sync(self.channel_layer.group_discard)(
       self.quiz_group_name,
       self.channel_name
     )
 
   # Receive message from WebSocket
-  async def receive(self, text_data):
+  def receive(self, text_data):
     text_data_json = json.loads(text_data)
+    answer = Answer.objects.get(id=text_data_json['answer_id'])
+    team = Team.objects.get(id=text_data_json['team'])
+    question = Question.objects.get(id=text_data_json['question_id'])
+    student = Student.objects.get(id=text_data_json['id'])
+
+    Student_Response.objects.create(student=student, response=answer)
+
+    if answer.is_correct:
+      team.score = team.score + 1
+      team.save()
+    question.number_of_responses = question.number_of_responses + 1
+    question.save()
+
+    quiz = QuizSerializer(Quiz.objects.get(id=text_data_json['quiz_id']))
 
     # Send message to quiz group
-    await self.channel_layer.group_send(
+    async_to_sync(self.channel_layer.group_send)(
       self.quiz_group_name,
-        {
-          'type': 'chat_message',
-          'message': text_data_json
-        }
+      {
+        'type': 'chat_message',
+        'message': quiz.data
+      }
     )
 
   # Receive message from quiz group
-  async def chat_message(self, event):
+  def chat_message(self, event):
     message = event['message']
 
     # Send message to WebSocket
-    await self.send(text_data=json.dumps({
-      'message': message
-    }))
+    self.send(text_data=json.dumps(message))
