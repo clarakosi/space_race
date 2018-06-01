@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import './LandingPage.css';
 import Header from './Header';
 import Middle from './Middle';
 import Footer from './Footer';

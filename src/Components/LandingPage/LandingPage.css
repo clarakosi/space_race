@@ -1,0 +1,200 @@
+.Header {
+    min-height: 80px;
+    max-height: 80px;
+  }
+  .Header .navbar {
+    max-width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .Header .SpaceRace {
+    margin-top: 1rem;
+    width: 100%;
+  }
+  .Header .SpaceRace .name {
+    margin-bottom: 4px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #3b5998;
+  }
+  .Header .SpaceRace .title {
+    color: #2eadf7;
+  }
+  
+
+@import './Font/font.css';
+.hero-image {
+  /* The image used */
+  background-image: url("../images/cockpit.png");
+  /* Set a specific height */
+  height: 300px;
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+}
+/* Place text in the middle of the image */
+.hero-text {
+  font-family: 'zigzageoregular';
+  text-align: center;
+  text-shadow: -0.5px -0.5px 0 #eea928, -1px -1px 0 #f3d964, -3px -2px 0 #6b3ee7, -3px -3px 0 #eb1430, 1px 1px 0 #eea928;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #3f52f8;
+}
+.title {
+  font-family: 'zigzageoregular';
+  text-align: center;
+  text-shadow: -0.5px -0.5px 0 #eea928, -1px -1px 0 #f3d964, -3px -2px 0 #6b3ee7, -3px -3px 0 #eb1430, 1px 1px 0 #eea928;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #3f52f8;
+}
+.Footer {
+    animation-delay: 2s;
+    padding-top: 0;
+    padding-left: 2%;
+    background-color: #333;
+  }
+  .Footer .footer-nav {
+    flex-direction: column;
+  }
+  @media (min-width: 375px) {
+    .Footer {
+      padding-top: 0.3rem;
+    }
+  }
+  @media (min-width: 412px) {
+    .Footer {
+      padding-top: 0.8rem;
+    }
+  }
+  @media (min-width: 992px) {
+    .Footer {
+      padding-top: 1rem;
+      padding-left: 5%;
+    }
+  }
+  .Footer .footer-badge {
+    padding-top: 0.3rem;
+    padding-bottom: 0.5rem;
+    margin-left: 0;
+    width: 3rem;
+  }
+  @media (min-width: 412px) {
+    .Footer .footer-badge {
+      padding-top: 0.5rem;
+      padding-bottom: 0;
+      margin-left: -0.2rem;
+    }
+  }
+  @media (min-width: 736px) {
+    .Footer .footer-badge {
+      margin-left: -0.5rem;
+      width: 3.5rem;
+    }
+  }
+  .Footer h6 {
+    margin-bottom: 1rem;
+    color: lightgray;
+  }
+  @media (min-width: 992px) {
+    .Footer h6 {
+      font-size: 1.6rem;
+    }
+  }
+  .Footer a {
+    margin-top: -1rem;
+    margin-bottom: 0.5rem;
+    color: lightgray;
+  }
+  @media (min-width: 412px) {
+    .Footer a {
+      margin-top: -2rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+  .Footer a.top-link {
+    text-align: right;
+    font-size: 0.8rem;
+  }
+  @media (min-width: 992px) {
+    .Footer a.top-link {
+      font-size: 1rem;
+    }
+  }
+  .Footer a:hover {
+    color: darkgray;
+  }
+  .Footer p {
+    font-size: 0.8rem;
+    line-height: 1rem;
+    color: darkgray;
+  }
+  @media (min-width: 992px) {
+    .Footer p {
+      font-size: 0.9rem;
+      line-height: 1.1rem;
+    }
+  }
+  .Footer p.race-responsibly {
+    margin-left: 1rem;
+    color: lightgray;
+    font-size: 1rem;
+    margin-top: 0.8rem;
+    margin-bottom: 2rem;
+  }
+  @media (min-width: 992px) {
+    .Footer p.race-responsibly {
+      font-size: 1.3rem;
+    }
+  }
+  .Footer p.about-text {
+    margin-top: -0.5rem;
+  }
+  .Footer p.copyright {
+    margin-top: -0.75rem;
+  }
+  .Footer .wrapper {
+    margin-left: 1rem;
+  }
+  @media (min-width: 412px) {
+    .Footer .wrapper {
+      margin-top: -1rem;
+    }
+  }
+  @media (min-width: 736px) {
+    .Footer .wrapper {
+      margin-top: 0;
+    }
+  }
+  .Footer .wrapper .left {
+    float: left;
+  }
+  .Footer .wrapper .left .name {
+    font-size: 0.9rem;
+    line-height: 0.2rem;
+  }
+  @media (min-width: 992px) {
+    .Footer .wrapper .left .name {
+      font-size: 1.1rem;
+    }
+  }
+  .Footer .wrapper .right {
+    float: left;
+  }
+  .Footer .wrapper .right .domain {
+    font-size: 0.9rem;
+    line-height: 0.2rem;
+  }
+  @media (min-width: 992px) {
+    .Footer .wrapper .right .domain {
+      font-size: 1.1rem;
+    }
+  }
+  

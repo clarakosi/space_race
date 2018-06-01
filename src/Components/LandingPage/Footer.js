@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Col, Container, Row, Nav, NavItem, NavLink } from 'reactstrap';
 import FontAwesome from 'react-fontawesome';
 import {Button} from 'reactstrap';
-import './Footer.scss';
 
+import './LandingPage.css';
 class Footer extends Component {
   render() {
     return (
