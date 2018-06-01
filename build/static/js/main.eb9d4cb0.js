@@ -408,6 +408,7 @@ function mapToCssModules() {
 
 /**
  * Returns a new object with the key/value pairs from `obj` that are not in the array `omitKeys`.
+
  */
 function omit(obj, omitKeys) {
   var result = {};
@@ -419,8 +420,10 @@ function omit(obj, omitKeys) {
   return result;
 }
 
+
 /**
  * Returns a filtered copy of an object with only the specified keys.
+
  */
 function pick(obj, keys) {
   var pickKeys = Array.isArray(keys) ? keys : [keys];
@@ -3205,8 +3208,10 @@ Carousel.propTypes = {
   previous: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired,
   // controls if the left and right arrow keys should control the carousel
   keyboard: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool,
+
   /* If set to "hover", pauses the cycling of the carousel on mouseenter and resumes the cycling of the carousel on
    * mouseleave. If set to false, hovering over the carousel won't pause it. (default: "hover")
+
    */
   pause: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.oneOf(['hover', false]),
   // Autoplays the carousel after the user manually cycles the first item. If "carousel", autoplays the carousel on load.
@@ -16032,6 +16037,7 @@ if (hadRuntime) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+
 class Event {
     constructor(type, target) {
         this.target = target;

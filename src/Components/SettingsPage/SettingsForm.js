@@ -7,12 +7,9 @@ class SettingsForm extends Component {
 render() {
     return (
         <Form>
-            <FormText> 
-                Update User Setting 
-            </FormText>
-            <FormGroup>
+            <FormGroup >
                 <Label> Email:</Label>
-                <Input type="emial" placeholder="Youremail@something.com"/>
+                <Input type="email" placeholder="Youremail@something.com"/>
             </FormGroup>
             <FormGroup>
                 <Label> Old-Password:</Label>
