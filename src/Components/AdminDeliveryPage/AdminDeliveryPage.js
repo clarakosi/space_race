@@ -1,117 +1,70 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Questions } from '../ScoreBoardPage/questionboard';
-import './AdminDeliverPage.css';
+import { CreateRaceCard } from '../CardViews/CreateRaceCard';
+import './AdminDeliveryPage.css';
 
 
+const API = 'http://127.0.0.1:8000/api/<:id>/';
+const DEFAULT_QUERY = 'redux';
 
 /* Admin Delivery Page, to see the current question, answer choices, correct answer(initially hidden) */
-
-class QuestionPanel extends Component {
-    constructor (props) {
-        super(props);
-    }
-
-    render() {
-        if (this.props.activeRace) {
-            return ( <div className="text-center">
-                        <p className="question-panel">{ this.props.question }</p>
-                    </div>)
-        } else {
-            return ( <div className="text-center">
-                        <p className="question-panel message">End Race</p>
-                        <div className="hyperlink-button">
-                            <a onClick={ this.props.resetRace } href="#">Restart</a>    
-                        </div>
-                    </div>);
-        }
-    }
-}
-
-class Option extends Component {
-    render() {
-        return <div><a href="#"
-                        onClick={ this.props.triggerProcess }
-                        className="option-card">
-                        { this.props.optionValue }
-                    </a></div>
-    }
-}
-
-class GameBoard extends Component {
+class QuestionCard extends Component {
     constructor(props) {
         super(props);
-
-        this.processGuess = this.processGuess.bind(this);
-        this.resetGame = this.resetGame.bind(this);
-
         this.state = {
-            currentIndex: 0,
-            activeGame: true,
-            questionsAnswer: [
-                // TODO: Connect created questions to gameboard
-            ]
-        }
-        // this.resetGame();
-    };
-
-    processGuess(e) {
-        if (this.state.currentIndex + 1 === this.state.questionsAnswer.length) {
-            this.setState( { activeGame: false } );
-
-            return;
-        }
-        let answer = parseInt(e.target.textContent);
-        let correctAnswer =
-            parseInt(
-                this.state.questionsAnswer[this.state.currentIndex]['answer']
-            );
-        if ( answer === correctAnswer ) {
-            this.setState( { correct: this.state.correct + 1 } );
-        } else {
-            this.setState( { incorrect: this.state.incorrect + 1 } );
-        }
-        this.setState( { currentIndex: this.state.currentIndex + 1 } );
+            question: [],
+            isLoading: false,
+            error: null,
+        };
     }
 
-    render() {
-        let options = [];
+    componentDidMount() {
+        this.setState({ isLoading: true });
+        fetch(API + DEFAULT_QUERY)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Something went wrong ...');
+                }
+            })
+            .then(data => this.setState({ question: data.question, isLoading: false }))
+            .catch(error => this.setState({ error, isLoading: false }));
+    }
 
-        if (this.state.activeGame) {
-            options = this.state.questionsAnswer[this.state.currentIndex].options.map(option => (
-                <Option optionValue={ option }
-                        triggerProcess={ this.processGuess }
-                        activeGame={ this.state.activeGame } />
-            ));
+    /* revealAnswerToggle = () => {
+        const active = !this.state.show
+        this.setState({show: active});
+    } */
+
+    render() {
+        const { question, isLoading, error } = this.state;
+
+        if (error) {
+            return <p>{error.message}</p>;
         }
-        return (  <div>
-            <div className="row">
-              <div className="offset-lg-2 col-lg-7 col-md-12">
-                  <QuestionPanel activeGame={ this.state.activeGame } 
-                                 question={
-                                    this
-                                      .state
-                                      .questionsAnswer[this.state.currentIndex]
-                                      .question }
-                                 resetGame = { this.resetGame } />
-                  <div className={ this.state.activeGame 
-                                    ? 'visible'
-                                    : 'hidden' } >
-                     { options }
-                  </div>
-              </div>
-              <div className="col-lg-3 col-md-12">
-                  <StatusDisplay 
-                    correct={ this.state.correct } 
-                    incorrect={ this.state.incorrect } />
-              </div>
-          </div>
-        </div> );
+
+        if (isLoading) {
+            return <p>Loading ...</p>;
+        }
+
+        return (
+            <div>
+                {question.map(question =>
+                <div key={question.objectID}>
+                    <a href={question.url}>{question.title}</a>
+                    </div>
+                )}
+            </div>
+        );
+    }
+
+    nextQuestion = event => {
+        event.preventDefault();
+        const id = this.props.question.id;
+        this.props.nextQuestion(id);
     }
 }
 
-export default connect(mapStateToProps)(QuestionPanel);
-
-/* ReactDom.render( <GameBoard className="game-board" />,
-                    document.getElementById('board') );
-                    */
+//TODO add websocket to see how many students answered question
