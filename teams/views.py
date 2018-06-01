@@ -1,14 +1,12 @@
 from rest_framework import generics
 
-from . import models
-from . import serializers
+from .models import Quiz
+from .serializers import QuizSerializer
 
+class ListQuiz(generics.ListCreateAPIView):
+    queryset = Quiz.objects.all()
+    serializer_class = QuizSerializer
 
-class ListTeam(generics.ListCreateAPIView):
-    queryset = models.Team.objects.all()
-    serializer_class = serializers.TeamSerializer
-
-class DetailTeam(generics.RetrieveUpdateDestroyAPIView):
-    queryset = models.Team.objects.all()
-    serializer_class = serializers.TeamSerializer
-    
+class DetailQuiz(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Quiz.objects.all()
+    serializer_class = QuizSerializer

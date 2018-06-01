@@ -20,30 +20,8 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('api.urls')),
+  #  path('.*', TemplateView.as_view(template_name='index.html'))
 ]
-
-
-
-""" Ignore this for now, may need it later
-
-from django.contrib import admin
-from django.conf.urls import url
-from django.urls import include, path
-from accounts.views import UserCreate
-from rest_framework_jwt.views import refresh_jwt_token
-
-urlpatterns = [
-  #  url(r'^$', UserCreate.as_view(template_name="account-name")),
-    path('admin/', admin.site.urls),
-    path('api/', include('teams.urls')),
-  # I think this is what was causing the NoReverseMatch error?  
-  # url(r'^users/', include('accounts.urls')),
-    url(r'^/', include('accounts.urls')),
-
-    url(r'^', include('rest_auth.urls')),
-    url(r'^registration/', include('rest_auth.registration.urls')),
-    url(r'^refresh-token/', refresh_jwt_token),
-]"""
 
 
 
@@ -63,6 +41,7 @@ urlpatterns = [
   # I think this is what was causing the NoReverseMatch error?  
   # url(r'^users/', include('accounts.urls')),
     url(r'^/', include('accounts.urls')),
+
     url('.*', TemplateView.as_view(template_name='index.html')),
 ]
 """
