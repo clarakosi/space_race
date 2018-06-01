@@ -37,7 +37,7 @@ class TeamSerializer(serializers.ModelSerializer):
     students = StudentSerializer(many=True, required=False)
     class Meta:
         model = Team
-        fields = ('id', 'name', 'score', 'students')
+        fields = ('id', 'name', 'score', 'quiz_id', 'students')
 
 class QuizSerializer(serializers.HyperlinkedModelSerializer):
     teams = TeamSerializer(many=True)
@@ -104,10 +104,3 @@ class QuizSerializer(serializers.HyperlinkedModelSerializer):
 
         return instance
 
-
-
-
-class StudentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Student
-        fields = ('id', 'team', 'name')

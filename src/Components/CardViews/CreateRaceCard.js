@@ -11,8 +11,8 @@ import  InlineEditTrigger  from './InlineEditTrigger';
 
     constructor( props ) {
       super( props );
-      this.handleSubmit = this.handleSubmit.bind(this);
-      this.handleRandom = this.handleRandom.bind(this)
+      // this.handleSubmit = this.handleSubmit.bind(this);
+      // this.handleRandom = this.handleRandom.bind(this)
     }
     handleSubmit(event) {
       event.preventDefault();

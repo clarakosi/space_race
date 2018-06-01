@@ -11,7 +11,6 @@ class DetailQuiz(generics.RetrieveUpdateDestroyAPIView):
     queryset = Quiz.objects.all()
     serializer_class = QuizSerializer
 
-
 class ListStudent(generics.ListCreateAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
