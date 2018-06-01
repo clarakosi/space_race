@@ -14,7 +14,7 @@ class InlineEditTrigger extends Component {
     super(props);
     this.state = {
         isEditing: false,
-        value: 'Example value'
+        value: 'Enter Name for this Race'
     }
   }
 

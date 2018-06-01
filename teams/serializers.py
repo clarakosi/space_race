@@ -1,5 +1,7 @@
 from rest_framework import serializers, viewsets
+
 from .models import Team, Quiz, Question, Answer, Student, CustomUser
+from django.contrib.auth import login
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,18 +11,32 @@ class UserSerializer(serializers.ModelSerializer):
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
-        fields = ('id', 'answer', 'is_correct')
+        fields = ('question_id', 'id', 'answer', 'is_correct', )
 
 class QuestionSerializer(serializers.ModelSerializer):
     answers = AnswerSerializer(many=True)
     class Meta:
         model = Question
-        fields = ('id', 'question', 'shuffle_answers', 'answers')
+        fields = ('quiz_id','id', 'question', 'shuffle_answers','number_of_responses', 'answers')
+
+class StudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = ('id', 'team', 'name')
+    
+    def create(self, validated_data):
+        student = Student.objects.create(**validated_data)
+        team = Team.objects.get(pk=student.team.id)
+        quiz = Quiz.objects.get(pk=team.quiz.id)
+        quiz.number_of_participants = quiz.number_of_participants + 1
+        quiz.save()
+        return student
 
 class TeamSerializer(serializers.ModelSerializer):
+    students = StudentSerializer(many=True, required=False)
     class Meta:
         model = Team
-        fields = ('id', 'name', 'score')
+        fields = ('id', 'name', 'score', 'students')
 
 class QuizSerializer(serializers.HyperlinkedModelSerializer):
     teams = TeamSerializer(many=True)
@@ -28,10 +44,10 @@ class QuizSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Quiz
-        fields = ('id', 'name', 'randomize_team', 'teams', 'questions')
+        fields = ('id', 'name', 'randomize_team', 'number_of_participants', 'teams', 'questions')
 
     def create(self, validated_data):
-        """Override create to associate current user with Quiz creator and add teams"""
+        """Override create to associate current user with Quiz creator and add fields"""
 
         user = self.context['request'].user
         teams_data = validated_data.pop('teams')
@@ -60,6 +76,7 @@ class QuizSerializer(serializers.HyperlinkedModelSerializer):
 
         instance.name = validated_data.get('name', instance.name)
         instance.randomize_team = validated_data.get('randomize_team', instance.randomize_team)
+        instance.number_of_participants = validated_data.get('number_of_participants', instance.number_of_participants)
         instance.save()
 
         for team_data in teams_data:
@@ -88,8 +105,8 @@ class QuizSerializer(serializers.HyperlinkedModelSerializer):
 
 
 
+
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
         fields = ('id', 'team', 'name')
->>>>>>> 8ed01192ce88148d5de4539567a938717e0a213d

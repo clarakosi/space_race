@@ -1,7 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+<<<<<<< HEAD
+=======
 import { shuffleArray, teamsArray } from '../../Actions/'
 import { Input, Label } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+
+
+
+class ShowRaceCard extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            checked: false,
+            teams:[]
+        };
+        this.toggleCheck =  this.toggleCheck.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+>>>>>>> 97c7d60238d63f9ad6f74275d79acdd053654abb
+
 import 'bootstrap/dist/css/bootstrap.css';
 export default class ShowRaceCard extends Component {
   render() {

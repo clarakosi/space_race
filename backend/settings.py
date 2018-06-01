@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'api',
     'teams',
     'accounts',
+    # django channels/websockets
+    'channels',
 ]
 
 AUTH_USER_MODEL = 'accounts.CustomUser' 
@@ -232,4 +234,18 @@ REST_FRAMEWORK = {
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 """
+
+if not DEBUG:
+    django_heroku.settings(locals())
+    
+ASGI_APPLICATION = "backend.routing.application"
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 

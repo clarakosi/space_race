@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
+import './middle.scss'
 /****
  * 
  * So far this just has a background image with title and start button
  * 
  * 
  */
+
+
+
 class Middle extends Component {
 
     render() {
@@ -14,9 +18,11 @@ class Middle extends Component {
                 <div className="hero-image"> 
                     <img  />                 
                         <div className="hero-text">
-                            <Button ><b>START</b></Button>
+                            <Button><b>START</b></Button>
                             <br/>
                             <br/>
+                        </div>
+                        <div className="title">
                             <h1><strong><b>SPACE  RACE</b></strong></h1>
                         </div>
                 </div>
@@ -24,6 +30,5 @@ class Middle extends Component {
         );
     }
 }
-
 
 export default Middle;
