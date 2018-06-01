@@ -37,16 +37,16 @@ class App extends Component {
   //   }
   // }
 
-  async componentDidMount() {
-    try {
-      webSocketBridge.connect('ws://127.0.0.1:8000/ws/quiz/testing1/');
-      webSocketBridge.listen(function(action, stream) {
-        console.log(action, stream);
-      });
-    } catch (e) {
-      console.log(e);
-    }
-  }
+  // async componentDidMount() {
+  //   try {
+  //     webSocketBridge.connect('ws://127.0.0.1:8000/ws/quiz/testing1/');
+  //     webSocketBridge.listen(function(action, stream) {
+  //       console.log(action, stream);
+  //     });
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // }
 
   messageChangeHandler = event => {
     event.preventDefault();
