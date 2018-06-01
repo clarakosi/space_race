@@ -22,6 +22,7 @@ import CreateRaceCard from "./Components/CardViews/CreateRaceCard";
 
 import Settings from "./Components/SettingsPage/SettingsPage";
 import SignUp from "./Components/UserAccounts/SignUp";
+import StudentJoinRace from './Components/StudentJoinRacePage/StudentJoinRacePage'
 import SignIn from "./Components/UserAccounts/SignIn";
 
 const store = createStore(
@@ -45,6 +46,7 @@ ReactDOM.render(
         <Route path="/settings" component={Settings} />
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
+        <Route path="/student" component={StudentJoinRace} />
         
       </div>
     </BrowserRouter>
