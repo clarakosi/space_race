@@ -53,7 +53,7 @@ import  InlineEditTrigger  from './InlineEditTrigger';
                         <select field={['siblings', i]} id={`sibling-name-${i}`}><optgroup label="Select Team"><option value="team1">Slytherin</option><option value="team2">Griffyndor</option><option value="team3">Hufflepuff</option><option value="team4">Ravenclaw</option></optgroup></select> </label>
                       <label htmlFor={`sibling-name-${i}`}>
                         <TeamColorPicker field={['siblings', i]} id={`sibling-name-${i}`} /></label>
-                        <select><optgroup placeholder= "select mascott" label="Select Mascott"><option value={12} >🐷</option><option value={13}>🍄</option><option value={14}>🧀</option></optgroup><option value={15}>🐓</option><option value={16}>🍍</option></select>
+                        <select><optgroup placeholder= "select mascott" label="Select Mascott"><option value={12} >🐷</option><option value={13}>🍄</option><option value={14}>🧀</option></optgroup><option value={15}>🐓</option><option value={16}>🍍</option><option value={17}>🥑</option></select>
                         <button style={{margin: '6px'}}className="mb-4 btn btn-primary"><i className="fa fa-pencil" data-bs-hover-animate="bounce"/></button>
                         <button
                           style={{margin: '6px'}}
