@@ -13,4 +13,4 @@ class SignInButton extends Component {
         );
     }
 }
-export default SignInButton;
+export default SignInButton;''

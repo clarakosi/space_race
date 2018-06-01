@@ -17,7 +17,8 @@ import ScoreBoard from "./Components/ScoreBoardPage/index";
 import LandingPage from "./Components/LandingPage/LandingPage";
 
 import StudentJoinRacePage from "./Components/StudentJoinRacePage/StudentJoinRacePage";
-import AdminRaceCreate from "./Components/CardViews/ShowRaceCard";
+import ShowRaceCard from "./Components/CardViews/ShowRaceCard";
+import CreateRaceCard from "./Components/CardViews/CreateRaceCard";
 
 import Settings from "./Components/SettingsPage/SettingsPage";
 import SignUp from "./Components/UserAccounts/SignUp";
@@ -34,10 +35,13 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Route path="/" exact component={LandingPage} />
+        {/* <Route path="/admindelivery component={AdminDelivery} /> */}
+        {/* <Route path="/adminrace component={AdminRace} /> */}
         <Route path="/api" component={App} />
+        <Route path="/createrace" component={CreateRaceCard} />
         <Route path="/joinrace" component={StudentJoinRacePage} />
-        <Route path="/race" component={AdminRaceCreate} />
         <Route path="/scoreboard" component={ScoreBoard} />
+        <Route path="/showrace" component={ShowRaceCard} />
         <Route path="/settings" component={Settings} />
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import './navigation.css';
-//Breadcrumbs are set up and working for Settings page
+//Breadcrumbs are set up and working 
 //TODO: update the includes statments based on pages urls-
-//lines 9,18,& 27 will need to be updated
+//lines 10, and 28  will need to be updated when ruting is updated to reflect any changes
 
 const Breadcrumbs = (props) => {
     const url = window.location.href;
-    if(url.includes('/join')) {
+    if(url.includes('/adminrace')) {
         return (
             <div>
                 <Breadcrumb tag="nav">
@@ -16,7 +16,7 @@ const Breadcrumbs = (props) => {
                 </Breadcrumb>
             </div> )
 
-    } else if(url.includes('/race')) {
+    } else if(url.includes("/showrace") || url.includes("/createrace")) {
         return (
             <div >
                 <Breadcrumb tag="nav">
@@ -25,7 +25,7 @@ const Breadcrumbs = (props) => {
                 </Breadcrumb>
             </div> )
 
-    }else if(url.includes('/scoreboard')) {
+    }else if(url.includes('/admindelivery')) {
         return (
             <div >
                 <Breadcrumb tag="nav">
