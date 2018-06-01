@@ -24,12 +24,8 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('api.urls')),
-<<<<<<< HEAD
+    path('.*', TemplateView.as_view(template_name='index.html')),
     path('db/', include('teams.urls'))
-  #  path('.*', TemplateView.as_view(template_name='index.html'))
-=======
-   path('.*', TemplateView.as_view(template_name='index.html'))
->>>>>>> 09f6dac1902fe55239d100eb1e0b9c5c68753d27
 ]
 
 
