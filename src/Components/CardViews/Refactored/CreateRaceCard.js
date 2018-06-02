@@ -48,105 +48,106 @@ const WhenFieldChanges = ({ field, becomes, set, to }) => (
 const CreateRaceCard = () => (
   <Styles>
   
-    <h1>🏁 Create Race 🏁</h1>
-    
-    <Form
-      onSubmit={onSubmit}
-      mutators={{
-        ...arrayMutators
-      }}
-    
-      onSubmit={onSubmit}
-    
-      render={({
-        handleSubmit,
-        mutators: { push, pop }, // injected from final-form-arrays above
-        pristine,
-        reset,
-        submitting,
-        values
-      }) => {
-        return (
-          <form onSubmit={handleSubmit}>
-          <WhenFieldChanges
-            field="randomize"
-            becomes={true}
-            set="teams"
-            to={undefined}
-            />
-            <div>
-              <label>RACE NAME</label>
-              <Field name="race" component="input" disabled={ values.teams || values.randomize } />
-            </div>
-            <label>Randomize Teams</label>
-            <div>
-              <label>
-                <Field
-                  name="randomize"
-                  component="input"
-                  disabled={ values.teams }
-                  type="checkbox"
-                  value="true"
-                />{" "}
-                Randomize  
-              </label>
-              <p><b>NOTE: if you plan to randomly assign students to teams, the ability to add teams to each race will be disabled.</b></p>
-              </div>
-            
-            <div className="buttons">
-              <button
-                type="button"
-                disabled={ pristine || values.randomize || (!values.race && values.randomize) }
-                onClick={() => push('teams', undefined)}>
-                Add Team
-              </button>
-              <button type="button" disabled={ !values.race || values.randomize } onClick={() => pop('teams')}>
-                Remove Team
-              </button>
-            </div>
-            <FieldArray name="teams">
-              {({ fields }) =>
-                fields.map((team, index) => (
-                  <div key={team}>
-                    <label>Team #{index + 1}</label>
-                    <Field
-                      name={`${team}.teamName`}
-                      component="input"
-                      placeholder="Team"
-                    />
-                    <Field
-                      name={`${team}.teamColor`}
-                      component="input"
-                      placeholder="Team Color"
-                    />
-                    
-                    <span
-                      onClick={() => fields.remove(index)}
-                      style={{ cursor: 'pointer' }}>
-                      <Icon icon={ICONS.BIN2} color={"blue"}/>
-                    </span>
-                  </div>
-                ))}
-            </FieldArray>
-
-            <div className="buttons">
-              <button type="submit" disabled={submitting || pristine && !values.race }>
-                Submit Race 
-              </button>
-              <button
-                type="button"
-                onClick={reset}
-                disabled={submitting || pristine}>
-                Reset
-              </button>
+  <h1>🏁 Create Race 🏁</h1>
+  
+  <Form
+    onSubmit={onSubmit}
+    mutators={{
+      ...arrayMutators
+    }}
+  
+    onSubmit={onSubmit}
+  
+    render={({
+      handleSubmit,
+      mutators: { push, pop }, // injected from final-form-arrays above
+      pristine,
+      reset,
+      submitting,
+      values
+    }) => {
+      return (
+        <form onSubmit={handleSubmit}>
+        <WhenFieldChanges
+          field="randomize"
+          becomes={true}
+          set="teams"
+          to={undefined}
+          />
+          <div>
+            <label><h5><strong>RACE NAME</strong></h5></label>
+            <Field name="race" component="input" disabled={ values.teams || values.randomize } />
+          </div>
+          <div>
+         
+            <label>
+              <Field
+                name="randomize"
+                component="input"
+                disabled={ values.teams }
+                type="checkbox"
+                value="true"
+              />{" "}
+              Random Teams
+            </label>
+            <h5><p><b>NOTE: Randomizing teams will take away the option to choose teams.</b></p></h5><br/>
             </div>
           
-          </form>
-        )
-      }}
-    />
-  </Styles>
-)
+          <div className="buttons">
+          <div className="buttons">
+          <button type="submit" disabled={submitting || pristine && !values.race }>
+            Submit Race 
+          </button>
+          <button
+            type="button"
+            onClick={reset}
+            disabled={submitting || pristine}>
+            Reset
+          </button>
+        </div>
+      
+            <button
+              type="button"
+              disabled={ pristine || values.randomize || (!values.race && values.randomize) }
+              onClick={() => push('teams', undefined)}>
+              Add Team
+            </button>
 
+            <button type="button" disabled={ !values.race || values.randomize } onClick={() => pop('teams')}>
+              Remove Team
+            </button>
+          </div>
+          <FieldArray name="teams">
+            {({ fields }) =>
+              fields.map((team, index) => (
+                <div key={team}>
+                  <label><h4>Team #{index + 1}</h4></label>
+                  <Field
+                    name={`${team}.teamName`}
+                    component="input"
+                    placeholder="Team"
+                  />
+                  <Field
+                    name={`${team}.teamColor`}
+                    component="input"
+                    placeholder="Team Color"
+                  />
+                  
+                  <span
+                    onClick={() => fields.remove(index)}
+                    style={{ cursor: 'pointer' }}>
+                    <Icon icon={ICONS.BIN2} color={"blue"} size={24} />
+                  </span>
+                </div>
+              ))}
+          </FieldArray>
+
+        
+        </form>
+      )
+    }}
+  />
+</Styles>
+)
 
 export default CreateRaceCard;
