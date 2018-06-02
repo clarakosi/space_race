@@ -5,6 +5,8 @@ import { Form, Field, FormSpy } from 'react-final-form'
 import arrayMutators from 'final-form-arrays'
 import { FieldArray } from 'react-final-form-arrays'
 import { OnChange } from 'react-final-form-listeners'
+import Icon from './Icon';
+import { ICONS } from './Iconstants';
 // import { ColorMenu } from './colormenu/ColorMenu';
 
 /**
@@ -26,6 +28,7 @@ const onSubmit = async values => {
   * set up conditional field rendering, if admin chooses random, disable adding teams feature, if adding teams, disable random etc. 
   */
 const WhenFieldChanges = ({ field, becomes, set, to }) => (
+
     <Field name={set} subscription={{}}>
       {(
         // No subscription. We only use Field to get to the change function
@@ -73,7 +76,7 @@ const CreateRaceCard = () => (
             />
             <div>
               <label>RACE NAME</label>
-              <Field name="race" component="input" />
+              <Field name="race" component="input" disabled={ values.teams || values.randomize } />
             </div>
             <label>Randomize Teams</label>
             <div>
@@ -120,7 +123,7 @@ const CreateRaceCard = () => (
                     <span
                       onClick={() => fields.remove(index)}
                       style={{ cursor: 'pointer' }}>
-                      ❌
+                      <Icon icon={ICONS.BIN2} color={"blue"}/>
                     </span>
                   </div>
                 ))}
@@ -144,5 +147,6 @@ const CreateRaceCard = () => (
     />
   </Styles>
 )
+
 
 export default CreateRaceCard;
