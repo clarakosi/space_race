@@ -16,8 +16,24 @@ class QuestionCard extends Component {
             question: [],
             isLoading: false,
             error: null,
-        };
+           // isHidden: true
+        }
     }
+    /*toggleHidden () {
+        this.setState({
+            isHidden: !this.state.isHidden
+        })
+    }
+    render () {
+        return (
+            <div>
+                <button onClick={this.toggleHidden.bind(this)} >
+                Show answer
+                </button>
+                {!this.state.isHidden && <Child />}
+            </div>
+        )
+    } */
 
     componentDidMount() {
         this.setState({ isLoading: true });
@@ -72,12 +88,38 @@ class QuestionCard extends Component {
                 </div> */
         );
     }
+ 
+    /* Next Question Button Options Start Here */
 
+  /* <button onClick={ this.nextQuestion }> Next Question </button>
+    
+     -------- This Section Allows for going to the next or previous section --------
+    nextQuestion: function(e) {
+        e.preventDefault()
+        this.props.nextStep()
+    } 
+    
+    nextStep: function() {
+        this.setSTate({
+            step : this.state.step + 1
+        })
+    },
+
+    previousStep: function() {
+        this.setState({
+            step : this.state.step - 1
+        })
+    }
+    
+    */
+   // -------- This section will just go to the next question --------
     nextQuestion = event => {
         event.preventDefault();
         const id = this.props.question.id;
-        this.props.nextQuestion(id);
+        this.props.nextQuestion(id + 1);
     }
+
+    /* Next Question Button Options End Here */
 }
 
 //TODO add websocket to see how many students answered question
