@@ -56,7 +56,7 @@ class Footer extends Component {
               <h6>"A FUN GAME FOR STUDENTS AND TEACHERS ALIKE!"</h6>
               <p className="about-text">
     {/*<-------------add a brif description of game here or link or just take this out ----------*/}
-               <h5>"This is a must have for all classrooms.  It is a great educational tool to get students to think while and learn having fun!!" <i>Mrs. T, 5th Grade Teacher</i></h5>
+               <h5>"This is a must have for all classrooms.  It is a great educational tool to get students to think and learn while having fun!!" <i>Mrs. T, 5th Grade Teacher</i></h5>
                
             </p>
             </Col>
