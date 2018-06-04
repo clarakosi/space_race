@@ -27,7 +27,8 @@
     "redux-logger": "^3.0.6",
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.2.0",
-    "styled-components": "^2.4.1"
+    "styled-components": "^2.4.1",
+    "universal-cookie": "^2.1.5"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",

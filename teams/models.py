@@ -15,6 +15,7 @@ class Quiz(models.Model):
     name = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     randomize_team = models.BooleanField(default=False)
+    slug = models.SlugField(unique=True, blank=True)
     number_of_participants = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now=True)
     last_modified = models.DateTimeField(auto_now=True)
@@ -22,6 +23,8 @@ class Quiz(models.Model):
 class Team(models.Model):
     quiz = models.ForeignKey(Quiz, related_name='teams', on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
+    color = models.CharField(max_length=200)
+    mascot = models.CharField(max_length=200)
     score = models.IntegerField(default=0)
 
 class Question(models.Model):

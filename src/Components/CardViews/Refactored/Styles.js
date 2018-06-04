@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
-
+import './fonts/stylesheet.css'
 const btn = (light, dark) => css`
+
 
 
   white-space: nowrap;
@@ -36,21 +37,32 @@ const btnPrimary = btn('#4f93ce', '#285f8f')
 const btnDanger = btn('#e27c79', '#c9302c')
 
 export default styled.div`
-@import './fonts.css'
-  font-family: sans-serif;
 
-  h1 {
+   
+      
+    
+   }
+   h4 {
+    font-family: 'Bamf';
     text-align: center;
-    color: #222;
+    color: light-gray;
+  }
+  h1 {
+    font-family: 'Bamf';
+    text-align: center;
+    color: #black;
+    padding: 65px;
+    margin: bottom 55px;
   }
 
   h2 {
-    font-family: XtrusionBRK;
+   
     text-align: center;
-    color: #222;
+    color: black;
   }
 
   & > div {
+    
     text-align: center;
   }
 
@@ -70,18 +82,12 @@ export default styled.div`
   }
 
   form {
-    background: rgba(160,0,240,0.19);
-    background: -moz-linear-gradient(45deg, rgba(160,0,240,0.19) 0%, rgba(56,69,220,0.19) 14%, rgba(90,159,231,0.19) 35%, rgba(120,236,240,0.26) 53%, rgba(14,79,114,0.44) 96%, rgba(4,64,102,0.44) 100%);
-    background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(160,0,240,0.19)), color-stop(14%, rgba(56,69,220,0.19)), color-stop(35%, rgba(90,159,231,0.19)), color-stop(53%, rgba(120,236,240,0.26)), color-stop(96%, rgba(14,79,114,0.44)), color-stop(100%, rgba(4,64,102,0.44)));
-    background: -webkit-linear-gradient(45deg, rgba(160,0,240,0.19) 0%, rgba(56,69,220,0.19) 14%, rgba(90,159,231,0.19) 35%, rgba(120,236,240,0.26) 53%, rgba(14,79,114,0.44) 96%, rgba(4,64,102,0.44) 100%);
-    background: -o-linear-gradient(45deg, rgba(160,0,240,0.19) 0%, rgba(56,69,220,0.19) 14%, rgba(90,159,231,0.19) 35%, rgba(120,236,240,0.26) 53%, rgba(14,79,114,0.44) 96%, rgba(4,64,102,0.44) 100%);
-    background: -ms-linear-gradient(45deg, rgba(160,0,240,0.19) 0%, rgba(56,69,220,0.19) 14%, rgba(90,159,231,0.19) 35%, rgba(120,236,240,0.26) 53%, rgba(14,79,114,0.44) 96%, rgba(4,64,102,0.44) 100%);
-    background: linear-gradient(45deg, rgba(160,0,240,0.19) 0%, rgba(56,69,220,0.19) 14%, rgba(90,159,231,0.19) 35%, rgba(120,236,240,0.26) 53%, rgba(14,79,114,0.44) 96%, rgba(4,64,102,0.44) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a000f0', endColorstr='#044066', GradientType=1 );
-    max-width: 600px;
+    
+   
+    max-width: 850px;
     margin: 10px auto;
     border: 1px solid #ccc;
-   
+    
     padding: 20px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     border-radius: 3px;
@@ -94,9 +100,10 @@ export default styled.div`
       margin: 5px;
       position: relative;
       & > label {
-        color: #333;
+        color: #222;
         width: 110px;
         min-width: 60px;
+        min-height: 45px;
         font-size: 1em;
         line-height: 32px;
       }
@@ -105,7 +112,8 @@ export default styled.div`
       & > textarea {
         flex: 1;
         padding: 3px 5px;
-        font-size: 1em;
+        font-size: 2em;
+        color: #222
         margin-left: 15px;
         border: 1px solid #ccc;
         border-radius: 3px;
@@ -125,7 +133,7 @@ export default styled.div`
       & > span {
         line-height: 32px;
         margin-left: 10px;
-        color: #800;
+        color: #222;
         font-weight: bold;
       }
       & > button.remove {
