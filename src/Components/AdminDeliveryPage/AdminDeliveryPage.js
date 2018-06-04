@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Questions } from '../ScoreBoardPage/questionboard';
 import { CreateRaceCard } from '../CardViews/CreateRaceCard';
-import { gettingRace } from '../../Actions/adminDeliveryPage'
+import { gettingRace, nextQuestion } from '../../Actions/adminDeliveryPage'
 import './AdminDeliveryPage.css';
 
 
@@ -12,7 +12,7 @@ class QuestionCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            question: [],
+            lastQuestion: false,
             error: null,
         };
     }
@@ -27,6 +27,21 @@ class QuestionCard extends Component {
         this.setState({show: active});
     } 
 
+    nextQuestion = event => {
+        event.preventDefault();
+        let index = this.props.index + 1
+        let qlength = this.props.race.questions.length
+
+        if (index >= qlength) {
+            this.setState({
+                lastQuestion: true
+            })
+        } else {
+            this.props.nextQuestion();
+        }
+
+    }
+
     render() {
         const { question, isLoading, error } = this.state;
 
@@ -38,19 +53,19 @@ class QuestionCard extends Component {
             <div>
                 {!this.props.gotRace ? null : 
                 <div>
-                {this.props.race.questions.map(question => {
-                    return <div key={question.id}>
-                        <h3>{question.question}</h3>
+                {<div key={this.props.race.questions[this.props.index].id}>
+                        <h3>{this.props.race.questions[this.props.index].question}</h3>
                         <ol>
-                        {question.answers.map(answer => {
+                        {this.props.race.questions[this.props.index].answers.map(answer => {
                             return <li key={answer.id}>{answer.answer}</li>
                         })}
                         </ol>          
                     </div>
 
                      }
-                )}
-                </div> }
+                </div>}
+                <button onClick={this.nextQuestion}> Next Question</button>
+                {this.state.lastQuestion ? <div>You're all done!</div> : null}
             </div>
             // Potential setup for questions/answers? Need opinions
             // This is based from React-II Instagram Clone during Week 4
@@ -68,11 +83,6 @@ class QuestionCard extends Component {
         );
     }
 
-    nextQuestion = event => {
-        event.preventDefault();
-        const id = this.props.question.id;
-        this.props.nextQuestion(id);
-    }
 }
 
 //TODO add websocket to see how many students answered question
@@ -80,7 +90,8 @@ class QuestionCard extends Component {
 const mapStateToProps = state => {
     return {
         race: state.AdminDelivery.race,
-        gotRace: state.AdminDelivery.gotRace
+        gotRace: state.AdminDelivery.gotRace,
+        index: state.AdminDelivery.index
     }
 }
-export default connect(mapStateToProps, { gettingRace }) (QuestionCard);
+export default connect(mapStateToProps, { gettingRace, nextQuestion }) (QuestionCard);

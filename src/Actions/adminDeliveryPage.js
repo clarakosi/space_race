@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const GETTINGRACE = 'GETTINGRACE';
 export const GOTRACE = 'GOTRACE';
+export const NEXTQUESTION = 'NEXTQUESTION';
 export const ERROR = 'ERROR';
 
 // TODO: Change url for deployment
@@ -20,5 +21,11 @@ export const gettingRace = (id) => {
         dispatch({type: ERROR, payload: error})
         console.error(error)
       })
+  }
+}
+
+export const nextQuestion = () => {
+  return dispatch => {
+    dispatch({type: NEXTQUESTION})
   }
 }

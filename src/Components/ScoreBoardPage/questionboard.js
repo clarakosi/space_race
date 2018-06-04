@@ -1,25 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Button} from 'reactstrap';
+import { connect } from 'react-redux';
+import { gettingRace } from '../../Actions/adminDeliveryPage'
 
-const Questions = (props) => {
-  return (
-    <div className="Question_Board">
-      <h5>Question 1 of 12</h5>
-      <div className="question">
-        <h6>How many days are in a week?</h6>
+class Questions extends Component {
+  componentDidMount() {
+    // will dynamically be passed down
+    this.props.gettingRace(1)
+  }
+  render() {
+    return (
+      <div>
+        {!this.props.gotRace ? null :
+        <div className="Question_Board">
+          <h5>Question {this.props.index + 1} of {this.props.race.questions.length}</h5>
+          <div className="question">
+            <h6>{this.props.race.questions[this.props.index].question}</h6>
+          </div>
+          <br/>
+          <div className="answers">
+            <ul>
+              {this.props.race.questions[this.props.index].answers.map(answer => {
+                return <li>{answer.answer} <Button className="btn-sm" outline color="primary">Submit</Button></li>
+              })}
+            </ul>
+          </div>
+        </div> }
       </div>
-      <br/>
-      <div className="answers">
-        {/* will be mapped from data in database */}
-        <ul>
-          <li>A.   6 <Button className="btn-sm" outline color="primary">Submit</Button></li>
-          <li>B.   7 <Button className="btn-sm" outline color="primary">Submit</Button></li>
-          <li>C.   8 <Button className="btn-sm" outline color="primary">Submit</Button></li>
-          <li>D.   5 <Button className="btn-sm" outline color="primary">Submit</Button></li>
-        </ul>
-      </div>
-    </div>
-  );
+    );
+  }
 }
 
-export default Questions;
+const mapStateToProps = state => {
+  return {
+      race: state.AdminDelivery.race,
+      gotRace: state.AdminDelivery.gotRace,
+      index: state.AdminDelivery.index
+  }
+}
+export default connect(mapStateToProps, { gettingRace }) (Questions);
