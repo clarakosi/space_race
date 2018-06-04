@@ -25,7 +25,7 @@ import SignUp from "./Components/UserAccounts/SignUp";
 import StudentJoinRace from './Components/StudentJoinRacePage/StudentJoinRacePage'
 import SignIn from "./Components/UserAccounts/SignIn";
 
-import AdminDelivery from './Components/AdminDeliveryPage/AdminDeliveryPage'
+import AdminDelivery from './Components/AdminDeliveryPage/index';
 
 const store = createStore(
   rootReducer,

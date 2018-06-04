@@ -33,10 +33,10 @@ class QuestionCard extends Component {
             .catch(error => this.setState({ error, isLoading: false }));
     }
 
-    /* revealAnswerToggle = () => {
+     revealAnswerToggle = () => {
         const active = !this.state.show
         this.setState({show: active});
-    } */
+    } 
 
     render() {
         const { question, isLoading, error } = this.state;
@@ -57,6 +57,19 @@ class QuestionCard extends Component {
                     </div>
                 )}
             </div>
+            // Potential setup for questions/answers? Need opinions
+            // This is based from React-II Instagram Clone during Week 4
+            /*<div className="question-panel">
+                    {this.state.question ? this.state.question.map((question, i) => (
+                        <div className="question__wrapper" key={i}>
+                            <div className="question__user">{question.question}</div>
+                            <div className="question__text">{question.answer}</div>
+                            <div className="question__text">{question.answer}</div>
+                            <div className="question__text">{question.answer}</div>
+                            <div className="question__text">{question.answer}</div>
+                        </div>
+                    )) : "question failed to load"}
+                </div> */
         );
     }
 
