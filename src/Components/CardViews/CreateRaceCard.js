@@ -27,15 +27,13 @@ import  InlineEditTrigger  from './InlineEditTrigger';
 
       // Data format for teams.. can be sent as an array
       // [{
-      //   "quiz": 1,
       //   "name": "Awesome sauce",
       //   "color": "yellow",
       //   "mascot": "eagle"
       // },
       // {
-      //   "quiz": 1,
-      //   "name": "Awesome sauce",
-      //   "color": "yellow",
+      //   "name": "Awesome sauce x 2",
+      //   "color": "blue",
       //   "mascot": "eagle"
       // }]
       
