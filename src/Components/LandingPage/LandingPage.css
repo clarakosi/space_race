@@ -36,7 +36,7 @@ body {
   /* background-image: url("../images/maxresdefault.jpg"); */
   background-size: cover;
 
-  background-image: url('../images/maxresdefault.jpg');
+  background-image: url('./maxresdefault.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-color: rgb(1, 1, 7); 
@@ -48,7 +48,7 @@ body {
 @import './Font/font.css';
 .hero-image {
   /* The image used */
-  background-image: url("./cockpit6.png");
+  background-image: url("./cockpit.png");
   /* Set a specific height */
   height: 550px;
   

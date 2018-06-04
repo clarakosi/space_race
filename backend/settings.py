@@ -35,6 +35,9 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
 # Application definition
 
 INSTALLED_APPS = [
+    # django channels/websockets
+    'channels',
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,8 +57,6 @@ INSTALLED_APPS = [
     'api',
     'teams',
     'accounts',
-    # django channels/websockets
-    'channels',
 ]
 
 AUTH_USER_MODEL = 'accounts.CustomUser' 

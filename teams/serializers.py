@@ -1,6 +1,7 @@
 from rest_framework import serializers, viewsets
 
-from .models import Team, Quiz, Question, Answer, Student, CustomUser
+from .models import Team, Quiz, Question, Answer, Student
+from accounts.models import CustomUser
 from django.contrib.auth import login
 
 class UserSerializer(serializers.ModelSerializer):
