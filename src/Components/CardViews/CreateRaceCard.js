@@ -20,26 +20,26 @@ import  InlineEditTrigger  from './InlineEditTrigger';
       //sends the FormData object containing the form inputs to the api endpoint for the db to store.
       
       // Data format for quiz
-      {
-        "name": "name of quiz/race goes here",
-        "randomize_team": false
-      }
+      // {
+      //   "name": "name of quiz/race goes here",
+      //   "randomize_team": false
+      // }
 
       // Data format for teams.. can be sent as an array
-      [{
-        "quiz": 1,
-        "name": "Awesome sauce",
-        "color": "yellow",
-        "mascot": "eagle"
-      },
-      {
-        "quiz": 1,
-        "name": "Awesome sauce",
-        "color": "yellow",
-        "mascot": "eagle"
-      }]
+      // [{
+      //   "quiz": 1,
+      //   "name": "Awesome sauce",
+      //   "color": "yellow",
+      //   "mascot": "eagle"
+      // },
+      // {
+      //   "quiz": 1,
+      //   "name": "Awesome sauce",
+      //   "color": "yellow",
+      //   "mascot": "eagle"
+      // }]
       
-      this.createRace(quiz, teams); 
+      this.createRace(data.quiz, data.teams); 
     }
     
     render() {   

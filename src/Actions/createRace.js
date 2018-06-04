@@ -14,7 +14,7 @@ const teamUrl =  'http://127.0.0.1:8000/db/teams';
 
 export function createRace(quiz, teams) {
     return function(dispatch)  {
-        dispatch({ type: SEND_FORMDATA, payload: data });
+        dispatch({ type: SEND_FORMDATA, payload: {quiz, teams} });
                         /**please make sure this is the proper endpoint for the backend */
         const token = localStorage.getItem('Authorization')
         const request = fetch(quizUrl, { 
