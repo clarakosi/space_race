@@ -45,7 +45,7 @@ export function RandomColor(n) {
 export function RandomTeams(n) {
   teamsArray=[];
   for (let i =0; i < n; i++) {
-    let team = RandomTeams();
+    let team = Randomize();
     teamsArray.push(team);
   }
   return teamsArray;
