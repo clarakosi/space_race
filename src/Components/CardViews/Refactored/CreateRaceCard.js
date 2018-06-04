@@ -7,8 +7,9 @@ import { FieldArray } from 'react-final-form-arrays'
 import { OnChange } from 'react-final-form-listeners'
 import Icon from '../icons/Icon';
 import { ICONS } from '../icons/Iconstants';
+import { connect } from 'react-redux';
 // import { ColorMenu } from './colormenu/ColorMenu';
-
+import { createRace }  from '../../../Actions';
 /**
  * 
  * for local dev testing*********************************************************/
@@ -35,15 +36,11 @@ const onSubmit = async values => {
       touched && error ? <span>{error}</span> : null
     }
   />
-)
+);
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
-  
-const onSubmit = async values => {
-  await sleep(300)
-  window.alert(JSON.stringify(values, 0, 2))
-}
+
+
 const required = value => (value ? undefined : 'Required')
 const WhenFieldChanges = ({ field, becomes, set, to }) => (
     <Field name={set} subscription={{}}>
@@ -63,6 +60,8 @@ const WhenFieldChanges = ({ field, becomes, set, to }) => (
   )
   
 const CreateRaceCard = () => (
+  
+  
   <Styles>
     <h1>🏁 Create Race 🏁</h1>
     <Form
@@ -177,4 +176,13 @@ const CreateRaceCard = () => (
       }}
     /> 
   </Styles>
-export default CreateRaceCard;
+    )
+
+      function mapStateToProps(state) {
+      return {
+        // TeamsArray : state.teamsArray,
+        FormData: state.FormData
+      }
+    }
+    
+      export default connect(mapStateToProps, { createRace })(CreateRaceCard);
