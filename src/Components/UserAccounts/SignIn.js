@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import{ Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { loggingIn } from '../../Actions/LogIn'
 
 class SignIn extends Component {
     constructor(props) {
@@ -21,6 +23,11 @@ class SignIn extends Component {
 
     handleSubmit(e){
         e.preventDefault();
+        const data = {
+            username: this.state.username,
+            password: this.state.password
+        }
+        this.props.loggingIn(data)
     }
     
     render() {
@@ -50,4 +57,10 @@ class SignIn extends Component {
         );
     }
 }
-export default SignIn;
+
+const mapStateToProps = state => {
+    return {
+        loggedIn: state.LogIn.loggedIn
+    }
+}
+export default connect(mapStateToProps, { loggingIn })(SignIn);

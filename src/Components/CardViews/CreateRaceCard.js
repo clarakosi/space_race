@@ -11,14 +11,33 @@ import  InlineEditTrigger  from './InlineEditTrigger';
 
     constructor( props ) {
       super( props );
-      this.handleSubmit = this.handleSubmit.bind(this);
-      this.handleRandom = this.handleRandom.bind(this)
+      // this.handleSubmit = this.handleSubmit.bind(this);
+      // this.handleRandom = this.handleRandom.bind(this)
     }
     handleSubmit(event) {
       event.preventDefault();
       const data = new FormData(event.target);
       //sends the FormData object containing the form inputs to the api endpoint for the db to store.
-      this.createRace(data); 
+      
+      // Data format for quiz
+      // {
+      //   "name": "name of quiz/race goes here",
+      //   "randomize_team": false
+      // }
+
+      // Data format for teams.. can be sent as an array
+      // [{
+      //   "name": "Awesome sauce",
+      //   "color": "yellow",
+      //   "mascot": "eagle"
+      // },
+      // {
+      //   "name": "Awesome sauce x 2",
+      //   "color": "blue",
+      //   "mascot": "eagle"
+      // }]
+      
+      this.createRace(data.quiz, data.teams); 
     }
     
     render() {   

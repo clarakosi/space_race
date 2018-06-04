@@ -180,6 +180,7 @@ CORS_ORIGIN_WHITELIST = (
     config('CORS')
 )
 
+# CORS_ALLOW_CREDENTIALS = True
 if not DEBUG:
     django_heroku.settings(locals())
 
@@ -195,11 +196,11 @@ STATICFILES_DIRS = (
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-""" Ignore this for now. May need it later.
+# """ Ignore this for now. May need it later.
 
 # Configure the JWTs to expire after 1 hour, and allow users to refresh near-expiration tokens
 JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=4),
     'JWT_ALLOW_REFRESH': True,
 }
 
@@ -217,14 +218,14 @@ REST_USE_JWT = True
 
 
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-    ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    )
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework.authentication.TokenAuthentication',
+#     ),
+#     'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.IsAuthenticated',
+#     )
+# }
 
 # REST_FRAMEWORK = {
 #    'DEFAULT_PERMISSION_CLASSES': [
@@ -234,7 +235,6 @@ REST_FRAMEWORK = {
 # }
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
-"""
 
 if not DEBUG:
     django_heroku.settings(locals())

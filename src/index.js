@@ -10,7 +10,7 @@ import thunk from "redux-thunk";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import logger from "redux-logger";
-import reducers from "./Reducers";
+import rootReducer from "./Reducers/index";
 import ReduxPromise from "redux-promise";
 import App from "./App";
 import ScoreBoard from "./Components/ScoreBoardPage/index";
@@ -28,7 +28,7 @@ import SignIn from "./Components/UserAccounts/SignIn";
 import AdminDelivery from './Components/AdminDeliveryPage/AdminDeliveryPage'
 
 const store = createStore(
-  reducers,
+  rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(thunk, ReduxPromise, logger)
 );

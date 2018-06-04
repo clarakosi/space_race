@@ -1,4 +1,6 @@
 from rest_framework import serializers, viewsets
+from django.utils.text import slugify
+import itertools
 
 from .models import Team, Quiz, Question, Answer, Student
 from accounts.models import CustomUser
@@ -12,13 +14,13 @@ class UserSerializer(serializers.ModelSerializer):
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
-        fields = ('question_id', 'id', 'answer', 'is_correct', )
+        fields = ('question', 'id', 'answer', 'is_correct', )
 
 class QuestionSerializer(serializers.ModelSerializer):
-    answers = AnswerSerializer(many=True)
+    answers = AnswerSerializer(many=True, required=False)
     class Meta:
         model = Question
-        fields = ('quiz_id','id', 'question', 'shuffle_answers','number_of_responses', 'answers')
+        fields = ('quiz','id', 'question', 'shuffle_answers','number_of_responses', 'answers')
 
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -37,77 +39,46 @@ class TeamSerializer(serializers.ModelSerializer):
     students = StudentSerializer(many=True, required=False)
     class Meta:
         model = Team
-        fields = ('id', 'name', 'score', 'students')
+        fields = ('id', 'name', 'color', 'mascot', 'score', 'quiz_id', 'students')
 
 class QuizSerializer(serializers.HyperlinkedModelSerializer):
-    teams = TeamSerializer(many=True)
-    questions = QuestionSerializer(many=True)
+    teams = TeamSerializer(many=True, required=False)
+    questions = QuestionSerializer(many=True, required=False)
 
     class Meta:
         model = Quiz
-        fields = ('id', 'name', 'randomize_team', 'number_of_participants', 'teams', 'questions')
+        fields = ('id', 'name', 'randomize_team', 'number_of_participants','slug', 'teams', 'questions')
 
+
+""" serializers for CRUD operations """
+
+
+class QuizModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Quiz
+        fields = ('id', 'name', 'randomize_team', 'number_of_participants', 'slug')
+    
     def create(self, validated_data):
-        """Override create to associate current user with Quiz creator and add fields"""
+        """ Override create to build a unique slug """
 
         user = self.context['request'].user
-        teams_data = validated_data.pop('teams')
-        questions_data = validated_data.pop('questions')
+        max_length = Quiz._meta.get_field('slug').max_length
+        validated_data['slug'] = url = slugify(validated_data['name'])[:max_length]
+
+        for i in itertools.count(1):
+            if not Quiz.objects.filter(slug=validated_data['slug']).exists():
+                break
+            validated_data['slug'] = '%s-%d' % (url[:max_length - len(str(i)) - 1], i)
+
         quiz = Quiz.objects.create(user=user, **validated_data)
-
-        for team_data in teams_data:
-            Team.objects.create(quiz=quiz, **team_data)
-        
-        for question_data in questions_data:
-            answers_data = question_data.pop('answers')
-            question = Question.objects.create(quiz=quiz, **question_data)
-            for answer_data in answers_data:
-                Answer.objects.create(question=question, **answer_data)
-
         return quiz
 
-    def update(self, instance, validated_data):
-        teams_data = validated_data.pop('teams')
-        teams_list = (instance.teams).all()
-        teams_list = list(teams_list)
-
-        questions_data = validated_data.pop('questions')
-        questions_list = (instance.questions).all()
-        questions_list = list(questions_list)        
-
-        instance.name = validated_data.get('name', instance.name)
-        instance.randomize_team = validated_data.get('randomize_team', instance.randomize_team)
-        instance.number_of_participants = validated_data.get('number_of_participants', instance.number_of_participants)
-        instance.save()
-
-        for team_data in teams_data:
-            team = teams_list.pop(0)
-            team.name = team_data.get('name', team.name)
-            team.score = team_data.get('score', team.score)
-            team.save()
-        
-        for question_data in questions_data:
-            question = questions_list.pop(0)
-            answers_data = question_data.pop('answers')
-            answers_list = (question.answers).all()
-            answers_list = list(answers_list)
-
-            question.question = question_data.get('question', question.question)
-            question.shuffle_answers = question_data.get('shuffle_answers', question.shuffle_answers)
-            question.save()
-
-            for answer_data in answers_data:
-                answer = answers_list.pop(0)
-                answer.answer  = answer_data.get('answer', answer.answer)
-                answer.is_correct = answer_data.get('is_correct', answer.is_correct)
-                answer.save()
-
-        return instance
-
-
-
-
-class StudentSerializer(serializers.ModelSerializer):
+class TeamModelSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Student
-        fields = ('id', 'team', 'name')
+        model = Team
+        fields = ('id', 'quiz', 'name', 'color', 'mascot', 'score')
+
+class QuestionModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Question
+        fields = ('id', 'quiz', 'question', 'shuffle_answers','number_of_responses') 
