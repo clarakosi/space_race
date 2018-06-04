@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Progress } from 'reactstrap';
 import { Questions } from '../ScoreBoardPage/questionboard';
 import { CreateRaceCard } from '../CardViews/CreateRaceCard';
 import './AdminDeliveryPage.css';
@@ -16,8 +17,24 @@ class QuestionCard extends Component {
             question: [],
             isLoading: false,
             error: null,
-        };
+           // isHidden: true
+        }
     }
+    /*toggleHidden () {
+        this.setState({
+            isHidden: !this.state.isHidden
+        })
+    }
+    render () { 
+        return (
+            <div>
+                <button onClick={this.toggleHidden.bind(this)} >
+                Show answer
+                </button>
+                {!this.state.isHidden && <Child />}
+            </div>
+        )
+    } */
 
     componentDidMount() {
         this.setState({ isLoading: true });
@@ -72,14 +89,53 @@ class QuestionCard extends Component {
                 </div> */
         );
     }
+ 
+    /* Next Question Button Options Start Here */
 
+  /* <button onClick={ this.nextQuestion }> Next Question </button>
+    
+     -------- This Section Allows for going to the next or previous section --------
+    nextQuestion: function(e) {
+        e.preventDefault()
+        this.props.nextStep()
+    } 
+    
+    nextStep: function() {
+        this.setSTate({
+            step : this.state.step + 1
+        })
+    },
+
+    previousStep: function() {
+        this.setState({
+            step : this.state.step - 1
+        })
+    }
+    
+    */
+   // -------- This section will just go to the next question --------
     nextQuestion = event => {
         event.preventDefault();
         const id = this.props.question.id;
-        this.props.nextQuestion(id);
+        this.props.nextQuestion(id + 1);
     }
+
+    /* Next Question Button Options End Here */
 }
 
-//TODO add websocket to see how many students answered question
+/* ------- Websocket showing how many have answered question ------- */
+const progressBar = (props) => {
+    return (
+    <div>
+        <div className="text-center">Progress</div>
+        <Progress multi>
+            <Progress animated value={2 * 5}>Team 1 </Progress>
+            <Progress animated color="success" value="25">Team 2 </Progress>
+            <Progress animated color="info" value={50}>Team 3 </Progress>
+            <Progress animated color="warning" value={75}>Team 4 </Progress>
+        </Progress>
+    </div>
+    );
+}
 
 export default QuestionCard;
