@@ -18,7 +18,28 @@ import  InlineEditTrigger  from './InlineEditTrigger';
       event.preventDefault();
       const data = new FormData(event.target);
       //sends the FormData object containing the form inputs to the api endpoint for the db to store.
-      this.createRace(data); 
+      
+      // Data format for quiz
+      {
+        "name": "name of quiz/race goes here",
+        "randomize_team": false
+      }
+
+      // Data format for teams.. can be sent as an array
+      [{
+        "quiz": 1,
+        "name": "Awesome sauce",
+        "color": "yellow",
+        "mascot": "eagle"
+      },
+      {
+        "quiz": 1,
+        "name": "Awesome sauce",
+        "color": "yellow",
+        "mascot": "eagle"
+      }]
+      
+      this.createRace(quiz, teams); 
     }
     
     render() {   

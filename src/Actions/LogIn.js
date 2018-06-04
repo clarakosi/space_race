@@ -16,7 +16,7 @@ export const loggingIn = (data) => {
     axios.post(url, data)
       .then(response => {
         // console.log(response.headers.get('set-cookie'))
-        let token = `Token ${response.data.key}`
+        let token = `JWT ${response.data.token}`
         window.localStorage.setItem('Authorization', token)
         dispatch({type: LOGGEDIN})
       })
