@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
-import ShuffleReducer from './ShuffleArrayReducer';
+import RTeamReducer from './RandomTeamReducer';
+import RColorReducer from './RandomColorReducer';
 import CreateReducer from './CreateRaceReducer';
 
 const RootReducers = combineReducers({
-    TeamsArray: ShuffleReducer,
-    FormData: CreateReducer
+    FormData: CreateReducer,
+    RandomTeamData: RTeamReducer,
+    RandomColorData: RColorReducer,
 })
 
 export default RootReducers;
