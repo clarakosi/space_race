@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Questions } from '../ScoreBoardPage/questionboard';
 import { CreateRaceCard } from '../CardViews/CreateRaceCard';
+import { gettingRace } from '../../Actions/adminDeliveryPage'
 import './AdminDeliveryPage.css';
 
 
-const API = 'http://127.0.0.1:8000/api/<:id>/';
-const DEFAULT_QUERY = 'redux';
 
 /* Admin Delivery Page, to see the current question, answer choices, correct answer(initially hidden) */
 class QuestionCard extends Component {
@@ -14,23 +13,13 @@ class QuestionCard extends Component {
         super(props);
         this.state = {
             question: [],
-            isLoading: false,
             error: null,
         };
     }
 
     componentDidMount() {
-        this.setState({ isLoading: true });
-        fetch(API + DEFAULT_QUERY)
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Something went wrong ...');
-                }
-            })
-            .then(data => this.setState({ question: data.question, isLoading: false }))
-            .catch(error => this.setState({ error, isLoading: false }));
+        // id will be dynamically passed down
+        this.props.gettingRace(1);
     }
 
      revealAnswerToggle = () => {
@@ -45,17 +34,23 @@ class QuestionCard extends Component {
             return <p>{error.message}</p>;
         }
 
-        if (isLoading) {
-            return <p>Loading ...</p>;
-        }
-
         return (
             <div>
-                {question.map(question =>
-                <div key={question.objectID}>
-                    <a href={question.url}>{question.title}</a>
+                {!this.props.gotRace ? null : 
+                <div>
+                {this.props.race.questions.map(question => {
+                    return <div key={question.id}>
+                        <h3>{question.question}</h3>
+                        <ol>
+                        {question.answers.map(answer => {
+                            return <li key={answer.id}>{answer.answer}</li>
+                        })}
+                        </ol>          
                     </div>
+
+                     }
                 )}
+                </div> }
             </div>
             // Potential setup for questions/answers? Need opinions
             // This is based from React-II Instagram Clone during Week 4
@@ -82,4 +77,10 @@ class QuestionCard extends Component {
 
 //TODO add websocket to see how many students answered question
 
-export default QuestionCard;
+const mapStateToProps = state => {
+    return {
+        race: state.AdminDelivery.race,
+        gotRace: state.AdminDelivery.gotRace
+    }
+}
+export default connect(mapStateToProps, { gettingRace }) (QuestionCard);
