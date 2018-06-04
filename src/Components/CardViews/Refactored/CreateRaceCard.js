@@ -5,8 +5,8 @@ import { Form, Field, FormSpy } from 'react-final-form'
 import arrayMutators from 'final-form-arrays'
 import { FieldArray } from 'react-final-form-arrays'
 import { OnChange } from 'react-final-form-listeners'
-import Icon from './Icon';
-import { ICONS } from './Iconstants';
+import Icon from './icons/Icon';
+import { ICONS } from './icons/Iconstants';
 // import { ColorMenu } from './colormenu/ColorMenu';
 
 /**
