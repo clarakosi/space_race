@@ -13,10 +13,10 @@ const url = 'http://127.0.0.1:8000/api/v1/rest-auth/login/'
 export const loggingIn = (data) => {
   return dispatch => {
     dispatch({type: LOGGINGIN})
-    axios.post(url, data, {withCredentials: true})
+    axios.post(url, data)
       .then(response => {
         // console.log(response.headers.get('set-cookie'))
-        let token = `Token response.data.key`
+        let token = `Token ${response.data.key}`
         window.localStorage.setItem('Authorization', token)
         dispatch({type: LOGGEDIN})
       })

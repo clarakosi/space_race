@@ -180,6 +180,7 @@ CORS_ORIGIN_WHITELIST = (
     config('CORS')
 )
 
+# CORS_ALLOW_CREDENTIALS = True
 if not DEBUG:
     django_heroku.settings(locals())
 
