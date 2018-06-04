@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Col, Container, Row, Nav, NavItem, NavLink } from 'reactstrap';
 import FontAwesome from 'react-fontawesome';
 import {Button} from 'reactstrap';
-
-import './LandingPage.css';
+// import 'bootstrap/dist/css/bootstrap.css';
+// import './LandingPage.css';
 class Footer extends Component {
   render() {
     return (
@@ -24,12 +24,14 @@ class Footer extends Component {
     {/*<-----------------can add social icon/link here like facebook instagram etc----------------------->*/}
                 <NavItem>
                   <NavLink href="" target="_blank">
-                    <FontAwesome name="" className="social-icon" size="3x" />
+                  <div className="stripe">
+                    <img  />
+                    </div> 
                   </NavLink>
                 </NavItem>
                 <NavItem>                                            
                 
-                    <Button >BUY NOW</Button>
+                    <Button style={{height: '44px', marginBottom: '10px', backgroundColor: '#5b7bc2' }}>BUY NOW</Button>
                 
                 </NavItem>
               </Nav>
@@ -42,9 +44,7 @@ class Footer extends Component {
     {/*<------------------- add contact email later ----------->*/}
                     <p className="name">contact@somecontact.com</p>    
                   </div>
-                  <div className="right">
-                    <p className="domain">our heroku domain</p>
-                  </div>
+                
                 </div>
               </Row>
               <Row>
@@ -53,10 +53,11 @@ class Footer extends Component {
               </Row>
             </Col>
             <Col sm="5" xs="12">
-              <h6>About</h6>
+              <h6>"A FUN GAME FOR STUDENTS AND TEACHERS ALIKE!"</h6>
               <p className="about-text">
     {/*<-------------add a brif description of game here or link or just take this out ----------*/}
-               Tell about game here
+               <h5>"This is a must have for all classrooms.  It is a great educational tool to get students to think and learn while having fun!!" <i>Mrs. T, 5th Grade Teacher</i></h5>
+               
             </p>
             </Col>
           </Row>

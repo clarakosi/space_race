@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler,
   NavItem, NavLink } from 'reactstrap';
-
-  import './LandingPage.css';
+import { Textfit } from 'react-textfit';
+ 
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -21,12 +21,16 @@ class Header extends Component {
   render() {
     return (
       <div className="Header">
-        <Navbar color="faded" light toggleable fixed="top">
+        <Navbar color="inverse" inverse toggleable fixed="top">
           <NavbarToggler right onClick={this.toggle} />
           <NavbarBrand href="/">
             <div className="SpaceRace">
               <p className="name">SpaceRace</p>
-              <p className="title">Race Your Friends Using Your Favorite Cohort!!</p>
+              <div className="title">
+              <Textfit  mode="single">
+              CREATE TEAMS AND RACE AGAINST YOUR FRIENDS!!
+              </Textfit>
+              </div>
             </div>
           </NavbarBrand>
           <Collapse isOpen={this.state.isOpen} navbar>
