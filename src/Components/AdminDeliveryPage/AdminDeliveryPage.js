@@ -3,19 +3,20 @@ import { connect } from 'react-redux';
 import { Progress } from 'reactstrap';
 import { Questions } from '../ScoreBoardPage/questionboard';
 import { CreateRaceCard } from '../CardViews/CreateRaceCard';
+import { gettingRace, nextQuestion } from '../../Actions/adminDeliveryPage'
+import ScoreBoard from '../ScoreBoardPage/index'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './AdminDeliveryPage.css';
 
-
-const API = 'http://127.0.0.1:8000/api/<:id>/';
-const DEFAULT_QUERY = 'redux';
+/* Progress bar will get data from this.props.race.questions[this.props.index] DIVIDED BY this.props.race.number_of_participants
+*/
 
 /* Admin Delivery Page, to see the current question, answer choices, correct answer(initially hidden) */
 class QuestionCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            question: [],
-            isLoading: false,
+            lastQuestion: false,
             error: null,
            // isHidden: true
         }
@@ -36,24 +37,29 @@ class QuestionCard extends Component {
         )
     } */
 
-    componentDidMount() {
-        this.setState({ isLoading: true });
-        fetch(API + DEFAULT_QUERY)
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Something went wrong ...');
-                }
-            })
-            .then(data => this.setState({ question: data.question, isLoading: false }))
-            .catch(error => this.setState({ error, isLoading: false }));
-    }
+    // componentDidMount() {
+    //     // this.props.gettingRace(this.props.match.params.slug)
+    // }
 
      revealAnswerToggle = () => {
         const active = !this.state.show
         this.setState({show: active});
     } 
+
+    nextQuestion = event => {
+        event.preventDefault();
+        let index = this.props.index + 1
+        let qlength = this.props.race.questions.length
+
+        if (index >= qlength) {
+            this.setState({
+                lastQuestion: true
+            })
+        } else {
+            this.props.nextQuestion();
+        }
+
+    }
 
     render() {
         const { question, isLoading, error } = this.state;
@@ -62,17 +68,23 @@ class QuestionCard extends Component {
             return <p>{error.message}</p>;
         }
 
-        if (isLoading) {
-            return <p>Loading ...</p>;
-        }
-
         return (
             <div>
-                {question.map(question =>
-                <div key={question.objectID}>
-                    <a href={question.url}>{question.title}</a>
+                {!this.props.gotRace ? null : 
+                <div>
+                    {<div key={this.props.race.questions[this.props.index].id}>
+                        <h3>{this.props.race.questions[this.props.index].question}</h3>
+                        <ol>
+                        {this.props.race.questions[this.props.index].answers.map(answer => {
+                            return <li key={answer.id}>{answer.answer}</li>
+                        })}
+                        </ol>          
                     </div>
-                )}
+
+                    }
+                </div>}
+                <button onClick={this.nextQuestion}> Next Question</button>
+                {this.state.lastQuestion ? <div>You're all done!</div> : null}
             </div>
             // Potential setup for questions/answers? Need opinions
             // This is based from React-II Instagram Clone during Week 4
@@ -138,4 +150,11 @@ const progressBar = (props) => {
     );
 }
 
-export default QuestionCard;
+const mapStateToProps = state => {
+    return {
+        race: state.AdminDelivery.race,
+        gotRace: state.AdminDelivery.gotRace,
+        index: state.AdminDelivery.index
+    }
+}
+export default connect(mapStateToProps, { gettingRace, nextQuestion }) (QuestionCard);

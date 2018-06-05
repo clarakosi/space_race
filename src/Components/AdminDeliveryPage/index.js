@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
+import { gettingRace } from '../../Actions/adminDeliveryPage'
 import QuestionCard from './AdminDeliveryPage';
 import './AdminDeliveryPage.css';
 
 class AdminDelivery extends Component {
+    componentDidMount() {
+        this.props.gettingRace(this.props.match.params.slug)
+    }
     render() {
         return (
             <div>
@@ -15,4 +20,10 @@ class AdminDelivery extends Component {
     }
 }
 
-export default AdminDelivery;
+const mapStateToProps = state => {
+    return {
+        state
+    }
+}
+
+export default connect(mapStateToProps, {gettingRace})(AdminDelivery);

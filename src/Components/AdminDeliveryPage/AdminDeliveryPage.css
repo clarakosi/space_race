@@ -6,6 +6,10 @@ body {
   .container {
     margin-top: 15px;
   }
+
+  li {
+    list-style-type: upper-latin;
+  }
   
   .option-card {
     height: 50px;
