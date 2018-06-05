@@ -31,20 +31,22 @@ class QuizConsumer(WebsocketConsumer):
   # Receive message from WebSocket
   def receive(self, text_data):
     text_data_json = json.loads(text_data)
-    answer = Answer.objects.get(id=text_data_json['answer_id'])
-    team = Team.objects.get(id=text_data_json['team'])
-    question = Question.objects.get(id=text_data_json['question_id'])
-    student = Student.objects.get(id=text_data_json['id'])
 
-    Student_Response.objects.create(student=student, response=answer)
+    if 'answer_id' in text_data_json:
+      answer = Answer.objects.get(id=text_data_json['answer_id'])
+      team = Team.objects.get(id=text_data_json['team'])
+      question = Question.objects.get(id=text_data_json['question_id'])
+      student = Student.objects.get(id=text_data_json['id'])
 
-    if answer.is_correct:
-      team.score = team.score + 1
-      team.save()
-    question.number_of_responses = question.number_of_responses + 1
-    question.save()
+      Student_Response.objects.create(student=student, response=answer)
 
-    quiz = QuizSerializer(Quiz.objects.get(id=text_data_json['quiz_id']))
+      if answer.is_correct:
+        team.score = team.score + 1
+        team.save()
+      question.number_of_responses = question.number_of_responses + 1
+      question.save()
+
+    quiz = QuizSerializer(Quiz.objects.get(slug=text_data_json['slug']))
 
     # Send message to quiz group
     async_to_sync(self.channel_layer.group_send)(

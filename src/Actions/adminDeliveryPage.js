@@ -1,31 +1,62 @@
 import axios from 'axios';
+import { WebSocketBridge } from 'django-channels'
 
 export const GETTINGRACE = 'GETTINGRACE';
 export const GOTRACE = 'GOTRACE';
 export const NEXTQUESTION = 'NEXTQUESTION';
+
+export const SENDINGANSWER = 'SENDINGANSWER'
+
 export const ERROR = 'ERROR';
 
-// TODO: Change url for deployment
-const url = 'http://127.0.0.1:8000/db';
+const webSocketBridge = new WebSocketBridge();
 
-export const gettingRace = (id) => {
+// TODO: Change url for deployment
+const url = 'ws://127.0.0.1:8000/ws/quiz';
+
+export const gettingRace = (slug) => {
   return dispatch => {
     dispatch({type: GETTINGRACE})
-    let token = window.localStorage.getItem('Authorization')
-    axios.get(`${url}/${id}/`, {headers: {Authorization: token}})
-      .then(response => {
-        dispatch({type: GOTRACE, payload: response.data})
-        console.log(response.data)
-      })
-      .catch(error => {
-        dispatch({type: ERROR, payload: error})
-        console.error(error)
-      })
+    // let token = window.localStorage.getItem('Authorization')
+    // axios.get(`${url}/${slug}/`)
+    //   .then(response => {
+    //     dispatch({type: GOTRACE, payload: response.data})
+    //     console.log(response.data)
+    //   })
+    //   .catch(error => {
+    //     dispatch({type: ERROR, payload: error})
+    //     console.error(error)
+    //   })
+    webSocketBridge.connect(`${url}/${slug}/`);
+    let slugObject = { slug: slug}
+    webSocketBridge.socket.addEventListener('open', function() {
+      console.log("Connected to WebSocket");
+      webSocketBridge.send(slugObject)
+    })
+    webSocketBridge.listen(function(action, stream) {
+      console.log(action, stream);
+      dispatch({type: GOTRACE, payload: action})
+    })
   }
 }
 
 export const nextQuestion = () => {
   return dispatch => {
     dispatch({type: NEXTQUESTION})
+  }
+}
+
+export const sendingAnswer = (data) => {
+  return dispatch => {
+    dispatch({type: SENDINGANSWER})
+    let student = JSON.parse(localStorage.getItem('student'))
+    let allData = {...student, ...data}
+    console.log('all data', allData)
+    webSocketBridge.send(allData)
+
+    webSocketBridge.listen(function(action, stream) {
+      console.log(action, stream);
+      dispatch({type: GOTRACE, payload: action})
+    })
   }
 }

@@ -4,9 +4,22 @@ import { connect } from 'react-redux';
 import { gettingRace } from '../../Actions/adminDeliveryPage'
 
 class Questions extends Component {
-  componentDidMount() {
-    // will dynamically be passed down
-    this.props.gettingRace(1)
+  constructor(props) {
+    super(props);
+    this.state = {
+      answer: false,
+    }
+  }
+
+  answerHandler = event => {
+    event.preventDefault();
+    this.setState({answer: true})
+    let data = {
+      slug: this.props.slug,
+      answer_id: Number(event.target.value),
+      question_id: this.props.race.questions[this.props.index].id
+    }
+    this.props.handleAnswerFunc(data)
   }
   render() {
     return (
@@ -21,7 +34,7 @@ class Questions extends Component {
           <div className="answers">
             <ul>
               {this.props.race.questions[this.props.index].answers.map(answer => {
-                return <li>{answer.answer} <Button className="btn-sm" outline color="primary">Submit</Button></li>
+                return <li key={answer.id}>{answer.answer} <Button disabled={this.state.answer} className="btn-sm" outline color="primary" onClick={this.answerHandler} value={answer.id}>Submit</Button></li>
               })}
             </ul>
           </div>
@@ -31,11 +44,4 @@ class Questions extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-      race: state.AdminDelivery.race,
-      gotRace: state.AdminDelivery.gotRace,
-      index: state.AdminDelivery.index
-  }
-}
-export default connect(mapStateToProps, { gettingRace }) (Questions);
+export default Questions;

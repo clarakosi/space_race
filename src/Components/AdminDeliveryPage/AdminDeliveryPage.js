@@ -3,9 +3,12 @@ import { connect } from 'react-redux';
 import { Questions } from '../ScoreBoardPage/questionboard';
 import { CreateRaceCard } from '../CardViews/CreateRaceCard';
 import { gettingRace, nextQuestion } from '../../Actions/adminDeliveryPage'
+import ScoreBoard from '../ScoreBoardPage/index'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './AdminDeliveryPage.css';
 
-
+/* Progress bar will get data from this.props.race.questions[this.props.index] DIVIDED BY this.props.race.number_of_participants
+*/
 
 /* Admin Delivery Page, to see the current question, answer choices, correct answer(initially hidden) */
 class QuestionCard extends Component {
@@ -17,10 +20,9 @@ class QuestionCard extends Component {
         };
     }
 
-    componentDidMount() {
-        // id will be dynamically passed down
-        this.props.gettingRace(1);
-    }
+    // componentDidMount() {
+    //     // this.props.gettingRace(this.props.match.params.slug)
+    // }
 
      revealAnswerToggle = () => {
         const active = !this.state.show
@@ -53,7 +55,7 @@ class QuestionCard extends Component {
             <div>
                 {!this.props.gotRace ? null : 
                 <div>
-                {<div key={this.props.race.questions[this.props.index].id}>
+                    {<div key={this.props.race.questions[this.props.index].id}>
                         <h3>{this.props.race.questions[this.props.index].question}</h3>
                         <ol>
                         {this.props.race.questions[this.props.index].answers.map(answer => {
@@ -62,7 +64,7 @@ class QuestionCard extends Component {
                         </ol>          
                     </div>
 
-                     }
+                    }
                 </div>}
                 <button onClick={this.nextQuestion}> Next Question</button>
                 {this.state.lastQuestion ? <div>You're all done!</div> : null}

@@ -15,15 +15,13 @@ class ListQuiz(generics.ListAPIView):
         return Quiz.objects.filter(user=user)
 
 class DetailQuiz(generics.RetrieveAPIView):
+    queryset = Quiz.objects.all()
     serializer_class = QuizSerializer
 
-    def get_queryset(self):
-        user = self.request.user
-        if user.is_anonymous:
-            return Quiz.objects.none()
-        elif user.is_superuser:
-            return Quiz.objects.all()
-        return Quiz.objects.filter(user=user)
+class DetailQuizSlug(generics.RetrieveAPIView):
+    queryset = Quiz.objects.all()
+    serializer_class = QuizSerializer
+    lookup_field = 'slug'
 
 class ListQuizModel(generics.ListCreateAPIView):
     serializer_class = QuizModelSerializer

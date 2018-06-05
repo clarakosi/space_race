@@ -1,88 +1,47 @@
 import React, { Component } from 'react';
-import './App.css';
-import { WebSocketBridge } from 'django-channels'
+import { Route, Redirect, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createStudent } from './Actions/studentPage';
 
-let quizName = 'testing1'
+import ScoreBoard from "./Components/ScoreBoardPage/index";
+import LandingPage from "./Components/LandingPage/LandingPage";
 
-const webSocketBridge = new WebSocketBridge();
-// webSocketBridge.connect('ws://127.0.0.1:8000/ws/quiz/testing1/');
-// webSocketBridge.listen(function(action, stream) {
-//   console.log(action, stream);
-// });
+import StudentJoinRacePage from "./Components/StudentJoinRacePage/StudentJoinRacePage";
+import ShowRaceCard from "./Components/CardViews/ShowRaceCard";
+import CreateRaceCard from "./Components/CardViews/CreateRaceCard";
 
-// webSocketBridge.onmessage = function(e) {
-//   var data = JSON.parse(e.data);
-//   var message = data['message'];
-//   console.log(message)
-// };
-webSocketBridge.onclose = function(e) {
-  console.log(e)
-}
+import Settings from "./Components/SettingsPage/SettingsPage";
+import SignUp from "./Components/UserAccounts/SignUp";
+import StudentJoinRace from './Components/StudentJoinRacePage/StudentJoinRacePage'
+import SignIn from "./Components/UserAccounts/SignIn";
+
+import AdminDelivery from './Components/AdminDeliveryPage/index';
+
 class App extends Component {
-  state = {
-    teams: [], 
-    message: ''
-  };
-
-  // async componentDidMount() {
-  //   try {
-  //     // for deployment in local change to http://127.0.0.1:8000/api/
-  //     const res = await fetch('/api/');
-  //     const teams = await res.json();
-  //     this.setState({
-  //       teams
-  //     });
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
-
-  // async componentDidMount() {
-  //   try {
-  //     webSocketBridge.connect('ws://127.0.0.1:8000/ws/quiz/testing1/');
-  //     webSocketBridge.listen(function(action, stream) {
-  //       console.log(action, stream);
-  //     });
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
-
-  messageChangeHandler = event => {
-    event.preventDefault();
-
-    const {name, value} = event.target
-    this.setState({
-      [name]: value
-    })
-  }
-
-  submitMessage = (event) => {
-    event.preventDefault();
-
-  
-    console.log('message being sent', this.state.message)
-    webSocketBridge.send(JSON.stringify({
-      'message': this.state.message
-    }));
-  }
   render() {
     return (
-
-  
       <div>
-        {/* {this.state.teams.map(item => (
-          <div key={item.id}>
-            <h1>{item.title}</h1>
-          </div>
-        ))} */}
-        <input type="text" size="100" value={this.state.message} name='message' onChange={this.messageChangeHandler}/><br/>
-        <button onClick={this.submitMessage}>Send</button>
+        <Route path="/" exact component={LandingPage} />
+        <Route path="/admindelivery/:slug" component={AdminDelivery} />
+        {/* <Route path="/adminrace" component={AdminRace} /> */}
+        <Route path="/api" component={App} />
+        <Route path="/createrace" component={CreateRaceCard} />
+        <Route path="/race/:slug" component={ScoreBoard} />
+        <Route path="/joinrace/:slug" component={StudentJoinRacePage} />
+        <Route path="/showrace" component={ShowRaceCard} />
+        <Route path="/settings" component={Settings} />
+        <Route path="/signin" component={SignIn} />
+        <Route path="/signup" component={SignUp} />
+        <Route path="/student" component={StudentJoinRace} />
       </div>
-
     );
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    studentCreated: state.Student.studentCreated
+  }
+}
 
-export default App;
+export default withRouter(connect(mapStateToProps, { createStudent }) (App));
