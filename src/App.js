@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStudent } from './Actions/studentPage';
-import RequireAuth from './Components/Authentication/RequireAuth;'
+import RequireAuth from './Components/Authentication/RequireAuth';
 import ScoreBoard from "./Components/ScoreBoardPage/index";
 import LandingPage from "./Components/LandingPage/LandingPage";
 
