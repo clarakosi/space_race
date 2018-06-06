@@ -76,6 +76,7 @@ class StudentJoinCard extends Component {
                                  name="team"
                                  onChange={this.select}
                                  id ="selectTeam">
+                                 <option></option>
                                  {this.props.race.teams.map(team => {
                                     return <option key={team.id} value={team.id} name="team" >{team.name}</option> 
                                  })}

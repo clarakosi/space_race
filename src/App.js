@@ -8,7 +8,7 @@ import LandingPage from "./Components/LandingPage/LandingPage";
 
 import StudentJoinRacePage from "./Components/StudentJoinRacePage/StudentJoinRacePage";
 import ShowRaceCard from "./Components/CardViews/ShowRaceCard";
-import CreateRaceCard from "./Components/CardViews/CreateRaceCard";
+import CreateRaceCard from "./Components/CreateRacePage/index";
 
 import Settings from "./Components/SettingsPage/SettingsPage";
 import SignUp from "./Components/UserAccounts/SignUp";
