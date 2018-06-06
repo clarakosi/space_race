@@ -5,7 +5,7 @@ import './index.css'
 import { connect } from 'react-redux';
 import { gettingRace, sendingAnswer } from '../../Actions/adminDeliveryPage'
 
-
+// TODO: Style and add ability to highlight answer.
 class ScoreBoard extends Component {
   componentDidMount() {
     this.props.gettingRace(this.props.match.params.slug)

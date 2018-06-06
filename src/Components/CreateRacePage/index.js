@@ -27,18 +27,6 @@ function getSteps() {
   return ['Create race and add teams', 'Create questions and add Answers', 'Start Race!'];
 }
 
-// function getStepContent(stepIndex) {
-//   switch (stepIndex) {
-//     case 0:
-//       return <div> <Scoreboard /> </div>;
-//     case 1:
-//       return 'What is an ad group anyways?';
-//     case 2:
-//       return 'This is the bit I really care about!';
-//     default:
-//       return 'Uknown stepIndex';
-//   }
-// }
 
 class HorizontalLabelPositionBelowStepper extends React.Component {
   constructor(props) {
@@ -110,18 +98,6 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
           ) : (
             <div>
               <div className={classes.instructions}>{this.getStepContent(activeStep)}</div>
-              {/* <div>
-                <Button
-                  disabled={activeStep === 0}
-                  onClick={this.handleBack}
-                  className={classes.backButton}
-                >
-                  Back
-                </Button>
-                <Button variant="contained" color="primary" onClick={this.handleNext}>
-                  {activeStep === steps.length - 1 ? 'Start Race!' : 'Next'}
-                </Button>
-              </div> */}
             </div>
           )}
         </div>
