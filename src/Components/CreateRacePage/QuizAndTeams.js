@@ -88,9 +88,11 @@ class QuizAndTeamsForm extends Component {
     return (
       <div>
         <Form>
-          <FormGroup >
+          <FormGroup>
+            {/* <Col> */}
             <Label>Race Name</Label>
             <Input type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.changeHandler} />
+            {/* </Col> */}
           </FormGroup>
           <br />
           <Label> Add a Team </Label>

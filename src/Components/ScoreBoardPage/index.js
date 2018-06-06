@@ -21,7 +21,7 @@ class ScoreBoard extends Component {
         ScoreBoard Page
         <div className="main">
           <Board />
-          <QuestionBaord index={this.props.index} race={this.props.race} gotRace={this.props.gotRace} slug={this.props.match.params.slug} handleAnswerFunc={this.handleAnswer}/>
+          <QuestionBaord index={this.props.race.index} race={this.props.race} gotRace={this.props.gotRace} slug={this.props.match.params.slug} handleAnswerFunc={this.handleAnswer}/>
         </div>
       </div>
     );
@@ -32,7 +32,6 @@ const mapStateToProps = state => {
   return {
       race: state.AdminDelivery.race,
       gotRace: state.AdminDelivery.gotRace,
-      index: state.AdminDelivery.index
   }
 }
 export default connect(mapStateToProps, { gettingRace, sendingAnswer }) (ScoreBoard);
