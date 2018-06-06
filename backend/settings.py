@@ -16,9 +16,11 @@ from decouple import config
 import dj_database_url
 import django_heroku
 
+STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "pk_test_TNLV3fu5CQAkF4bWXPJBou1V")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_test_HP05OJENWcUnfccM9cXT1yLS")
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -30,6 +32,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', cast=bool, default=False)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
+
 
 
 # Application definition
@@ -57,6 +60,7 @@ INSTALLED_APPS = [
     'api',
     'teams',
     'accounts',
+    'stripe_',
 ]
 
 AUTH_USER_MODEL = 'accounts.CustomUser' 
@@ -78,25 +82,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'backend.urls'
-"""
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(BASE_DIR, 'build')
-        ],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
-"""
 
 TEMPLATES = [
     {
@@ -114,10 +99,7 @@ TEMPLATES = [
     },
 ]
 
-
-
 WSGI_APPLICATION = 'backend.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
@@ -214,25 +196,6 @@ REST_FRAMEWORK = {
 # Enables django-rest-auth to use JWT tokens instead of regular tokens.
 REST_USE_JWT = True
 
-
-
-
-
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework.authentication.TokenAuthentication',
-#     ),
-#     'DEFAULT_PERMISSION_CLASSES': (
-#         'rest_framework.permissions.IsAuthenticated',
-#     )
-# }
-
-# REST_FRAMEWORK = {
-#    'DEFAULT_PERMISSION_CLASSES': [
- #       'rest_framework.permissions.AllowAny',
- #       'rest_framework.authentication.TokenAuthentication',
- #   ]
-# }
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 
@@ -250,3 +213,4 @@ CHANNEL_LAYERS = {
     },
 }
 
+STRIPE_SECRET_KEY= os.getenv('STRIPE_SECRET_KEY')
