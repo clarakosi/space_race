@@ -9,16 +9,15 @@
  *    (now a student enters the game):
  *    rando(arr) = team1.         
  * 
- * at this point I tried to bring it up that there is a flaw because random teams doesn't guarantee balanced teams, but for whatever reason 
- * it was assumed that there is a misunderstanding on my behalf on how the process works.   So I will just let whoever is dealing with this portion 
- * see for themselves and at that point they might consider using the next options below.  Good luck.
+ * IMPORTANT!! THESE FUNCTIONS CAN BE USED INSIDE REDUX OR JUST IN A REACT COMPONENT WITHOUT REDUX.  IF NEEDING REDUX, REFER TO THE NOTES AT BOTTOM SHOWING HOW TO 
+ * USE THESE WITH THE ACTION CREATOR!!!!
  * 
  * 
  * 
  * These are all helper functions to assist in choosing random elements from an array, and likewise producing an array of random elements.
  */
 /*****get a random element from an array use this function to randomize teams where arr = array containing all teams
- *  THIS METHOD IS TO BE USED IF IF THE TEACHER FILLS IN THE NAMES OF THE TEAMS AND DOES NOT USE RANDOMIZE.
+ *  THIS METHOD IS TO BE USED IF IF THE TEACHER FILLS IN THE NAMES OF THE TEAMS AND DOES NOT USE RANDOMIZE WHICH WILL PRODUCE TEAM NAMES RANDOMLY.
 */
 export function rando(arr) {
     return arr[Math.floor(Math.random() * arr.length)];

@@ -6,11 +6,13 @@ import showRacesReducer from './showRaces';
 import LogInReducer from './LogIn';
 import adminDeliveryReducer from './adminDeliveryReducer';
 import StudentReducer from './studentReducer';
-
+import AuthReducer from  './AuthenticationReducer';
+import BillingReducer from './BillingReducer';
 const RootReducers = combineReducers({
-    FormData: CreateReducer,
+    Auth: AuthReducer,
     RandomTeamData: RTeamReducer,
     RandomColorData: RColorReducer,
+    modal: BillingReducer,
     // TeamsArray: ShuffleReducer,
     FormData: CreateReducer,
     Races: showRacesReducer,
