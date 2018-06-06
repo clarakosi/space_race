@@ -48,7 +48,7 @@ class QuestionCard extends Component {
 
     nextQuestion = event => {
         event.preventDefault();
-        let index = this.props.index + 1
+        let index = this.props.race.index + 1
         let qlength = this.props.race.questions.length
 
         if (index >= qlength) {
@@ -56,7 +56,7 @@ class QuestionCard extends Component {
                 lastQuestion: true
             })
         } else {
-            this.props.nextQuestion();
+            this.props.nextQuestion(this.props.slug);
         }
 
     }
@@ -72,10 +72,10 @@ class QuestionCard extends Component {
             <div>
                 {!this.props.gotRace ? null : 
                 <div>
-                    {<div key={this.props.race.questions[this.props.index].id}>
-                        <h3>{this.props.race.questions[this.props.index].question}</h3>
+                    {<div key={this.props.race.questions[this.props.race.index].id}>
+                        <h3>{this.props.race.questions[this.props.race.index].question}</h3>
                         <ol>
-                        {this.props.race.questions[this.props.index].answers.map(answer => {
+                        {this.props.race.questions[this.props.race.index].answers.map(answer => {
                             return <li key={answer.id}>{answer.answer}</li>
                         })}
                         </ol>          
@@ -126,11 +126,11 @@ class QuestionCard extends Component {
     
     */
    // -------- This section will just go to the next question --------
-    nextQuestion = event => {
-        event.preventDefault();
-        const id = this.props.question.id;
-        this.props.nextQuestion(id + 1);
-    }
+    // nextQuestion = event => {
+    //     event.preventDefault();
+    //     const id = this.props.question.id;
+    //     this.props.nextQuestion(id + 1);
+    // }
 
     /* Next Question Button Options End Here */
 }
@@ -154,7 +154,6 @@ const mapStateToProps = state => {
     return {
         race: state.AdminDelivery.race,
         gotRace: state.AdminDelivery.gotRace,
-        index: state.AdminDelivery.index
     }
 }
 export default connect(mapStateToProps, { gettingRace, nextQuestion }) (QuestionCard);
