@@ -69,7 +69,7 @@ class Header extends Component {
               <p className="name">SpaceRace</p>
               <div className="title">
               <Textfit  mode="single">
-              CREATE TEAMS AND RACE AGAINST YOUR FRIENDS!!
+              optional text
               </Textfit>
               </div>
             </div>

@@ -36,17 +36,17 @@ class App extends Component {
         <Route path="/student" component={StudentJoinRace} />
 
 
-     {/*when we have the authentication and login hooked up to the back the below routes can be uncommented and the above routes can be deleted
-        <Route path="/admindelivery/:slug" component={RequireAuth(AdminDelivery)} />
-        {/* <Route path="/adminrace" component={AdminRace} /> 
+    when we have the authentication and login hooked up to the back the below routes can be uncommented and the above routes can be deleted
+      {/*}  <Route path="/admindelivery/:slug" component={RequireAuth(AdminDelivery)} />
+        {/*<Route path="/adminrace" component={AdminRace} /> 
         <Route path="/api" component={RequireAuth(App)} />
         <Route path="/createrace" component={RequireAuth(CreateRaceCard)} />
-        <Route path="/race/:slug" component={RequireAuth(ScoreBoard)} />
-        <Route path="/joinrace/:slug" component={RequireAuth(StudentJoinRacePage)} />
+        <Route path="/race/:slug" component={ScoreBoard} />
+        <Route path="/joinrace/:slug" component={StudentJoinRacePage} />
         <Route path="/showrace" component={RequireAuth(ShowRaceCard)} />
         <Route path="/settings" component={RequireAuth(Settings)} />
-     <Route path="/student" component={RequireAuth(StudentJoinRace)} />   
-*/}
+     <Route path="/student" component={RequireAuth(StudentJoinRace)} />  
+    */}
       </div>
     );
   }
