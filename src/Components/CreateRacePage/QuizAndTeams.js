@@ -3,6 +3,13 @@ import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { QuizInfo } from '../../Actions/createRace';
 import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { Alert, Col, Form, FormGroup, Label, Input, FormText, ListGroup, ListGroupItem  } from 'reactstrap';
+import { TwitterPicker } from 'react-color';
+import Icon from '@material-ui/core/Icon';
+// import DeleteIcon from '@material-ui/icons/Delete';
+
+
 
 
 class QuizAndTeamsForm extends Component {
@@ -13,9 +20,10 @@ class QuizAndTeamsForm extends Component {
       name:"",
       teamName: "",
       mascot: "",
-      color: "",
+      color: "#000",
       teams: [],
-      randomize_team: false
+      randomize_team: false,
+      colorToggle: false,
     }
   }
   componentDidMount() {
@@ -26,6 +34,12 @@ class QuizAndTeamsForm extends Component {
         randomize_team: this.props.quiz.randomize_team
       })
     }
+  }
+
+  colorToggle = event => {
+    this.setState({
+      colorToggle: !this.state.colorToggle
+    })
   }
 
   changeHandler = (event) => {
@@ -39,6 +53,11 @@ class QuizAndTeamsForm extends Component {
     this.setState({ [name]: event.target.checked });
   };
 
+  handleChangeComplete = (color) => {
+    this.setState({ color: color.hex, colorToggle: !this.state.colorToggle });
+
+  };
+
   nextHandler = (event) => {
     console.log(this.state);
     let quiz = {name: this.state.name, teams: this.state.teams, randomize_team: this.state.randomize_team}
@@ -47,50 +66,88 @@ class QuizAndTeamsForm extends Component {
   }
 
   teamHandler = event => {
-    let team = {
-      name: this.state.teamName,
-      color: this.state.color,
-      mascot: this.state.mascot
+    if (!this.state.color || !this.state.mascot) {
+      window.alert("You must include both a color and mascot")
+    } else {
+      let team = {
+        name: this.state.teamName,
+        color: this.state.color,
+        mascot: this.state.mascot
+      }
+      this.state.teams.push(team);
+      this.setState({
+        teamName: "",
+        color: "#000",
+        mascot: "",
+        colorToggle: false
+      })
     }
-    this.state.teams.push(team);
-    this.setState({
-      teamName: "",
-      color: "",
-      mascot: ""
-    })
   }
 
   render() {
     return (
       <div>
-        <form>
-          <label>Race Info</label>
-          <input type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.changeHandler} />
+        <Form>
+          <FormGroup >
+            <Label>Race Name</Label>
+            <Input type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.changeHandler} />
+          </FormGroup>
           <br />
-          <label> Add a Team </label>
-          <div style={{display: "inline"}}>
-            <input type="text" name="teamName" placeholder="Team Name" value={this.state.teamName} onChange={this.changeHandler}/>
-            <select name="mascot" onChange={this.changeHandler} value={this.state.mascot}>
-              <option></option>
-              <option value="car">Car</option>
-              <option value="tree">tree</option>
-            </select>
-            <select name="color" onChange={this.changeHandler} value={this.state.color}>
-              <option></option>
-              <option value="yellow">yellow</option>
-              <option value="blue">blue</option>
-            </select>
-            <Button onClick={this.teamHandler}>Add</Button>
-          </div>
+          <Label> Add a Team </Label>
+          <FormGroup row >
+            <Col sm={3}>
+              <Input  sm="4" type="text" name="teamName" placeholder="Team Name" value={this.state.teamName} onChange={this.changeHandler}/>
+            </Col>
+            <Col sm={3}>
+              <Input sm="4" name="mascot" onChange={this.changeHandler} value={this.state.mascot} type="select">
+                <option>Pick Mascot</option>
+                <option value="🐝">🐝</option>
+                <option value="🐶">🐶</option>
+                <option value="🐈">🐈</option>
+                <option value="🐎">🐎</option>
+                <option value="🐍">🐍</option>
+                <option value="🐋">🐋</option>
+                <option value="🐊">🐊</option>
+                <option value="🐘">🐘</option>
+                <option value="🦒">🦒</option>
+                <option value="🦆">🦆</option>
+                <option value="🐇">🐇</option>
+              </Input>
+            </Col>
+            <Col sm={3}>
+              <Button onClick={this.colorToggle} variant="outlined">Pick a color</Button>
+              <br/>
+              <div style={this.state.colorToggle ? null: {display: 'none'}}>
+                <TwitterPicker
+                    color={ this.state.color }
+                    onChangeComplete={ this.handleChangeComplete }
+                />
+              </div>
+            </Col>
+            <Col sm={3}>
+            <Button onClick={this.teamHandler} variant="contained" color="primary">Add</Button>
+            </Col>
+          </FormGroup>
+          <FormGroup>
+          <ListGroup>
           {this.state.teams.map((team, index) => {
-            return <div key={index}>{team.name}</div>
+            return <ListGroupItem key={index}>{team.name}</ListGroupItem>
           })}
-          <Switch
-          checked={this.state.randomize_team}
-          onChange={this.handleChange('randomize_team')}
-          value="randomize_team"
-          color="primary"
-        />
+          </ListGroup>
+          </FormGroup>
+          <br/>
+          <FormControlLabel 
+            label="Random Teams"
+            control= {
+              <Switch
+              checked={this.state.randomize_team}
+              onChange={this.handleChange('randomize_team')}
+              value="randomize_team"
+              color="primary"
+            />
+            }
+          />
+          <FormGroup>
           <Button
             disabled={this.props.activeStep === 0}
             onClick={this.props.handleBack}
@@ -101,7 +158,8 @@ class QuizAndTeamsForm extends Component {
           <Button variant="contained" color="primary" onClick={this.nextHandler}>
             {this.props.activeStep === this.props.steps.length - 1 ? 'Start Race!' : 'Next'}
           </Button>
-        </form>
+          </FormGroup>
+        </Form>
       </div>
     );
   }
