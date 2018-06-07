@@ -34,6 +34,10 @@ class Footer extends Component {
                     <Button style={{height: '44px', marginBottom: '10px', backgroundColor: '#5b7bc2' }}>BUY NOW</Button>
                 
     </NavItem>*/}
+                <NavItem>
+                
+                </NavItem>
+    
               </Nav>
             </Col>
             <Col sm="4" xs="9">
