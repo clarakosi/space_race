@@ -17,16 +17,16 @@ const styles = theme => ({
 });
 
 const ScoreBoard = (props) => {
-  let questionsTotal = props.gotRace ?  props.race.questions.length : null;
+  let questionsTotal = props.race.questions.length;
   const { classes } = props;
   return (
     <div className="scoreboard">
       <Paper className={classes.root} elevation={4}>
 
       {props.gotRace ? props.race.teams.map(team => {
-        let teamScore = team.score
-        let progress = (teamScore / (team.students.length * questionsTotal)) * 100;
-        return <div>{team.name} <Progress percent={progress} theme={{success: {
+        // let progress = (team.score / (team.students.length * questionsTotal)) * 100;
+        return <div key={team.id}>{team.name} 
+        <Progress percent={(team.score / (team.students.length * questionsTotal)) * 100} theme={{success: {
           symbol: team.mascot,
           color: team.color
         }, 
@@ -38,8 +38,7 @@ const ScoreBoard = (props) => {
           symbol: team.mascot,
           color: team.color
         }
-      }} /> </div>
-      }) : null}
+      }} /> </div>}) : null}
       </Paper>
   </div>
   )

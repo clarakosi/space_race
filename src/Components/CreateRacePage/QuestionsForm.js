@@ -24,9 +24,11 @@ class QuizAndTeamsForm extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      questions: this.props.questions
-    })
+    if (this.props.questions) {
+      this.setState({
+        questions: this.props.questions
+      })
+    }
   }
 
   changeHandler = (event) => {
