@@ -4,9 +4,13 @@ import { connect } from 'react-redux';
 import { QuizInfo } from '../../Actions/createRace';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { Alert, Col, Form, FormGroup, Label, Input, FormText, ListGroup, ListGroupItem  } from 'reactstrap';
-import { TwitterPicker } from 'react-color';
-import Icon from '@material-ui/core/Icon';
+import { Col, Form, FormGroup, Label, Input, ListGroup, ListGroupItem, Badge, Modal, ModalFooter, Row } from 'reactstrap';
+import { BlockPicker } from 'react-color';
+import IoAndroidCreate from 'react-icons/lib/io/android-create';
+import IoAndroidDelete from 'react-icons/lib/io/android-delete';
+import UpdateTeamModal from './UpdateTeamModal';
+
+// import Icon from '@material-ui/core/Icon';
 // import DeleteIcon from '@material-ui/icons/Delete';
 
 
@@ -20,10 +24,11 @@ class QuizAndTeamsForm extends Component {
       name:"",
       teamName: "",
       mascot: "",
-      color: "#000",
+      color: "",
       teams: [],
       randomize_team: false,
       colorToggle: false,
+      updateToggle: false
     }
   }
   componentDidMount() {
@@ -39,6 +44,12 @@ class QuizAndTeamsForm extends Component {
   colorToggle = event => {
     this.setState({
       colorToggle: !this.state.colorToggle
+    })
+  }
+
+  updateToggle = event => {
+    this.setState({
+      updateToggle: !this.state.updateToggle
     })
   }
 
@@ -75,13 +86,28 @@ class QuizAndTeamsForm extends Component {
         mascot: this.state.mascot
       }
       this.state.teams.push(team);
+      let quiz = {name: this.state.name, teams: this.state.teams, randomize_team: this.state.randomize_team}
+      this.props.QuizInfo(quiz)
       this.setState({
         teamName: "",
-        color: "#000",
+        color: "",
         mascot: "",
         colorToggle: false
       })
     }
+  }
+  handleDelete = index => {
+    console.log(index)
+    this.state.teams.splice(index,1);
+    console.log('teams', this.state.teams)
+    let quiz = {name: this.state.name, teams: this.state.teams, randomize_team: this.state.randomize_team};
+    this.props.QuizInfo(quiz);
+  }
+
+  handleUpdate = (index, data) => {
+    this.state.teams.splice(index, 1, data)
+    let quiz = {name: this.state.name, teams: this.state.teams, randomize_team: this.state.randomize_team};
+    this.props.QuizInfo(quiz);
   }
 
   render() {
@@ -101,7 +127,7 @@ class QuizAndTeamsForm extends Component {
               <Input  sm="4" type="text" name="teamName" placeholder="Team Name" value={this.state.teamName} onChange={this.changeHandler}/>
             </Col>
             <Col sm={3}>
-              <Input sm="4" name="mascot" onChange={this.changeHandler} value={this.state.mascot} type="select">
+              <Input sm="3" name="mascot" onChange={this.changeHandler} value={this.state.mascot} type="select">
                 <option>Pick Mascot</option>
                 <option value="🐝">🐝</option>
                 <option value="🐶">🐶</option>
@@ -117,38 +143,44 @@ class QuizAndTeamsForm extends Component {
               </Input>
             </Col>
             <Col sm={3}>
-              <Button onClick={this.colorToggle} variant="outlined">Pick a color</Button>
+              <Input onClick={this.colorToggle} placeholder="Pick a Color" value={this.state.color}/>
               <br/>
-              <div style={this.state.colorToggle ? null: {display: 'none'}}>
-                <TwitterPicker
+              <Col sm={3} style={this.state.colorToggle ? null: {display: 'none'}}>
+                <BlockPicker
                     color={ this.state.color }
                     onChangeComplete={ this.handleChangeComplete }
                 />
-              </div>
+              </Col>
             </Col>
+            <br/>
             <Col sm={3}>
             <Button onClick={this.teamHandler} variant="contained" color="primary">Add</Button>
             </Col>
           </FormGroup>
           <FormGroup>
           <ListGroup>
-          {this.state.teams.map((team, index) => {
-            return <ListGroupItem key={index}>{team.name}</ListGroupItem>
-          })}
+          {this.props.quizAdded ? this.state.teams.map((team, index) => {
+            return <ListGroupItem key={index}>{team.name} &emsp; {team.mascot} &emsp; {team.color}
+              <span style={{float: "right"}} onClick={() => this.handleDelete(index)}><IoAndroidDelete size={23} color ="#792d86" /></span>
+              <span style={{float: "right"}}><IoAndroidCreate size={23} color="#792d86" onClick={this.updateToggle}/> 
+              <UpdateTeamModal   handleUpdate={this.handleUpdate} updateToggleFunc={this.updateToggle} updateToggle={this.state.updateToggle} team={team} index={index}/></span> 
+            </ListGroupItem>
+          }) : null}
           </ListGroup>
           </FormGroup>
-          <br/>
-          <FormControlLabel 
-            label="Random Teams"
-            control= {
-              <Switch
-              checked={this.state.randomize_team}
-              onChange={this.handleChange('randomize_team')}
-              value="randomize_team"
-              color="primary"
-            />
-            }
-          />
+          <FormGroup row>
+            <Row>
+              <Col>
+                <Switch
+                checked={this.state.randomize_team}
+                onChange={this.handleChange('randomize_team')}
+                value="randomize_team"
+                color="primary"
+                /> {' '} Randomize Teams
+              </Col>
+            </Row>
+          </FormGroup>
+          <br />
           <FormGroup>
           <Button
             disabled={this.props.activeStep === 0}

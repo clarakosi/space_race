@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStudent } from './Actions/studentPage';
-import RequireAuth from './Components/Authentication/RequireAuth;'
+import RequireAuth from './Components/Authentication/RequireAuth';
 import ScoreBoard from "./Components/ScoreBoardPage/index";
 import LandingPage from "./Components/LandingPage/LandingPage";
 
@@ -22,7 +22,7 @@ class App extends Component {
   render() {
     return (                    
       <div>                     
-        <Route path="/" exact component={LandingPage} />
+        {/* <Route path="/" exact component={LandingPage} /> */}
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
         <Route path="/admindelivery/:slug" component={AdminDelivery} />
