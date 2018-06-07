@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Progress } from 'reactstrap';
 import { Questions } from '../ScoreBoardPage/questionboard';
 import { CreateRaceCard } from '../CardViews/CreateRaceCard';
-import { gettingRace, nextQuestion } from '../../Actions/adminDeliveryPage'
-import ScoreBoard from '../ScoreBoardPage/index'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { gettingRace, nextQuestion } from '../../Actions/adminDeliveryPage';
+import ScoreBoard from '../ScoreBoardPage/index';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Progress } from 'react-sweet-progress';
+import 'react-sweet-progress/lib/style.css';
 import './AdminDeliveryPage.css';
 
 /* Progress bar will get data from this.props.race.questions[this.props.index] DIVIDED BY this.props.race.number_of_participants
@@ -18,28 +19,23 @@ class QuestionCard extends Component {
         this.state = {
             lastQuestion: false,
             error: null,
-           // isHidden: true
+            isHidden: true
         }
     }
-    /*toggleHidden () {
+    toggleHidden () {
         this.setState({
             isHidden: !this.state.isHidden
         })
     }
-    render () { 
+    /* render () { 
         return (
-            <div>
-                <button onClick={this.toggleHidden.bind(this)} >
-                Show answer
-                </button>
-                {!this.state.isHidden && <Child />}
-            </div>
+            
         )
-    } */
+    } */ 
 
-    // componentDidMount() {
-    //     // this.props.gettingRace(this.props.match.params.slug)
-    // }
+     /*componentDidMount() {
+          this.props.gettingRace(this.props.match.params.slug)
+     } */
 
      revealAnswerToggle = () => {
         const active = !this.state.show
@@ -48,7 +44,7 @@ class QuestionCard extends Component {
 
     nextQuestion = event => {
         event.preventDefault();
-        let index = this.props.race.index + 1
+        let index = this.props.index + 1
         let qlength = this.props.race.questions.length
 
         if (index >= qlength) {
@@ -56,13 +52,13 @@ class QuestionCard extends Component {
                 lastQuestion: true
             })
         } else {
-            this.props.nextQuestion(this.props.slug);
+            this.props.nextQuestion();
         }
 
     }
 
     render() {
-        const { question, isLoading, error } = this.state;
+        const { question, isLoading, error, isHidden } = this.state;
 
         if (error) {
             return <p>{error.message}</p>;
@@ -72,10 +68,10 @@ class QuestionCard extends Component {
             <div>
                 {!this.props.gotRace ? null : 
                 <div>
-                    {<div key={this.props.race.questions[this.props.race.index].id}>
-                        <h3>{this.props.race.questions[this.props.race.index].question}</h3>
+                    {<div key={this.props.race.questions[this.props.index].id}>
+                        <h3>{this.props.race.questions[this.props.index].question}</h3>
                         <ol>
-                        {this.props.race.questions[this.props.race.index].answers.map(answer => {
+                        {this.props.race.questions[this.props.index].answers.map(answer => {
                             return <li key={answer.id}>{answer.answer}</li>
                         })}
                         </ol>          
@@ -83,6 +79,7 @@ class QuestionCard extends Component {
 
                     }
                 </div>}
+                <button onClick={this.toggleHidden}> Show Answer</button>
                 <button onClick={this.nextQuestion}> Next Question</button>
                 {this.state.lastQuestion ? <div>You're all done!</div> : null}
             </div>
@@ -126,11 +123,11 @@ class QuestionCard extends Component {
     
     */
    // -------- This section will just go to the next question --------
-    // nextQuestion = event => {
-    //     event.preventDefault();
-    //     const id = this.props.question.id;
-    //     this.props.nextQuestion(id + 1);
-    // }
+    nextQuestion = event => {
+        event.preventDefault();
+        const id = this.props.question.id;
+        this.props.nextQuestion(id + 1);
+    }
 
     /* Next Question Button Options End Here */
 }
@@ -140,12 +137,24 @@ const progressBar = (props) => {
     return (
     <div>
         <div className="text-center">Progress</div>
-        <Progress multi>
-            <Progress animated value={2 * 5}>Team 1 </Progress>
-            <Progress animated color="success" value="25">Team 2 </Progress>
-            <Progress animated color="info" value={50}>Team 3 </Progress>
-            <Progress animated color="warning" value={75}>Team 4 </Progress>
-        </Progress>
+        <Progress 
+            percent={87}
+            theme={{
+                success: {
+                    symbol: '🚀',
+                    color: 'rgb(223, 105, 180'
+                },
+                active: {
+                    symbol: '😀',
+                    color: '#fbc630'
+                },
+                default: {
+                    symbol: '😱',
+                    color: '#fbc630'
+                }
+            }}
+        />
+        
     </div>
     );
 }
@@ -154,6 +163,7 @@ const mapStateToProps = state => {
     return {
         race: state.AdminDelivery.race,
         gotRace: state.AdminDelivery.gotRace,
+        index: state.AdminDelivery.index
     }
 }
 export default connect(mapStateToProps, { gettingRace, nextQuestion }) (QuestionCard);
