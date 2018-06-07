@@ -94,6 +94,24 @@ class QuestionCard extends Component {
                 <button color="primary" className="float-right" onClick={this.nextQuestion}> Next Question</button>
                 {this.state.lastQuestion ? <div>You're all done!</div> : null}
             </Jumbotron>
+           { /* ------- Websocket showing how many have answered question ------- */ }
+            <Progress 
+            percent={100}
+            theme={{
+                success: {
+                    symbol: '🚀',
+                    color: 'rgb(223, 105, 180)'
+                },
+                active: {
+                    symbol: '😀',
+                    color: '#fbc630'
+                },
+                default: {
+                    symbol: '😱',
+                    color: '#fbc630'
+                }
+            }}
+        />
             </div>
             // Potential setup for questions/answers? Need opinions
             // This is based from React-II Instagram Clone during Week 4
@@ -144,32 +162,8 @@ class QuestionCard extends Component {
     /* Next Question Button Options End Here */
 }
 
-/* ------- Websocket showing how many have answered question ------- */
-const progressBar = (props) => {
-    return (
-    <div>
-        <div className="text-center">Progress</div>
-        <Progress 
-            percent={87}
-            theme={{
-                success: {
-                    symbol: '🚀',
-                    color: 'rgb(223, 105, 180)'
-                },
-                active: {
-                    symbol: '😀',
-                    color: '#fbc630'
-                },
-                default: {
-                    symbol: '😱',
-                    color: '#fbc630'
-                }
-            }}
-        />
-        
-    </div>
-    );
-}
+
+
 
 const mapStateToProps = state => {
     return {
