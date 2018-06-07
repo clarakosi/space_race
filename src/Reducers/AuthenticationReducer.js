@@ -1,4 +1,5 @@
 import {
+    LOGGINGIN,
     USER_AUTHENTICATED,
     USER_UNAUTHENTICATED,
     AUTHENTICATION_ERROR,
@@ -7,6 +8,8 @@ import {
   
   export default (auth = {}, action) => {
     switch (action.type) {
+      case LOGGINGIN:
+      return {...state, loggingIn: true}
       case USER_AUTHENTICATED:
         return { ...auth, authenticated: action.payload.authenticated, access_token:action.payload.access_token, registered:action.payload.registered};
       case USER_UNAUTHENTICATED:

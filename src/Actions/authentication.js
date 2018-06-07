@@ -1,6 +1,8 @@
-
+/*** im not quite sure how to get this to work with the loggingIn action file separate from this but I tried to tie it in to Signin part, but it looks like we had two different methods going on. */
 import axios from 'axios';
-const API_URL = 'http://localhost:3000';
+const url = 'http://127.0.0.1:8000/api/v1/rest-auth/login/'
+
+export const LOGGINGIN = 'LOGGINGIN'
 export const CHECK_IF_AUTHENTICATED = 'CHECK_IF_AUTHENTICATED';
 export const USER_UNAUTHENTICATED = 'USER_UNAUTHENTICATED';
 export const USER_AUTHENTICATED = 'USER_AUTHENTICATED';
@@ -35,11 +37,12 @@ export const signUpToggle = (state) => {
 };
 
 
-export const signin = (code, history) => {
-    return dispatch => {
-      axios
-        .get(API_URL + `/authentication/${code}`)
-        .then((response) => {
+export const signin = (data, history) => {
+    dispatch({type: LOGGINGIN})
+    axios.post(url, data)
+      .then(response => {
+        let token = `JWT ${response.data.token}`
+        window.localStorage.setItem('Authorization', token)
             dispatch({
                 type: USER_AUTHENTICATED,
                 payload:response.data
@@ -50,7 +53,6 @@ export const signin = (code, history) => {
             dispatch(authError(error));
         });
     };
-};
 
 export const signup = (access_token, email, history) => {
     return dispatch => {
