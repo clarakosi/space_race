@@ -47,7 +47,7 @@ class QuizSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Quiz
-        fields = ('id', 'name', 'slug', 'randomize_team', 'teams', 'questions', 'index')
+        fields = ('id', 'name', 'slug', 'randomize_team', 'teams', 'questions', 'index', 'number_of_participants')
 
     def create(self, validated_data):
         """Override create to associate current user with Quiz creator"""

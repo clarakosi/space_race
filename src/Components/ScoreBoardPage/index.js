@@ -20,7 +20,7 @@ class ScoreBoard extends Component {
       <div>
         ScoreBoard Page
         <div className="main">
-          <Board />
+          <Board race={this.props.race} gotRace={this.props.gotRace}/>
           <QuestionBaord index={this.props.race.index} race={this.props.race} gotRace={this.props.gotRace} slug={this.props.match.params.slug} handleAnswerFunc={this.handleAnswer}/>
         </div>
       </div>
