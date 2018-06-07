@@ -22,7 +22,7 @@ class App extends Component {
   render() {
     return (                    
       <div>                     
-        <Route path="/" exact component={LandingPage} />
+        {/* <Route path="/" exact component={LandingPage} /> */}
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
         <Route path="/admindelivery/:slug" component={AdminDelivery} />
