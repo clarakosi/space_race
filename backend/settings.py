@@ -16,8 +16,9 @@ from decouple import config
 import dj_database_url
 import django_heroku
 
-STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "pk_test_TNLV3fu5CQAkF4bWXPJBou1V")
-STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_test_HP05OJENWcUnfccM9cXT1yLS")
+STRIPE_TEST_PUBLIC_KEY = os.environ.get("STRIPE_TEST_PUBLIC_KEY", "pk_test_TNLV3fu5CQAkF4bWXPJBou1V")
+STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY", "sk_test_HP05OJENWcUnfccM9cXT1yLS")
+STRIPE_LIVE_MODE = False
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -56,11 +57,12 @@ INSTALLED_APPS = [
     'rest_auth.registration',
     'rest_framework.authtoken',
     'corsheaders',
+    'djstripe',
     # Our apps
     'api',
     'teams',
     'accounts',
-    'stripe_',
+    'payment',
 ]
 
 AUTH_USER_MODEL = 'accounts.CustomUser' 
@@ -178,8 +180,6 @@ STATICFILES_DIRS = (
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# """ Ignore this for now. May need it later.
-
 # Configure the JWTs to expire after 1 hour, and allow users to refresh near-expiration tokens
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=4),
@@ -214,3 +214,15 @@ CHANNEL_LAYERS = {
 }
 
 STRIPE_SECRET_KEY= os.getenv('STRIPE_SECRET_KEY')
+
+
+DJSTRIPE_PLANS = {
+    "monthly": {
+        "stripe_plan_id": "basic_plan",
+        "name": "Monthly Subscription",
+        "description": "Monthly subscription plan",
+        "price": 900,
+        "currency": "usd",
+        "interval": "month"
+    }
+}
