@@ -12,8 +12,9 @@ body {
   }
   
   .option-card {
-    height: 50px;
-    background-color: rgba(240, 240, 240, 1.0);
+    height: 500px;
+    width: 80%;
+    background-color: rgb(110, 28, 148);
     border: 1px solid;
     text-align: center;
     line-height: 50px;
@@ -38,10 +39,10 @@ body {
   }
   
   .question-panel {
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: crimson;
-    font-weight: 800;
-    font-size: 1.6rem;
+    font-weight: 200;
+    font-size: 1rem;
     text-align: center;
   }
   
@@ -80,3 +81,7 @@ body {
     display: none;
   }
   
+  .jumbotron {
+    background-color: rgb(110, 28, 148)!important;
+    box-shadow: 0 8px 16px -6px black;
+  }

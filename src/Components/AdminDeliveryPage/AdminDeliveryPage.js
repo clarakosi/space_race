@@ -5,6 +5,7 @@ import { CreateRaceCard } from '../CardViews/CreateRaceCard';
 import { gettingRace, nextQuestion } from '../../Actions/adminDeliveryPage';
 import ScoreBoard from '../ScoreBoardPage/index';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Jumbotron } from 'reactstrap';
 import { Progress } from 'react-sweet-progress';
 import 'react-sweet-progress/lib/style.css';
 import './AdminDeliveryPage.css';
@@ -66,6 +67,7 @@ class QuestionCard extends Component {
 
         return (
             <div>
+                <Jumbotron className="jumbotron">
                 {!this.props.gotRace ? null : 
                 <div>
                     {<div key={this.props.race.questions[this.props.index].id}>
@@ -79,9 +81,19 @@ class QuestionCard extends Component {
 
                     }
                 </div>}
-                <button onClick={this.toggleHidden}> Show Answer</button>
-                <button onClick={this.nextQuestion}> Next Question</button>
+                <h1 className="display-3">Question</h1>
+                <p className="lead">A Place Holder For The Question</p>
+                <hr className="my-2" />
+                <p>A Place Holder For The Answers:
+                    <li>A</li>
+                    <li>B</li>
+                    <li>C</li>
+                    <li>D</li>
+                </p>
+                <button color="primary" className="float-left" onClick={this.toggleHidden}> Show Answer</button>
+                <button color="primary" className="float-right" onClick={this.nextQuestion}> Next Question</button>
                 {this.state.lastQuestion ? <div>You're all done!</div> : null}
+            </Jumbotron>
             </div>
             // Potential setup for questions/answers? Need opinions
             // This is based from React-II Instagram Clone during Week 4
@@ -142,7 +154,7 @@ const progressBar = (props) => {
             theme={{
                 success: {
                     symbol: '🚀',
-                    color: 'rgb(223, 105, 180'
+                    color: 'rgb(223, 105, 180)'
                 },
                 active: {
                     symbol: '😀',
