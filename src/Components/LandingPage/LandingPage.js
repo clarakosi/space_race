@@ -18,6 +18,7 @@ class LandingPage extends Component {
             {/* <Header /> */}
             {/* <Carousel/> */}
             <Carousel2 />
+            <h4> A classroom tool that makes it fun and easy to participate </h4>
             {/* <br /> */}
             {/* <br /> */}
             {/* <Footer /> */}
