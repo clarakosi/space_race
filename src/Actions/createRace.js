@@ -51,6 +51,8 @@ export const StartRace = data => {
         axios.post(url, final, { headers: {Authorization: token}})
             .then(response => {
                 dispatch({type: STARTRACE, payload: response.data})
+                localStorage.removeItem('questions');
+                localStorage.removeItem('quiz');
             })
             .catch(err => {
                 dispatch({type: ERROR, payload: err})

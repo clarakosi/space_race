@@ -68,19 +68,20 @@ class Questions extends Component {
 
   render() {
     const { classes } = this.props;
-    // const shuffleArray = (array) => {
-    //   let currentIndex = array.length, temporaryValue, randomIndex;
-    //     while (0 !== currentIndex) {
-    //       randomIndex = Math.floor(Math.random() * currentIndex);
-    //       currentIndex -= 1;
+    const shuffleArray = (array) => {
+      let currentIndex = array.length, temporaryValue, randomIndex;
+        while (0 !== currentIndex) {
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
       
-    //       temporaryValue = array[currentIndex];
-    //       array[currentIndex] = array[randomIndex];
-    //       array[randomIndex] = temporaryValue;
-    //     } 
-    //   return array;
-    // }
-    const answers = this.props.race.questions[this.props.index].answers; 
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        } 
+      return array;
+    }
+    let ans = this.props.quiz.questions[this.props.index]
+    const answers = this.props.gotQuiz &&  ans.shuffle_answers ? shuffleArray(ans.answers) : ans.answers; 
     return (
       <Paper className={classes.root} elevation={4}>
           {!this.props.gotRace ? null :
@@ -102,6 +103,7 @@ class Questions extends Component {
                   value={this.state.value}
                   onChange={this.handleChange}
                 >
+                {/* {console.log("here are the answers", answers)} */}
                   {answers.map(answer => {
                     return <FormControlLabel key={answer.id}  value={answer.id.toString()} label={answer.answer} control={<Radio color="primary" />}  disabled={this.state.submit && this.state.question_id == this.props.race.questions[this.props.index].id && this.state.value != answer.id ? true : false}/>
                   })}

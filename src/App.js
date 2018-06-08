@@ -10,29 +10,57 @@ import StudentJoinRacePage from "./Components/StudentJoinRacePage/StudentJoinRac
 import ShowRaceCard from "./Components/CardViews/ShowRaceCard";
 import CreateRaceCard from "./Components/CreateRacePage/index";
 
-import Settings from "./Components/SettingsPage/SettingsPage";
+import Settings from "./Components/SettingsPage/SettingsForm";
 import SignUp from "./Components/UserAccounts/SignUp";
 import StudentJoinRace from './Components/StudentJoinRacePage/StudentJoinRacePage'
 import SignIn from "./Components/UserAccounts/SignIn";
+import Dashboard from "./Components/Navigation/SideBar"
+import SideBar from './Components/Navigation/SideBar';
 
 import AdminDelivery from './Components/AdminDeliveryPage/index';
+import './App.css'
 
+
+const routes = [
+  {
+      path: "/settings",
+      // exact: true,
+      sidebar: () => <SideBar />,
+      main: () => <Settings />
+  },
+  {
+      path: "/scoreboard/:slug",
+      sidebar: () => <SideBar />,
+      main: () => <AdminDelivery />
+  },
+  {
+      path: "/createrace",
+      sidebar: () => <SideBar />,
+      main: () => <CreateRaceCard />
+  }
+]
 //NOTE:  Authenticated routes are commented out for the time being until the backend gets hooked up.
 class App extends Component {
   render() {
     return (                    
-      <div>                     
-        {/* <Route path="/" exact component={LandingPage} /> */}
+      <div className="App">                     
+        <Route path="/" exact component={LandingPage} />
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
-        <Route path="/admindelivery/:slug" component={AdminDelivery} />
+        {/* <Route path="/admindelivery/:slug" component={AdminDelivery} /> */}
         {/* <Route path="/adminrace" component={AdminRace} /> */}
         <Route path="/api" component={App} />
-        <Route path="/createrace" component={CreateRaceCard} />
+        {/* <Route path="/createrace" component={CreateRaceCard} /> */}
         <Route path="/race/:slug" component={ScoreBoard} />
         <Route path="/joinrace/:slug" component={StudentJoinRacePage} />
         <Route path="/showrace" component={ShowRaceCard} />
-        <Route path="/settings" component={Settings} />
+        {/* <Route path="/settings" component={Settings} /> */}
+        {routes.map((route, index) => (
+          <Route key={index} path={route.path} exact={route.exact} component={route.sidebar} />
+        ))}
+        {routes.map((route, index) => (
+          <Route key={index} path={route.path} exact={route.exact} component={route.main} />
+        ))}
         <Route path="/student" component={StudentJoinRace} />
 
 

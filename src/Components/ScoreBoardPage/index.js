@@ -21,7 +21,7 @@ class ScoreBoard extends Component {
         ScoreBoard Page
         <div className="main">
           <Board race={this.props.race} gotRace={this.props.gotRace}/>
-          <QuestionBaord index={this.props.race.index} race={this.props.race} gotRace={this.props.gotRace} slug={this.props.match.params.slug} handleAnswerFunc={this.handleAnswer}/>
+          <QuestionBaord index={this.props.race.index} race={this.props.race} quiz={this.props.quiz} gotQuiz={this.props.gotQuiz} gotRace={this.props.gotRace} slug={this.props.match.params.slug} handleAnswerFunc={this.handleAnswer}/>
         </div>
       </div>
     );
@@ -31,6 +31,8 @@ class ScoreBoard extends Component {
 const mapStateToProps = state => {
   return {
       race: state.AdminDelivery.race,
+      quiz: state.AdminDelivery.quiz,
+      gotQuiz: state.AdminDelivery.gotQuiz,
       gotRace: state.AdminDelivery.gotRace,
   }
 }

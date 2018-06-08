@@ -23,6 +23,7 @@ export const loggingIn = (data) => {
       .then(response => {
         let token = `JWT ${response.data.token}`
         window.localStorage.setItem('Authorization', token)
+        window.localStorage.setItem('User', response.data.user.username)
         dispatch({type: LOGGEDIN, payload: response.data.user})
       })
       .catch(error => {

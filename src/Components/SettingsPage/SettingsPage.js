@@ -5,22 +5,23 @@ import Breadcrumbs from '../Navigation/Breadcrumbs';
 import SideBar from '../Navigation/SideBar';
 import SignOutButton from'../Navigation/SignOutButton';
 import SettingsForm from './SettingsForm';
+import { Row, Col } from 'reactstrap'
 
 class SettingsPage extends Component {
 render() {
     return(
-    <div>
-    <SignOutButton/>
-    <Breadcrumbs/>
+    <div className="dashboard">
+    {/* <SignOutButton/> */}
+    {/* <Breadcrumbs/> */}
     <div className="container-fluid" >
-        <div className="row">
-            <div className="col-xs">
+        <Row className="row">
+            <Col xs="3" style={{padding: 0}}>
                 <SideBar/>
-            </div>
-            <div className="col-sm">
+            </Col>
+            {/* <div className="col-sm">
                     <SettingsForm/>
-            </div>
-        </div>
+            </div> */}
+        </Row>
     </div>
     </div>
         );

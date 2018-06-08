@@ -1,7 +1,13 @@
 body {
-  margin: 0;
-  padding: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 100vh;
   font-family: sans-serif;
   background-color: white !important;
   background-image: none !important;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
 }

@@ -6,14 +6,14 @@ import './AdminDeliveryPage.css';
 
 class AdminDelivery extends Component {
     componentDidMount() {
-        this.props.gettingRace(this.props.match.params.slug)
+        // this.props.gettingRace(this.props.match.params.slug)
     }
     render() {
         return (
             <div>
                 Admin Delivery Page
                 <div className="main">
-                    <QuestionCard  slug={this.props.match.params.slug}/>
+                    <QuestionCard  slug={window.location.pathname.split( '/' )[1]}/>
                 </div>
             </div>
         );

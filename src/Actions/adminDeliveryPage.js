@@ -3,6 +3,7 @@ import { WebSocketBridge } from 'django-channels'
 
 export const GETTINGRACE = 'GETTINGRACE';
 export const GOTRACE = 'GOTRACE';
+export const GOTQUIZ = 'GOTQUIZ'
 
 export const SENDINGANSWER = 'SENDINGANSWER'
 
@@ -35,6 +36,7 @@ export const gettingRace = (slug) => {
     webSocketBridge.listen(function(action, stream) {
       console.log(action, stream);
       dispatch({type: GOTRACE, payload: action})
+      dispatch({type: GOTQUIZ, payload: action})
     })
   }
 }

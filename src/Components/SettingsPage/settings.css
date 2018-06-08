@@ -1,0 +1,9 @@
+/* .dashboard {
+  padding-left: 2px;
+  padding-right: 0px;
+  min-height: 100%;
+  display: table
+} */
+.row {
+  height: 100vh;
+}
