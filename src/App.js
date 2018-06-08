@@ -54,8 +54,27 @@ const routes = [
 //   }
 // ]
 //NOTE:  Authenticated routes are commented out for the time being until the backend gets hooked up.
+
+
 class App extends Component {
   render() {
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+      <Route
+        {...rest}
+        render={props =>
+          this.props.loggedIn ? (
+            <Component {...props} />
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/",
+                state: { from: props.location }
+              }}
+            />
+          )
+        }
+      />
+    );
     return (                    
       <div className="App">                     
         <Route path="/" exact component={LandingPage} />
@@ -70,12 +89,35 @@ class App extends Component {
         {/* <Route path="/showrace" component={ShowRaceCard} /> */}
         {/* <Route path="/settings" component={Settings} /> */}
         {routes.map((route, index) => (
-          <Route key={index} path={route.path} exact={route.exact} component={route.sidebar} />
+          <PrivateRoute key={index} path={route.path} exact={route.exact} component={route.sidebar} />
         ))}
         {routes.map((route, index) => (
-          <Route key={index} path={route.path} exact={route.exact} component={route.main} />
+          <PrivateRoute key={index} path={route.path} exact={route.exact} component={route.main} />
         ))}
 
+        <Route exact path='/signin' render={() => (
+          this.props.loggedIn ? (
+            <Redirect to='/createrace' />
+          ) : <Route to="/signin" />  
+        )} />
+
+        <Route path='/createrace' render={() => (
+          this.props.signedOut ? (
+            <Redirect to='/' />
+          ) : <Route to='/createrace' />  
+        )} />
+
+        <Route path='/scoreboard/:slug' render={() => (
+          this.props.signedOut ? (
+            <Redirect to='/' />
+          ) : <Route to='/scoreboard/:slug' />  
+        )} />
+
+        <Route path='/settings' render={() => (
+          this.props.signedOut ? (
+            <Redirect to='/' />
+          ) : <Route to='/settings' />  
+        )} />
         
         {/* {StudentRoutes.map((route, index) => (
           <Route key={index} path={route.path} exact={route.exact} component={route.navbar} />
@@ -106,7 +148,9 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    studentCreated: state.Student.studentCreated
+    studentCreated: state.Student.studentCreated,
+    loggedIn: state.LogIn.loggedIn,
+    signedOut: state.LogIn.signedOut
   }
 }
 
