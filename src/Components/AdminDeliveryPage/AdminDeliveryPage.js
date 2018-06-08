@@ -56,6 +56,9 @@ class QuestionCard extends Component {
             })
         } else {
             this.props.nextQuestion(this.props.slug);
+            this.setState({
+                isHidden: false
+            })
         }
 
     }

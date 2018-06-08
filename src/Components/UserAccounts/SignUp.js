@@ -4,6 +4,18 @@ import { signingUp } from '../../Actions/LogIn';
 import { connect } from 'react-redux';
 import{ Button, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 import { Link } from'react-router-dom';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+
+const styles = theme => ({
+  root: theme.mixins.gutters({
+    paddingTop: 16,
+    paddingBottom: 16,
+    marginTop: theme.spacing.unit * 3,
+  }),
+})
 
 class SignUp extends Component {
     constructor(props) {
@@ -43,8 +55,9 @@ class SignUp extends Component {
     }
     
     render() {
+        const { classes } = this.props;
         return(
-            <div className="container">
+            <Paper className={classes.root} elevation={4}>
             <Form>
                 <h2 className="header"> Create a Space Race Account</h2>
                 <FormGroup>
@@ -119,15 +132,20 @@ class SignUp extends Component {
                     <h6> Already have an Account?</h6>
                     <Link to="/SignIn"> Sign In </Link>
             </Form>
-            </div>
-    
+            </Paper>    
         );
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        state
-    }
-}
-export default connect(mapStateToProps, {signingUp})(SignUp);
+SignUp.propTypes = {
+    classes: PropTypes.object.isRequired,
+  };
+  
+export default withStyles(styles)(SignUp);
+
+// const mapStateToProps = state => {
+//     return {
+//         state
+//     }
+// }
+// export default SignUp;

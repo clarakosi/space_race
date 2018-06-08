@@ -11,7 +11,7 @@ import ShowRaceCard from "./Components/CardViews/ShowRaceCard";
 import CreateRaceCard from "./Components/CreateRacePage/index";
 
 import Settings from "./Components/SettingsPage/SettingsForm";
-import SignUp from "./Components/UserAccounts/SignUp";
+import SignUp from "./Components/UserAccounts/SignUpIndex";
 import StudentJoinRace from './Components/StudentJoinRacePage/StudentJoinRacePage'
 import SignIn from "./Components/UserAccounts/SignInIndex";
 import Dashboard from "./Components/Navigation/SideBar"

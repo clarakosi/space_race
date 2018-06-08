@@ -6,19 +6,21 @@ import Header from './Header';
 import Footer from './Footer';
 import Carousel from './Carousel';
 import 'bootstrap/dist/css/bootstrap.css';
+import NavBar2 from '../Navigation/NavBar2';
+import Carousel2 from './Carousel2';
 class LandingPage extends Component {
 
     render() {
         return (
-          <div>
+          <div style={{width: "100%"}}>
+            <NavBar2/>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-            <Header />
-            <br />
-            <br />
-            <Carousel/>
-            <br />
-            <br />
-            <Footer />
+            {/* <Header /> */}
+            {/* <Carousel/> */}
+            <Carousel2 />
+            {/* <br /> */}
+            {/* <br /> */}
+            {/* <Footer /> */}
           </div>
         );
       }
