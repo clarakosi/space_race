@@ -3,12 +3,16 @@ import { connect } from 'react-redux';
 import { Questions } from '../ScoreBoardPage/questionboard';
 import { CreateRaceCard } from '../CardViews/CreateRaceCard';
 import { gettingRace, nextQuestion } from '../../Actions/adminDeliveryPage';
-import ScoreBoard from '../ScoreBoardPage/index';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Jumbotron } from 'reactstrap';
 import { Progress } from 'react-sweet-progress';
 import 'react-sweet-progress/lib/style.css';
-import './AdminDeliveryPage.css';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import { Button} from 'reactstrap';
+import ScoreBoard from '../ScoreBoardPage/scoreboard'
+
+// import './AdminDeliveryPage.css';
 
 /* Progress bar will get data from this.props.race.questions[this.props.index] DIVIDED BY this.props.race.number_of_participants
 */
@@ -20,29 +24,27 @@ class QuestionCard extends Component {
         this.state = {
             lastQuestion: false,
             error: null,
-            isHidden: true
+            isHidden: false,
         }
     }
-    toggleHidden () {
-        this.setState({
-            isHidden: !this.state.isHidden
-        })
+
+
+    
+    componentDidMount() {
+        this.props.gettingRace(this.props.slug)
     }
-    /* render () { 
-        return (
-            
-        )
-    } */ 
-
-     componentDidMount() {
-          this.props.gettingRace(this.props.slug)
-     }
-
-     revealAnswerToggle = () => {
-        const active = !this.state.show
-        this.setState({show: active});
+    
+    revealAnswerToggle = event => {
+        const active = !this.state.isHidden;
+        this.setState({isHidden: active});
     } 
-
+    
+    // toggleHidden = event => {
+    //     const active = this.state.toggleHidden
+    //     this.setState({
+    //         isHidden: !active
+    //     })
+    // }
     nextQuestion = event => {
         event.preventDefault();
         let index = this.props.race.index + 1
@@ -67,19 +69,44 @@ class QuestionCard extends Component {
 
         return (
             <div>
-                <Jumbotron className="jumbotron">
-                {!this.props.gotRace ? null : 
-                <div>
-                    {<div key={this.props.race.questions[this.props.race.index].id}>
-                    <h3>{this.props.race.questions[this.props.race.index].question}</h3>
-                    <ol>
-                    {this.props.race.questions[this.props.race.index].answers.map(answer => { 
-                    return <li key={answer.id}>{answer.answer}</li>
-                    })}
-                    </ol>          
-                    </div> }
-                </div>}
-                <h1 className="display-3">Question</h1>
+                {/* <Jumbotron className="jumbotron"> */}
+                <Paper className={this.props.classes.root} elevation={4}>
+                    {!this.props.gotRace ? null : 
+                    <div>
+                        {<div key={this.props.race.questions[this.props.race.index].id}>
+                        <h4>{this.props.race.questions[this.props.race.index].question}</h4>
+                        <ol style={{display: "table-caption", listStyleType: "upper-alpha"}}>
+                        {this.props.race.questions[this.props.race.index].answers.map(answer => { 
+                        return <li key={answer.id} style={this.state.isHidden && answer.is_correct ? {backgroundColor: "#ADFF2F"} : null}>{answer.answer}</li>
+                        })}
+                        </ol>          
+                        </div> }
+                        <Progress 
+                        percent={this.props.race.questions[this.props.race.index].number_of_responses == 0 ? 0 : ((this.props.race.questions[this.props.race.index].number_of_responses/this.props.race.number_of_participants) * 100)}
+                        theme={{
+                            success: {
+                                symbol: '🚀',
+                                color: 'rgb(223, 105, 180)'
+                            },
+                            active: {
+                                symbol: '😀',
+                                color: '#fbc630'
+                            },
+                            default: {
+                                symbol: '😱',
+                                color: '#fbc630'
+                            }
+                        }}
+                        />
+                    </div>}
+                    <br />
+                    <Button color="primary" className="float-left" onClick={this.revealAnswerToggle}> Show Answer</Button>
+                    <Button color="primary" className="float-right" onClick={this.nextQuestion}> Next Question</Button>
+                    {this.state.lastQuestion ? <div>You're all done! <ScoreBoard race={this.props.race} gotRace={this.props.gotRace}/> </div> : null}
+                    <br />
+                    <br />
+                </Paper>
+                {/* <h1 className="display-3">Question</h1>
                 <p className="lead">A Place Holder For The Question</p>
                 <hr className="my-2" />
                 <p>A Place Holder For The Answers:
@@ -87,29 +114,10 @@ class QuestionCard extends Component {
                     <li>B</li>
                     <li>C</li>
                     <li>D</li>
-                </p>
-                <button color="primary" className="float-left" onClick={this.toggleHidden}> Show Answer</button>
-                <button color="primary" className="float-right" onClick={this.nextQuestion}> Next Question</button>
-                {this.state.lastQuestion ? <div>You're all done!</div> : null}
-            </Jumbotron>
+                </p> */}
+            {/* </Jumbotron> */}
            { /* ------- Websocket showing how many have answered question ------- */ }
-            <Progress 
-            percent={100}
-            theme={{
-                success: {
-                    symbol: '🚀',
-                    color: 'rgb(223, 105, 180)'
-                },
-                active: {
-                    symbol: '😀',
-                    color: '#fbc630'
-                },
-                default: {
-                    symbol: '😱',
-                    color: '#fbc630'
-                }
-            }}
-        />
+           {/* {console.log(this.props)} */}
             </div>
             // Potential setup for questions/answers? Need opinions
             // This is based from React-II Instagram Clone during Week 4

@@ -13,9 +13,10 @@ import CreateRaceCard from "./Components/CreateRacePage/index";
 import Settings from "./Components/SettingsPage/SettingsForm";
 import SignUp from "./Components/UserAccounts/SignUp";
 import StudentJoinRace from './Components/StudentJoinRacePage/StudentJoinRacePage'
-import SignIn from "./Components/UserAccounts/SignIn";
+import SignIn from "./Components/UserAccounts/SignInIndex";
 import Dashboard from "./Components/Navigation/SideBar"
 import SideBar from './Components/Navigation/SideBar';
+import NavBar from './Components/Navigation/NavBar';
 
 import AdminDelivery from './Components/AdminDeliveryPage/index';
 import './App.css'
@@ -39,6 +40,19 @@ const routes = [
       main: () => <CreateRaceCard />
   }
 ]
+
+// const StudentRoutes = [
+//   {
+//     path: "/joinrace/:slug",
+//     navbar: () => <NavBar />,
+//     main: () => <StudentJoinRacePage />
+//   },
+//   {
+//     path: "/race/:slug",
+//     navbar: () => <NavBar />,
+//     main: () => <ScoreBoard />
+//   }
+// ]
 //NOTE:  Authenticated routes are commented out for the time being until the backend gets hooked up.
 class App extends Component {
   render() {
@@ -49,11 +63,11 @@ class App extends Component {
         <Route path="/signup" component={SignUp} />
         {/* <Route path="/admindelivery/:slug" component={AdminDelivery} /> */}
         {/* <Route path="/adminrace" component={AdminRace} /> */}
-        <Route path="/api" component={App} />
+        {/* <Route path="/api" component={App} /> */}
         {/* <Route path="/createrace" component={CreateRaceCard} /> */}
         <Route path="/race/:slug" component={ScoreBoard} />
         <Route path="/joinrace/:slug" component={StudentJoinRacePage} />
-        <Route path="/showrace" component={ShowRaceCard} />
+        {/* <Route path="/showrace" component={ShowRaceCard} /> */}
         {/* <Route path="/settings" component={Settings} /> */}
         {routes.map((route, index) => (
           <Route key={index} path={route.path} exact={route.exact} component={route.sidebar} />
@@ -61,7 +75,17 @@ class App extends Component {
         {routes.map((route, index) => (
           <Route key={index} path={route.path} exact={route.exact} component={route.main} />
         ))}
-        <Route path="/student" component={StudentJoinRace} />
+
+        
+        {/* {StudentRoutes.map((route, index) => (
+          <Route key={index} path={route.path} exact={route.exact} component={route.navbar} />
+        ))}
+
+        {StudentRoutes.map((route, index) => (
+          <Route key={index} path={route.path} exact={route.exact} component={route.main} />
+        ))} */}
+
+        {/* <Route path="/student" component={StudentJoinRace} /> */}
 
 
    {/* ---- when we have the authentication and login hooked up to the back the below routes can be uncommented and the above routes can be deleted ---- */}

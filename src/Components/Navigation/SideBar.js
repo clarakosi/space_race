@@ -10,8 +10,11 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './sidebar.css';
 import Settings from '../SettingsPage/SettingsForm';
 import Scoreboard from '../AdminDeliveryPage/';
-import IoAndroidContact from 'react-icons/lib/io/android-contact'
+import IoAndroidContact from 'react-icons/lib/io/android-contact';
+import IoLogOut from 'react-icons/lib/io/log-out'
 import { Row, Col } from 'reactstrap'
+import { signOut } from '../../Actions/LogIn'
+
 
 // import CreateRace from '../CreateRacePage/index';
 
@@ -38,7 +41,6 @@ import { Row, Col } from 'reactstrap'
 class SideBar extends Component {
     // let user = this.props.user.username ? this.props.user.username : null;
     render() {
-        console.log(this.props);
         return (
             <div className="Dashboard">
                 {/* <Row className="row"> */}
@@ -61,6 +63,9 @@ class SideBar extends Component {
                             <NavItem style={{ listStyleType: "none" }}>
                                 <Link to="/settings"><IoAndroidSettings size={30} /> Settings</Link>
                             </NavItem> 
+                            <NavItem style={{ listStyleType: "none" }}>
+                                <Link to="/" onClick={() => this.props.signOut()} ><IoLogOut size={30} /> Log Out</Link>
+                            </NavItem> 
                         </Nav>
                     </div>
                     {/* <div style={{width: "100%"}}>
@@ -82,5 +87,5 @@ const mapStateToProps = state => {
         user: state.LogIn.user
     }
 }
-export default connect(mapStateToProps, {}) (SideBar);
+export default connect(mapStateToProps, { signOut }) (SideBar);
 

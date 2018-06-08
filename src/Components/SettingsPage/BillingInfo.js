@@ -8,7 +8,7 @@ class BillingInfo extends Component {
             <button>
                 Billing Info
             </button>
-            <p>Subscription Expires on:</p>
+            <p>Subscription Expires on: 09/09/25</p>
             </div>
             // Need to add infro about when users subscription will expire
         );

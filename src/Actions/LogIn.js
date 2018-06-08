@@ -13,7 +13,7 @@ const url = 'http://127.0.0.1:8000/api/v1/rest-auth/login/'
 
 const signUpUrl = 'http://127.0.0.1:8000/api/v1/rest-auth/registration/';
 
-const redirectURL = 'http://localhost:3000/'
+const redirectURL = '/'
 
 
 export const loggingIn = (data) => {
@@ -53,6 +53,6 @@ export const signOut = () => {
     dispatch({type: SIGNINGOUT})
     window.localStorage.clear();
     dispatch({type: SIGNEDOUT})
-    document.location.replace(redirectURL)   
+    // document.location.replace(redirectURL)   
   }
 }

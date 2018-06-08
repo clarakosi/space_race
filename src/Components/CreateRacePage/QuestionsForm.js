@@ -168,9 +168,9 @@ class QuizAndTeamsForm extends Component {
             return <ListGroupItem key={index}>
             Question: {question.question} <span style={{ float: "right"}}><IoAndroidCreate size={23} color="#792d86" onClick={this.updateToggle}/> <UpdateQuestionModal handleAnswerDelete={this.handleAnswerDelete} updateToggle={this.state.updateToggle} updateToggleFunc={this.updateToggle} question={question} index={index} handleQuestionDelete={this.handleQuestionDelete} handleQuestionUpdate={this.handleQuestionUpdate} /> </span>
             <br/>
-            {question.answers.map(answer => {
+            {question.answers.map((answer, index) => {
               if(answer.is_correct === true) {
-                return <div>Answer: {answer.answer}</div>
+                return <div key={index}>Answer: {answer.answer}</div>
               }
             })} 
             </ListGroupItem>

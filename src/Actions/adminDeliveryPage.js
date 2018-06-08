@@ -13,6 +13,7 @@ const webSocketBridge = new WebSocketBridge();
 
 // TODO: Change url for deployment
 const url = 'ws://127.0.0.1:8000/ws/quiz';
+const httpReq = 'http://127.0.0.1:8000'
 
 export const gettingRace = (slug) => {
   return dispatch => {
@@ -36,8 +37,19 @@ export const gettingRace = (slug) => {
     webSocketBridge.listen(function(action, stream) {
       console.log(action, stream);
       dispatch({type: GOTRACE, payload: action})
-      dispatch({type: GOTQUIZ, payload: action})
     })
+  }
+}
+
+export const getQuiz = slug => {
+  return dispatch => {
+    axios.get(`${httpReq}/db/${slug}/`)
+      .then(response => {
+        dispatch({type: GOTQUIZ, payload: response.data})
+      })
+      .catch(err => {
+        dispatch({type: ERROR, payload: err})
+      })
   }
 }
 

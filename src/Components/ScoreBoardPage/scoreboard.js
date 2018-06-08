@@ -26,7 +26,7 @@ const ScoreBoard = (props) => {
       {props.gotRace ? props.race.teams.map(team => {
         // let progress = (team.score / (team.students.length * questionsTotal)) * 100;
         return <div key={team.id}>{team.name} 
-        <Progress percent={(team.score / (team.students.length * questionsTotal)) * 100} theme={{success: {
+        <Progress percent={ team.score == 0 ? 0 : (team.score / (team.students.length * questionsTotal)) * 100} theme={{success: {
           symbol: team.mascot,
           color: team.color
         }, 
