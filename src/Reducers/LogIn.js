@@ -7,6 +7,8 @@ import {
   SIGNINGOUT
 } from "../Actions/LogIn";
 
+import storage from 'redux-persist/lib/storage'
+
 const initialState = {
   loggedIn: false,
   loggingIn: false,
@@ -34,7 +36,10 @@ const LogInReducer = (state = initialState, action) => {
     case SIGNINGOUT:
       return {...state, signingOut: true};
     case SIGNEDOUT:
-      return {...state, signedOut: true, loggedIn: false, signingOut: false};
+        Object.keys(state).forEach(key => {
+            storage.removeItem(`persist:${key}`);
+        });
+        state = undefined;
     case ERROR:
       return { ...state, loggingIn: false, error: action.payload };
     default:
