@@ -37,16 +37,16 @@ const LogInReducer = (state = initialState, action) => {
     case SIGNINGUP:
       return { ...state, signingUp: true };
     case SIGNINGOUT:
-      return {...state, signingOut: true};
-    case SIGNEDOUT:
-        Object.keys(state).forEach(key => {
-            storage.removeItem(`persist:${key}`);
-        });
-        state = undefined;
+      return {...state, signingOut: true, passwordChanged: false};
     case PASSWORDCHANGED:
       return {...state, passwordChanged: true, error: null}
     case ERROR:
       return { ...state, loggingIn: false, error: action.payload };
+    case SIGNEDOUT:
+      Object.keys(state).forEach(key => {
+          storage.removeItem(`persist:${key}`);
+      });
+      state = undefined;
     default:
       return state;
   }

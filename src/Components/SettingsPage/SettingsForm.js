@@ -62,7 +62,7 @@ class SettingsForm extends Component {
                 </FormGroup>
                 <FormGroup>
                     <Label> Confirm New Password:</Label>
-                    <Input type="password" name="new_password2" value={this.state.new_password2} onChange={this.changeHandler} invalid={this.state.new_password1 !== this.state.new_password2} valid={this.state.new_password1 == this.state.new_password2} placeholder="********"/>
+                    <Input type="password" name="new_password2" value={this.state.new_password2} onChange={this.changeHandler} invalid={this.state.new_password1 !== this.state.new_password2} valid={this.state.new_password1 == this.state.new_password2 && this.state.new_password2 > 0} placeholder="********"/>
                     <FormFeedback valid>Passwords Match!</FormFeedback>
                     <FormFeedback>Passwords MUST Match</FormFeedback>
                 </FormGroup>

@@ -38,7 +38,12 @@ const routes = [
       path: "/createrace",
       sidebar: () => <SideBar />,
       main: () => <CreateRaceCard />
-  }
+  },
+  // {
+  //   path: "/scoreboard",
+  //   sidebar: () => <SideBar />,
+  //   main: () => <ShowRaceCard />
+  // }
 ]
 
 // const StudentRoutes = [
@@ -117,6 +122,12 @@ class App extends Component {
           this.props.signedOut ? (
             <Redirect to='/' />
           ) : <Route to='/settings' />  
+        )} />
+
+        <Route path='/scoreboard' render={() => (
+          this.props.signedOut ? (
+            <Redirect to='/' />
+          ) : <Route to='/scoreboard' />  
         )} />
         
         {/* {StudentRoutes.map((route, index) => (
