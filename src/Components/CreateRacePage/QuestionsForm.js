@@ -35,7 +35,6 @@ class QuizAndTeamsForm extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
-    console.log(this.state)
   }
 
   handleChange = name => event => {
@@ -48,7 +47,6 @@ class QuizAndTeamsForm extends Component {
     })
   }
   nextHandler = (event) => {
-    console.log(this.state);
     if (this.state.question && this.state.answers.length > 0) {
       let question = {
         question: this.state.question,

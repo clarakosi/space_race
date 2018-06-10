@@ -18,16 +18,6 @@ const httpReq = 'http://127.0.0.1:8000'
 export const gettingRace = (slug) => {
   return dispatch => {
     dispatch({type: GETTINGRACE})
-    // let token = window.localStorage.getItem('Authorization')
-    // axios.get(`${url}/${slug}/`)
-    //   .then(response => {
-    //     dispatch({type: GOTRACE, payload: response.data})
-    //     console.log(response.data)
-    //   })
-    //   .catch(error => {
-    //     dispatch({type: ERROR, payload: error})
-    //     console.error(error)
-    //   })
     webSocketBridge.connect(`${url}/${slug}/`);
     let slugObject = { slug: slug}
     webSocketBridge.socket.addEventListener('open', function() {

@@ -53,6 +53,5 @@ export const signOut = () => {
     dispatch({type: SIGNINGOUT})
     window.localStorage.clear();
     dispatch({type: SIGNEDOUT})
-    // document.location.replace(redirectURL)   
   }
 }

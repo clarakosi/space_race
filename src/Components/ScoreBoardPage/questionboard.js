@@ -46,14 +46,10 @@ class Questions extends Component {
   }
 
   componentWillMount() {
-    // if (this.props.gotRace) {
       let questions = this.props.race.questions;
       questions.map(question => {
         this.state.answers.push(question.answers.sort(function() { return 0.5 - Math.random() }))
       })
-      console.log("questions man")
-      console.log("answers man", this.state.answers)
-    // }
   }
 
 
@@ -82,7 +78,6 @@ class Questions extends Component {
   render() {
     const { classes } = this.props;
     let answers = this.props.race.questions[this.props.index].answers;
-    console.log(answers)
     return (
       <Paper className={classes.root} elevation={4}>
           {!this.props.gotRace ? null :

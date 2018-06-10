@@ -1,19 +1,19 @@
-import { RANDOM_TEAM_ACTION } from '../Actions';
-/** this is to be used for choosing random order of teams in the race card view */
-const initialState = {
-    team: null
-};
-export default (state = initialState, action) => {
-    switch (action.type) {
+// import { RANDOM_TEAM_ACTION } from '../Actions/RandomTeamAction';
+// /** this is to be used for choosing random order of teams in the race card view */
+// const initialState = {
+//     team: null
+// };
+// export default (state = initialState, action) => {
+//     switch (action.type) {
         
-        case RANDOM_TEAM_ACTION: 
-            return {
-                team: action.team
-            };
-        default:
-            return state;
-    }
-}
+//         case RANDOM_TEAM_ACTION: 
+//             return {
+//                 team: action.team
+//             };
+//         default:
+//             return state;
+//     }
+// }
 
 
 /***

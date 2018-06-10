@@ -57,7 +57,6 @@ class QuizAndTeamsForm extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
-    console.log(this.state)
   }
 
   handleChange = name => event => {
@@ -70,7 +69,6 @@ class QuizAndTeamsForm extends Component {
   };
 
   nextHandler = (event) => {
-    console.log(this.state);
     let quiz = {name: this.state.name, teams: this.state.teams, randomize_team: this.state.randomize_team}
     this.props.QuizInfo(quiz)
     this.props.handleNext();
@@ -97,9 +95,7 @@ class QuizAndTeamsForm extends Component {
     }
   }
   handleDelete = index => {
-    console.log(index)
     this.state.teams.splice(index,1);
-    console.log('teams', this.state.teams)
     let quiz = {name: this.state.name, teams: this.state.teams, randomize_team: this.state.randomize_team};
     this.props.QuizInfo(quiz);
   }

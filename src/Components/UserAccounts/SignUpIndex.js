@@ -11,7 +11,7 @@ class SignUpIndex extends Component {
       <div style={{width: "100%"}}>
         <NavBar />
         <div style={{marginLeft: "auto", marginRight: "auto", display: "block", width: "40%"}}>
-          <SignUp signingUp={this.props.signingUp} />
+          <SignUp signingUp={this.props.signingUp} error={this.props.error} />
         </div>
       </div>
     )
@@ -20,7 +20,7 @@ class SignUpIndex extends Component {
 
 const mapStateToProps = state => {
   return {
-      state
+    error: state.LogIn.error
   }
 }
 export default connect(mapStateToProps, {signingUp})(SignUpIndex);

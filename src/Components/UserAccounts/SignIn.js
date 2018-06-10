@@ -47,6 +47,7 @@ class SignIn extends Component {
         return(
             <Paper className={classes.root} elevation={4}>
                 <Form className="container">
+                {this.props.error ? <div style={{color: "red"}}> Incorrect username/ password </div> : null}
                     <h4> Sign-In to your Space Race Account</h4>
                     <FormGroup>
                         <Input 

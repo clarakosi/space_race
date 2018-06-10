@@ -1,20 +1,20 @@
-import { RANDOM_COLOR_ACTION } from '../Actions';
+// import { RANDOM_COLOR_ACTION } from '../Actions';
 
-const initialState = {
-    color: null
-};
+// const initialState = {
+//     color: null
+// };
 
-export default (state = initialState, action) => {
-    switch (action.type) {
+// export default (state = initialState, action) => {
+//     switch (action.type) {
         
-        case RANDOM_COLOR_ACTION: 
-            return {
-                color: action.color  //we do not set it to action.payload because we need a pure function, the random generator logic cannot be implemented here.
-            };
-        default:
-            return state;
-    }
-}
+//         case RANDOM_COLOR_ACTION: 
+//             return {
+//                 color: action.color  //we do not set it to action.payload because we need a pure function, the random generator logic cannot be implemented here.
+//             };
+//         default:
+//             return state;
+//     }
+// }
 
 /***
  * 

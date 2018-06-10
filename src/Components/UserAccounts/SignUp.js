@@ -59,6 +59,7 @@ class SignUp extends Component {
         return(
             <Paper className={classes.root} elevation={4}>
             <Form>
+            {this.props.error ? <div style={{color: "red"}}> Email/username is already in use </div> : null}
                 <h2 className="header"> Create a Space Race Account</h2>
                 <FormGroup>
                     <Input 

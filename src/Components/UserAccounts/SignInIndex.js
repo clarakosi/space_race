@@ -11,7 +11,7 @@ class SignInForm extends Component {
       <div style={{width: "100%"}}>
         <NavBar />
         <div style={{marginLeft: "auto", marginRight: "auto", display: "block", width: "40%", paddingTop: 20}}>
-          <SignIn loggedIn={this.props.loggedIn} loggingIn={this.props.loggingIn} />
+          <SignIn  error={this.props.error} loggedIn={this.props.loggedIn} loggingIn={this.props.loggingIn} />
         </div>
       </div>
 
@@ -22,7 +22,8 @@ class SignInForm extends Component {
 
 const mapStateToProps = state => {
   return {
-      loggedIn: state.LogIn.loggedIn
+      loggedIn: state.LogIn.loggedIn,
+      error: state.LogIn.error
   }
 }
 export default connect(mapStateToProps, { loggingIn })(SignInForm);
