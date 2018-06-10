@@ -6,13 +6,14 @@ export const ERROR = 'ERROR';
 export const SIGNINGUP = 'SIGNINGUP';
 export const SIGNINGOUT = 'SIGNINGOUT';
 export const SIGNEDOUT = 'SIGNEDOUT';
-
+export const PASSWORDCHANGED = 'PASSWORDCHANGED';
 
 // TODO: change urls for deployment
 const url = 'http://127.0.0.1:8000/api/v1/rest-auth/login/'
 
 const signUpUrl = 'http://127.0.0.1:8000/api/v1/rest-auth/registration/';
 
+const changePassUrl = 'http://127.0.0.1:8000/api/v1/rest-auth/password/change/'
 const redirectURL = '/'
 
 
@@ -47,6 +48,18 @@ export const signingUp = (data) => {
   }
 }
 
+export const ChangePassword = data => {
+  return dispatch => {
+    let Authorization = window.localStorage.getItem('Authorization');
+    axios.post(changePassUrl, data, { headers: {Authorization} })
+      .then(response => {
+        dispatch({type: PASSWORDCHANGED})
+      })
+      .catch(error => {
+        dispatch({type: ERROR})
+      })
+  }
+}
 
 export const signOut = () => {
   return dispatch => {
