@@ -10,7 +10,7 @@ class SignUpIndex extends Component {
     return(
       <div style={{width: "100%"}}>
         <NavBar />
-        <div style={{ marginLeft: 350, marginRight: 350}}>
+        <div style={{marginLeft: "auto", marginRight: "auto", display: "block", width: "40%"}}>
           <SignUp signingUp={this.props.signingUp} />
         </div>
       </div>

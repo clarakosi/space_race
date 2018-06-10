@@ -10,7 +10,7 @@ class SignInForm extends Component {
     return (
       <div style={{width: "100%"}}>
         <NavBar />
-        <div style={{marginLeft: 350, marginRight: 350, paddingTop: 20}}>
+        <div style={{marginLeft: "auto", marginRight: "auto", display: "block", width: "40%", paddingTop: 20}}>
           <SignIn loggedIn={this.props.loggedIn} loggingIn={this.props.loggingIn} />
         </div>
       </div>

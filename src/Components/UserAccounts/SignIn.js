@@ -64,7 +64,7 @@ class SignIn extends Component {
                         name="password" 
                         placeholder="Password"/>
                     </FormGroup>
-                    <Button onClick={this.handleSubmit}>Sign In </Button>
+                    <Button onClick={this.handleSubmit} type="submit">Sign In </Button>
                         <h6> Don't Already have an Account?</h6>
                         <Link to="/SignUp"> Sign Up Today </Link>
                 </Form>

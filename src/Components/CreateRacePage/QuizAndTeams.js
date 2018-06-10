@@ -163,8 +163,8 @@ class QuizAndTeamsForm extends Component {
           <ListGroup style={{display: "inline-flex"}}>
           {this.props.quizAdded ? this.state.teams.map((team, index) => {
             return <ListGroupItem key={index}>{team.name} &emsp; {team.mascot} &emsp; {team.color}
-              <span style={{float: "right"}} onClick={() => this.handleDelete(index)}><IoAndroidDelete size={23} color ="#792d86" /></span>
-              <span style={{float: "right"}}><IoAndroidCreate size={23} color="#792d86" onClick={this.updateToggle}/> 
+              &emsp;<span style={{float: "right"}} onClick={() => this.handleDelete(index)}><IoAndroidDelete size={23} color ="#792d86" /></span>
+              &emsp;<span style={{float: "right"}}><IoAndroidCreate size={23} color="#792d86" onClick={this.updateToggle}/> 
               <UpdateTeamModal   handleUpdate={this.handleUpdate} updateToggleFunc={this.updateToggle} updateToggle={this.state.updateToggle} team={team} index={index}/></span> 
             </ListGroupItem>
           }) : null}

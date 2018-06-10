@@ -95,7 +95,7 @@ class UpdateQuestionModal extends Component {
           </FormGroup>
           <Col>
           {this.state.answers.map((answer, index) => {
-            return <div key={index}>{answer.answer} {answer.is_correct ? "✅" : "❌"}  <span onClick={() => this.handleAnswerDelete(index)}><IoAndroidDelete size={23} color ="#792d86" /></span></div>
+            return <div key={index}>{answer.answer} {answer.is_correct ? "    ✅ ": "    ❌"}  &emsp;<span onClick={() => this.handleAnswerDelete(index)}><IoAndroidDelete size={23} color ="#792d86" /></span></div>
           })}
           </Col>
         <FormGroup >

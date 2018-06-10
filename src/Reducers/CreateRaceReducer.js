@@ -18,7 +18,7 @@ const CreateRaceReducer = (state = initialState, action) => {
         case QUESTIONADDED:
             return {...state, questionsAdded: true, questions: action.payload};
         case STARTRACE:
-            return {...state, startRace: true, race: action.payload};
+            return {...state, startRace: true, race: action.payload, questions: null, quiz: null, quizAdded: false, questionsAdded: false};
         case ERROR: 
             return {...state, error: action.payload};
         default:

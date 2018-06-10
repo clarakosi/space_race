@@ -182,7 +182,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Configure the JWTs to expire after 1 hour, and allow users to refresh near-expiration tokens
 JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=4),
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),
     'JWT_ALLOW_REFRESH': True,
 }
 

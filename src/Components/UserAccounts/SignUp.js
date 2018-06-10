@@ -128,7 +128,7 @@ class SignUp extends Component {
                 </Label>
                 </FormGroup>
                 </FormGroup> */}
-                    <Button disable={this.validateForm()} onClick={this.handleSubmit}>Sign Up </Button>
+                    <Button disable={this.validateForm()} onClick={this.handleSubmit} type="submit">Sign Up </Button>
                     <h6> Already have an Account?</h6>
                     <Link to="/SignIn"> Sign In </Link>
             </Form>

@@ -85,11 +85,11 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
     const { activeStep } = this.state;
 
     return (
-      <div className={classes.root} style={this.state.addToggle ? {padding: 30} : {padding: 200}}>
+      <div className={classes.root} style={this.state.addToggle ? {paddingTop: 30} : {paddingTop: 200}}>
       <Button variant="fab" onClick={this.addToggle} color="primary" style={this.state.addToggle ? {display: "none"} : null}  size="medium" aria-label="add" className={classes.button}>
         <AddIcon />
       </Button>
-        <Paper className={classes.root} elevation={4} style={!this.state.addToggle ? {display: "none"} : null} >
+        <Paper className={classes.root} elevation={4} style={!this.state.addToggle ? {display: "none"} : {marginLeft: "auto", marginRight: "auto", display: "block", width: "90%"}} >
             <Stepper activeStep={activeStep} alternativeLabel>
               {steps.map(label => {
                 return (

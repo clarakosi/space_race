@@ -17,6 +17,7 @@ const styles = {
   },
   flex: {
     flex: 1,
+    paddingLeft: 85,
   },
   menuButton: {
     marginLeft: -12,

@@ -21,7 +21,7 @@ class SettingsForm extends Component {
     render() {
         const { classes } = this.props;
         return (
-            <Paper className={classes.root} elevation={4} style={{width: "100%", height:"100%", padding: 30}}>
+            <Paper className={classes.root} elevation={4} style={{marginLeft: "auto", marginRight: "auto", display: "block", width: "40%", paddingTop: 30, height: "100%"}}>
             {/* <Form style={{width: "100%"}}> */}
                 <FormGroup >
                     <Label> Email:</Label>
@@ -36,7 +36,7 @@ class SettingsForm extends Component {
                     <Label> New-Password:</Label>
                     <Input type="password" placeholder="********"/>
                 </FormGroup>
-                <BillingInfo/>
+                {/* <BillingInfo/> */}
                 <Button > Save </Button>
             {/* </Form> */}
             </Paper>

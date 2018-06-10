@@ -8,16 +8,14 @@ import { Jumbotron } from 'reactstrap';
 import { Progress } from 'react-sweet-progress';
 import 'react-sweet-progress/lib/style.css';
 import Paper from '@material-ui/core/Paper';
+import RadioGroup from '@material-ui/core/RadioGroup';
 import Typography from '@material-ui/core/Typography';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Radio from '@material-ui/core/Radio';
 import { Button} from 'reactstrap';
 import ScoreBoard from '../ScoreBoardPage/scoreboard'
 
-// import './AdminDeliveryPage.css';
 
-/* Progress bar will get data from this.props.race.questions[this.props.index] DIVIDED BY this.props.race.number_of_participants
-*/
-
-/* Admin Delivery Page, to see the current question, answer choices, correct answer(initially hidden) */
 class QuestionCard extends Component {
     constructor(props) {
         super(props);
@@ -74,15 +72,26 @@ class QuestionCard extends Component {
             <div>
                 {/* <Jumbotron className="jumbotron"> */}
                 <Paper className={this.props.classes.root} elevation={4}>
-                    {!this.props.gotRace ? null : 
+                    {!this.props.gotRace ? null :
                     <div>
                         {<div key={this.props.race.questions[this.props.race.index].id}>
-                        <h4>{this.props.race.questions[this.props.race.index].question}</h4>
-                        <ol style={{display: "table-caption", listStyleType: "upper-alpha"}}>
-                        {this.props.race.questions[this.props.race.index].answers.map(answer => { 
-                        return <li key={answer.id} style={this.state.isHidden && answer.is_correct ? {backgroundColor: "#ADFF2F"} : null}>{answer.answer}</li>
+                        <Typography variant="caption" gutterBottom align="right">
+                            Question {this.props.race.index + 1} of {this.props.race.questions.length}
+                        </Typography>
+                        <Typography variant="headline" gutterBottom>
+                        {this.props.race.questions[this.props.race.index].question}
+                        </Typography>
+                        <RadioGroup
+                            aria-label={this.props.race.questions[this.props.race.index].question}
+                            name={this.props.race.questions[this.props.race.index].question}
+                            className={this.props.classes.group}
+                            // value={this.state.value}
+                            // onChange={this.handleChange}
+                            >
+                            {this.props.race.questions[this.props.race.index].answers.map(answer => {
+                                return <FormControlLabel key={answer.id}  value={answer.id.toString()} label={answer.answer} control={<Radio color="primary" checked={this.state.isHidden && answer.is_correct ? true : false} disabled={this.state.isHidden && !answer.is_correct ? true : false} />} />
                         })}
-                        </ol>          
+                        </RadioGroup>          
                         </div> }
                         <Progress 
                         percent={this.props.race.questions[this.props.race.index].number_of_responses == 0 ? 0 : ((this.props.race.questions[this.props.race.index].number_of_responses/this.props.race.number_of_participants) * 100)}
@@ -104,71 +113,14 @@ class QuestionCard extends Component {
                     </div>}
                     <br />
                     <Button color="primary" className="float-left" onClick={this.revealAnswerToggle}> Show Answer</Button>
-                    <Button color="primary" className="float-right" onClick={this.nextQuestion}> Next Question</Button>
-                    {this.state.lastQuestion ? <div>You're all done! <ScoreBoard race={this.props.race} gotRace={this.props.gotRace}/> </div> : null}
+                    <Button color="primary" className="float-right" onClick={this.nextQuestion}> {this.props.race.index + 1 == this.props.race.questions.length ? "Finish Race!" : "Next Question"}</Button>
+                    {this.state.lastQuestion ? <div>Final Score! <ScoreBoard race={this.props.race} gotRace={this.props.gotRace}/> </div> : null}
                     <br />
                     <br />
                 </Paper>
-                {/* <h1 className="display-3">Question</h1>
-                <p className="lead">A Place Holder For The Question</p>
-                <hr className="my-2" />
-                <p>A Place Holder For The Answers:
-                    <li>A</li>
-                    <li>B</li>
-                    <li>C</li>
-                    <li>D</li>
-                </p> */}
-            {/* </Jumbotron> */}
-           { /* ------- Websocket showing how many have answered question ------- */ }
-           {/* {console.log(this.props)} */}
             </div>
-            // Potential setup for questions/answers? Need opinions
-            // This is based from React-II Instagram Clone during Week 4
-            /*<div className="question-panel">
-                    {this.state.question ? this.state.question.map((question, i) => (
-                        <div className="question__wrapper" key={i}>
-                            <div className="question__user">{question.question}</div>
-                            <div className="question__text">{question.answer}</div>
-                            <div className="question__text">{question.answer}</div>
-                            <div className="question__text">{question.answer}</div>
-                            <div className="question__text">{question.answer}</div>
-                        </div>
-                    )) : "question failed to load"}
-                </div> */
         );
     }
- 
-    /* Next Question Button Options Start Here */
-
-  /* <button onClick={ this.nextQuestion }> Next Question </button>
-    
-     -------- This Section Allows for going to the next or previous section --------
-    nextQuestion: function(e) {
-        e.preventDefault()
-        this.props.nextStep()
-    } 
-    
-    nextStep: function() {
-        this.setSTate({
-            step : this.state.step + 1
-        })
-    },
-
-    previousStep: function() {
-        this.setState({
-            step : this.state.step - 1
-        })
-    }
-    
-    */
-   // -------- This section will just go to the next question --------
-    // nextQuestion = event => {
-    //     event.preventDefault();
-    //     const id = this.props.question.id;
-    //     this.props.nextQuestion(id + 1);
-    // }
-
-    /* Next Question Button Options End Here */
 }
 
 

@@ -42,8 +42,19 @@ class StudentJoinCard extends Component {
         e.preventDefault();
         let slug = this.props.slug
         let history = this.props.history
-        console.log(this.state)
-        this.props.createStudent(this.state, slug, history)
+        let max = this.props.race.teams.length;
+        let random = Math.floor(Math.random() * Math.floor(max));
+
+        if (this.props.race.randomize_team) {
+            let team = this.props.race.teams[random].id
+            let form = {
+                name: this.state.name,
+                team: team
+            }
+            this.props.createStudent(form, slug, history);
+        } else {
+            this.props.createStudent(this.state, slug, history);
+        }
     }
 
     render() {
@@ -52,7 +63,7 @@ class StudentJoinCard extends Component {
         return(
             this.props.gotRace ?
             <div>
-                <Paper className={classes.root} elevation={4} style={{ marginLeft: 150, marginRight: 150 }} >
+                <Paper className={classes.root} elevation={4} style={{ display: "block", marginLeft: "auto", marginRight: "auto", width: "40%" }} >
                 {!this.props.race.randomize_team ? (
                     <div className="Join_Card">
                         <h5>Join {this.props.race.name}</h5>
@@ -80,7 +91,7 @@ class StudentJoinCard extends Component {
         
                                 </Input>
                                 <br />
-                                <Button onClick ={this.handleClick}> Join the Race! </Button>
+                                <Button onClick ={this.handleClick} type="submit"> Join the Race! </Button>
                                 <br />
                                 <br />
                             </FormGroup>
@@ -96,7 +107,12 @@ class StudentJoinCard extends Component {
                                 value={this.state.name}
                                 type="text" 
                                 placeholder="Enter your First Name" />
-                                <Button onClick ={this.handleClick}> Join the Race! </Button>
+                            <FormGroup >
+                                <br />
+                                <Button onClick ={this.handleClick} type="submit"> Join the Race! </Button>
+                                <br />
+                                <br />
+                            </FormGroup>
                             </FormGroup>
                         </Form>
                     </div>
