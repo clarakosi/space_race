@@ -43,10 +43,6 @@ const LogInReducer = (state = initialState, action) => {
     case ERROR:
       return { ...state, loggingIn: false, error: action.payload };
     case SIGNEDOUT:
-      
-      Object.keys(state).forEach(key => {
-        storage.removeItem(`persist:${key}`);
-      });
       return {
         loggedIn: false,
         loggingIn: false,
@@ -54,8 +50,9 @@ const LogInReducer = (state = initialState, action) => {
         user: null,
         error: null,
         signingOut: false,
-        signedOut: true,
-        passwordChanged: false}
+        signedOut: false,
+        passwordChanged: false,
+      };
     default:
       return state;
   }

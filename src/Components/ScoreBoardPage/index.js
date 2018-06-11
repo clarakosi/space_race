@@ -8,7 +8,7 @@ import NavBar from '../Navigation/NavBar';
 
 // TODO: Style and add ability to highlight answer.
 class ScoreBoard extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.gettingRace(this.props.match.params.slug)
   }
 
