@@ -6,7 +6,7 @@ export const STARTRACE = 'STARTRACE';
 export const ERROR = 'ERROR';
 
 // TODO: Change URL for deployment
-const url = 'http://gentle-coast-83668.herokuapp.com/db/'
+const url = 'https://gentle-coast-83668.herokuapp.com/db/'
 
 export const QuizInfo = data => {
     return dispatch => {

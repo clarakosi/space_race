@@ -7,7 +7,7 @@ export const ERROR = 'ERROR';
 
 
 // TODO: Change URL for deployment
-const url = 'http://gentle-coast-83668.herokuapp.com/db/students';
+const url = 'https://gentle-coast-83668.herokuapp.com/db/students';
 
 export const createStudent = (data, slug, history) => {
   return dispatch => {

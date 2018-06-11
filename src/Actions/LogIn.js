@@ -9,11 +9,11 @@ export const SIGNEDOUT = 'SIGNEDOUT';
 export const PASSWORDCHANGED = 'PASSWORDCHANGED';
 
 // TODO: change urls for deployment
-const url = 'http://gentle-coast-83668.herokuapp.com/api/v1/rest-auth/login/'
+const url = 'https://gentle-coast-83668.herokuapp.com/api/v1/rest-auth/login/'
 
-const signUpUrl = 'http://gentle-coast-83668.herokuapp.com/api/v1/rest-auth/registration/';
+const signUpUrl = 'https://gentle-coast-83668.herokuapp.com/api/v1/rest-auth/registration/';
 
-const changePassUrl = 'http://gentle-coast-83668.herokuapp.com/api/v1/rest-auth/password/change/'
+const changePassUrl = 'https://gentle-coast-83668.herokuapp.com/api/v1/rest-auth/password/change/'
 const redirectURL = '/'
 
 
