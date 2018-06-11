@@ -128,8 +128,8 @@ class QuestionCard extends Component {
 
 const mapStateToProps = state => {
     return {
-        race: state.AdminDelivery.race,
-        gotRace: state.AdminDelivery.gotRace,
+        race: state.CreateRace.race,
+        gotRace: state.CreateRace.startRace,
     }
 }
 export default connect(mapStateToProps, { gettingRace, nextQuestion }) (QuestionCard);
