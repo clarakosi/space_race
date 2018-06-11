@@ -47,8 +47,15 @@ const LogInReducer = (state = initialState, action) => {
       Object.keys(state).forEach(key => {
         storage.removeItem(`persist:${key}`);
       });
-      state = undefined;
-      return state;
+      return {
+        loggedIn: false,
+        loggingIn: false,
+        signingUp: false,
+        user: null,
+        error: null,
+        signingOut: false,
+        signedOut: true,
+        passwordChanged: false}
     default:
       return state;
   }
