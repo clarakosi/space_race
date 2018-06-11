@@ -12,8 +12,8 @@ export const ERROR = 'ERROR';
 const webSocketBridge = new WebSocketBridge();
 
 // TODO: Change url for deployment
-const url = 'ws://127.0.0.1:8000/ws/quiz';
-const httpReq = 'http://127.0.0.1:8000'
+const url = 'ws://gentle-coast-83668.herokuapp.com/ws/quiz';
+const httpReq = 'http://gentle-coast-83668.herokuapp.com'
 
 export const gettingRace = (slug) => {
   return dispatch => {

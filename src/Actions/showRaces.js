@@ -6,7 +6,7 @@ export const ERROR = 'ERROR';
 
 
 // TODO: Change url for deployment
-const url = 'http://127.0.0.1:8000/db/'
+const url = 'http://gentle-coast-83668.herokuapp.com/db/'
 
 export const getRaces = () => {
   return dispatch => {
