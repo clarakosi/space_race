@@ -28,7 +28,7 @@ class QuestionCard extends Component {
 
 
     
-    componentDidMount() {
+    componentWillMount() {
         this.props.gettingRace(this.props.slug)
     }
     
@@ -128,8 +128,8 @@ class QuestionCard extends Component {
 
 const mapStateToProps = state => {
     return {
-        race: state.CreateRace.race,
-        gotRace: state.CreateRace.startRace,
+        race: state.AdminDelivery.race,
+        gotRace: state.AdminDelivery.gotRace,
     }
 }
 export default connect(mapStateToProps, { gettingRace, nextQuestion }) (QuestionCard);
