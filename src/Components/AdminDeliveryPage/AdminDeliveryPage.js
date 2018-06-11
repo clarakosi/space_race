@@ -110,13 +110,13 @@ class QuestionCard extends Component {
                             }
                         }}
                         />
-                    </div>}
                     <br />
                     <Button color="primary" className="float-left" onClick={this.revealAnswerToggle}> Show Answer</Button>
                     <Button color="primary" className="float-right" onClick={this.nextQuestion}> {this.props.race.index + 1 == this.props.race.questions.length ? "Finish Race!" : "Next Question"}</Button>
                     {this.state.lastQuestion ? <div>Final Score! <ScoreBoard race={this.props.race} gotRace={this.props.gotRace}/> </div> : null}
                     <br />
                     <br />
+                    </div>}
                 </Paper>
             </div>
         );
