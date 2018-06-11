@@ -43,10 +43,12 @@ const LogInReducer = (state = initialState, action) => {
     case ERROR:
       return { ...state, loggingIn: false, error: action.payload };
     case SIGNEDOUT:
+      
       Object.keys(state).forEach(key => {
-          storage.removeItem(`persist:${key}`);
+        storage.removeItem(`persist:${key}`);
       });
       state = undefined;
+      return state;
     default:
       return state;
   }
