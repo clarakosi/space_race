@@ -28,7 +28,7 @@ class QuestionCard extends Component {
 
 
     
-    componentWillMount() {
+    componentDidMount() {
         this.props.gettingRace(this.props.slug)
     }
     
