@@ -42,7 +42,7 @@ export const StartRace = data => {
         if (data) {
             let questions = localStorage.setItem('questions', JSON.stringify(data));
         }
-        let getQuestions = JSON.parse(localStorage.getItem('questions'));
+        let getQuestions = JSON.parse(localStorage.getItem('questions')).reverse();
         let getQuiz = JSON.parse(localStorage.getItem('quiz'));
         let final = {...getQuiz, questions: getQuestions};
 
